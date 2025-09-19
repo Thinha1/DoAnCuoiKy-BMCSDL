@@ -11,10 +11,7 @@ Hệ thống không chỉ quản lý thông tin máy trạm, người dùng, th�
 - **CSDL**: Oracle Database  
 - **Thư viện**: `Oracle.ManagedDataAccess` để kết nối Oracle  
 - **Thuật toán mã hoá**:
-  - Caesar Cipher (mã hoá dịch chuyển)
-  - Vigenère Cipher
-  - AES (Advanced Encryption Standard)
-  - RSA (Rivest–Shamir–Adleman)  
+  - Hiện chưa có
 
 ---
 
