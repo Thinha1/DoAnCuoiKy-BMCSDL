@@ -7,7 +7,7 @@ Hệ thống không chỉ quản lý thông tin máy trạm, người dùng, th�
 ---
 
 ## ⚙️ Công nghệ sử dụng
-- **Ngôn ngữ**: C# (.NET Framework / WinForms)  
+- **Ngôn ngữ**: C# (WinForms)  
 - **CSDL**: Oracle Database  
 - **Thư viện**: `Oracle.ManagedDataAccess` để kết nối Oracle  
 - **Thuật toán mã hoá**:
