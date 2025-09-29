@@ -35,14 +35,28 @@
             this.col_mamay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_loai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_trangthai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_ngaytao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_ngtao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControlMain = new System.Windows.Forms.TabControl();
-            this.tab_khach = new System.Windows.Forms.TabPage();
             this.tab_dichvu = new System.Windows.Forms.TabPage();
+            this.tab_khach = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.dgrv_kh = new System.Windows.Forms.DataGridView();
+            this.button4 = new System.Windows.Forms.Button();
             this.tab_may = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.col_makh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_tenkh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_sdt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_cccd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_sodu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_ngaytao_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_nguoitao_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgrv_may)).BeginInit();
             this.tabControlMain.SuspendLayout();
+            this.tab_khach.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrv_kh)).BeginInit();
             this.tab_may.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,13 +94,14 @@
             // 
             // dgrv_may
             // 
-            this.dgrv_may.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgrv_may.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrv_may.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_mamay,
             this.col_loai,
-            this.col_trangthai});
-            this.dgrv_may.Location = new System.Drawing.Point(3, 47);
+            this.col_trangthai,
+            this.col_ngaytao,
+            this.col_ngtao});
+            this.dgrv_may.Location = new System.Drawing.Point(0, 4);
             this.dgrv_may.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgrv_may.Name = "dgrv_may";
             this.dgrv_may.RowHeadersWidth = 51;
@@ -118,6 +133,22 @@
             this.col_trangthai.Name = "col_trangthai";
             this.col_trangthai.Width = 125;
             // 
+            // col_ngaytao
+            // 
+            this.col_ngaytao.DataPropertyName = "NGAYTAO";
+            this.col_ngaytao.HeaderText = "Ngày tạo";
+            this.col_ngaytao.MinimumWidth = 6;
+            this.col_ngaytao.Name = "col_ngaytao";
+            this.col_ngaytao.Width = 125;
+            // 
+            // col_ngtao
+            // 
+            this.col_ngtao.DataPropertyName = "NGUOITAO";
+            this.col_ngtao.HeaderText = "Người tạo";
+            this.col_ngtao.MinimumWidth = 6;
+            this.col_ngtao.Name = "col_ngtao";
+            this.col_ngtao.Width = 125;
+            // 
             // tabControlMain
             // 
             this.tabControlMain.Controls.Add(this.tab_dichvu);
@@ -132,17 +163,6 @@
             this.tabControlMain.TabIndex = 4;
             this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlMain_Selected);
             // 
-            // tab_khach
-            // 
-            this.tab_khach.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tab_khach.Location = new System.Drawing.Point(4, 25);
-            this.tab_khach.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tab_khach.Name = "tab_khach";
-            this.tab_khach.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tab_khach.Size = new System.Drawing.Size(1135, 329);
-            this.tab_khach.TabIndex = 1;
-            this.tab_khach.Text = "Khách hàng";
-            // 
             // tab_dichvu
             // 
             this.tab_dichvu.BackColor = System.Drawing.Color.Transparent;
@@ -154,11 +174,67 @@
             this.tab_dichvu.TabIndex = 2;
             this.tab_dichvu.Text = "Dịch vụ";
             // 
+            // tab_khach
+            // 
+            this.tab_khach.BackColor = System.Drawing.Color.White;
+            this.tab_khach.Controls.Add(this.button3);
+            this.tab_khach.Controls.Add(this.dgrv_kh);
+            this.tab_khach.Controls.Add(this.button4);
+            this.tab_khach.ForeColor = System.Drawing.Color.Black;
+            this.tab_khach.Location = new System.Drawing.Point(4, 25);
+            this.tab_khach.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tab_khach.Name = "tab_khach";
+            this.tab_khach.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tab_khach.Size = new System.Drawing.Size(1135, 329);
+            this.tab_khach.TabIndex = 1;
+            this.tab_khach.Text = "Khách hàng";
+            // 
+            // button3
+            // 
+            this.button3.ForeColor = System.Drawing.Color.Black;
+            this.button3.Location = new System.Drawing.Point(997, 115);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(101, 41);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "DELETE";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // dgrv_kh
+            // 
+            this.dgrv_kh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgrv_kh.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.col_makh,
+            this.col_tenkh,
+            this.col_sdt,
+            this.col_cccd,
+            this.col_sodu,
+            this.col_ngaytao_kh,
+            this.col_nguoitao_kh});
+            this.dgrv_kh.Location = new System.Drawing.Point(3, 5);
+            this.dgrv_kh.Name = "dgrv_kh";
+            this.dgrv_kh.RowHeadersWidth = 51;
+            this.dgrv_kh.RowTemplate.Height = 24;
+            this.dgrv_kh.Size = new System.Drawing.Size(970, 319);
+            this.dgrv_kh.TabIndex = 0;
+            // 
+            // button4
+            // 
+            this.button4.ForeColor = System.Drawing.Color.Black;
+            this.button4.Location = new System.Drawing.Point(997, 60);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(101, 41);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "INSERT";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
             // tab_may
             // 
             this.tab_may.Controls.Add(this.button2);
             this.tab_may.Controls.Add(this.button1);
             this.tab_may.Controls.Add(this.dgrv_may);
+            this.tab_may.ForeColor = System.Drawing.Color.Black;
             this.tab_may.Location = new System.Drawing.Point(4, 25);
             this.tab_may.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tab_may.Name = "tab_may";
@@ -170,6 +246,7 @@
             // 
             // button2
             // 
+            this.button2.ForeColor = System.Drawing.Color.Black;
             this.button2.Location = new System.Drawing.Point(997, 112);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
@@ -180,6 +257,7 @@
             // 
             // button1
             // 
+            this.button1.ForeColor = System.Drawing.Color.Black;
             this.button1.Location = new System.Drawing.Point(997, 57);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
@@ -187,6 +265,62 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "INSERT";
             this.button1.UseVisualStyleBackColor = true;
+            // 
+            // col_makh
+            // 
+            this.col_makh.DataPropertyName = "MaKH";
+            this.col_makh.HeaderText = "Mã khách hàng";
+            this.col_makh.MinimumWidth = 6;
+            this.col_makh.Name = "col_makh";
+            this.col_makh.Width = 125;
+            // 
+            // col_tenkh
+            // 
+            this.col_tenkh.DataPropertyName = "TenKH";
+            this.col_tenkh.HeaderText = "Họ và tên";
+            this.col_tenkh.MinimumWidth = 6;
+            this.col_tenkh.Name = "col_tenkh";
+            this.col_tenkh.Width = 125;
+            // 
+            // col_sdt
+            // 
+            this.col_sdt.DataPropertyName = "SoDienThoai";
+            this.col_sdt.HeaderText = "Số điện thoại";
+            this.col_sdt.MinimumWidth = 6;
+            this.col_sdt.Name = "col_sdt";
+            this.col_sdt.Width = 125;
+            // 
+            // col_cccd
+            // 
+            this.col_cccd.DataPropertyName = "CCCD";
+            this.col_cccd.HeaderText = "CCCD";
+            this.col_cccd.MinimumWidth = 6;
+            this.col_cccd.Name = "col_cccd";
+            this.col_cccd.Width = 125;
+            // 
+            // col_sodu
+            // 
+            this.col_sodu.DataPropertyName = "SoDu";
+            this.col_sodu.HeaderText = "Số dư";
+            this.col_sodu.MinimumWidth = 6;
+            this.col_sodu.Name = "col_sodu";
+            this.col_sodu.Width = 125;
+            // 
+            // col_ngaytao_kh
+            // 
+            this.col_ngaytao_kh.DataPropertyName = "NgayTao";
+            this.col_ngaytao_kh.HeaderText = "Ngày tạo";
+            this.col_ngaytao_kh.MinimumWidth = 6;
+            this.col_ngaytao_kh.Name = "col_ngaytao_kh";
+            this.col_ngaytao_kh.Width = 125;
+            // 
+            // col_nguoitao_kh
+            // 
+            this.col_nguoitao_kh.DataPropertyName = "NguoiTao";
+            this.col_nguoitao_kh.HeaderText = "Người tạo";
+            this.col_nguoitao_kh.MinimumWidth = 6;
+            this.col_nguoitao_kh.Name = "col_nguoitao_kh";
+            this.col_nguoitao_kh.Width = 125;
             // 
             // MainForm
             // 
@@ -204,6 +338,8 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgrv_may)).EndInit();
             this.tabControlMain.ResumeLayout(false);
+            this.tab_khach.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgrv_kh)).EndInit();
             this.tab_may.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -225,5 +361,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_mamay;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_loai;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_trangthai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_ngaytao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_ngtao;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridView dgrv_kh;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_makh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_tenkh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_sdt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_cccd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_sodu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_ngaytao_kh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoitao_kh;
     }
 }

@@ -209,9 +209,10 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "LoginForm";
-            this.Text = "Form1";
+            this.Text = "LoginForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 

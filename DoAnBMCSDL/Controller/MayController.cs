@@ -10,31 +10,35 @@ namespace OracleConnect.Controller
 {
     public class MayController
     {
-
+        private static OracleConnection Conn;
         internal List<May> GetAllMay()
         {
             List<May> list = new List<May>();
-            string query = "SELECT MaMay, Loai, TrangThai from thinh.MAY";
-            DataTable dt = new DataTable();
-            using (OracleConnection conn = DatabaseUtils.GetConnection())
-            using (OracleCommand cmd = new OracleCommand(query, conn))
-            {
-                using (OracleDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        May m = new May()
-                        {
-                            MaMay = reader["MAMAY"].ToString(),
-                            Loai = reader["LOAI"].ToString(),
-                            TrangThai = reader["TRANGTHAI"].ToString()
+            string query = "SELECT MaMay, Loai, TrangThai, NGUOITAO, NGAYTAO FROM thinh.MAY";
 
-                        };
-                        list.Add(m);
-                    }
+            //Connection tinh
+            Conn = DatabaseUtils.GetConnection();
+            if (Conn.State != ConnectionState.Open)
+
+                Conn.Open();
+
+            using (var cmd = new OracleCommand(query, Conn))
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    list.Add(new May
+                    {
+                        MaMay = reader["MAMAY"].ToString(),
+                        Loai = reader["LOAI"].ToString(),
+                        TrangThai = reader["TRANGTHAI"].ToString(),
+                        NguoiTao = reader["NGUOITAO"].ToString(),
+                        NgayTao = reader.GetDateTime(reader.GetOrdinal("NGAYTAO"))
+                    });
                 }
             }
             return list;
         }
+
     }
 }

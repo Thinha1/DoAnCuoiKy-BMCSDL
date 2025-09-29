@@ -8,6 +8,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DoAnBMCSDL.Controller;
+using DoAnBMCSDL.Model;
 using Oracle.ManagedDataAccess.Client;
 using OracleConnect.Controller;
 using OracleConnect.Model;
@@ -18,12 +20,14 @@ namespace OracleConnect.View
     {
         private LoginForm loginForm;
         private MayController mayController;
+        private KhachHangController khachHangController;
         private Timer sessionTimer;
         public MainForm()
         {
             InitializeComponent();
             loginForm = new LoginForm();
             mayController = new MayController();
+            khachHangController = new KhachHangController();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -142,15 +146,36 @@ namespace OracleConnect.View
             dgrv_may.DataSource = list;
             if (dgrv_may.Rows.Count == 0)
             {
-                loadMay();
+                list = new List<May>
+                {
+                    new May { MaMay = "N/A", Loai = "N/A", TrangThai = "Trống" }
+                };
+            }
+        }
+
+        private void loadKhachHang()
+        {
+            List<KhachHang> list = khachHangController.getAllKhachHang();
+            dgrv_kh.AutoGenerateColumns = false;
+            dgrv_kh.DataSource = list;
+            if (dgrv_kh.Rows.Count == 0) 
+            {
+                list = new List<KhachHang>
+                {
+                    new KhachHang{MaKH = "N/A", TenKH = "N/A"}
+                };
             }
         }
 
         private void tabControlMain_Selected(object sender, TabControlEventArgs e)
         {
-            if(e.TabPage == tab_may)
+            if (e.TabPage == tab_may)
             {
                 loadMay();
+            }
+            else if (e.TabPage == tab_khach) 
+            {
+                loadKhachHang();
             }
         }
     }

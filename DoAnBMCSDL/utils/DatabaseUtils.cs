@@ -26,23 +26,26 @@ namespace OracleConnect
         }
         public static bool Connect()
         {
-            string consys = "";
             try
             {
-                if (user.ToUpper().Equals("SYS"))
-                    {
-                    consys = ";DBA Privilege=SYSDBA;";
-                    }
-                
-                //Connection String
-                string connectionString = $"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={host})(PORT={port}))(CONNECT_DATA=(SERVER=DEDICATED)(SID={sid})));" +
-                    $"User ID={user};Password={password}" + consys;
-                //Run connect
-                Conn = new OracleConnection(connectionString);
-                Conn.Open();
+                if (Conn == null)
+                {
+                    string consys = "";
+                    if (user.ToUpper() == "SYS")
+                        consys = ";DBA Privilege=SYSDBA;";
+
+                    string connectionString = $"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={host})(PORT={port}))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME={sid})));" +
+                                              $"User ID={user};Password={password}" + consys;
+
+                    Conn = new OracleConnection(connectionString);
+                }
+
+                if (Conn.State != System.Data.ConnectionState.Open)
+                    Conn.Open();
+
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -50,7 +53,7 @@ namespace OracleConnect
 
         public static OracleConnection GetConnection()
         {
-            if (Conn == null)
+            if (Conn == null || Conn.State != System.Data.ConnectionState.Open)
             {
                 Connect();
             }
