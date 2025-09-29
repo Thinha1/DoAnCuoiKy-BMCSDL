@@ -45,5 +45,31 @@ namespace DoAnBMCSDL.Controller
             }
             return list;
         }
+        internal bool insertKhachHang(string ten, string sdt, string cccd, string mk)
+        {
+            Conn = DatabaseUtils.GetConnection();
+            if (Conn.State != ConnectionState.Open)
+
+                Conn.Open();
+
+            try
+            {
+                using (OracleCommand omd = new OracleCommand("thinh.P_Them_KhachHang", Conn))
+                {
+                    omd.CommandType = System.Data.CommandType.StoredProcedure;
+                    omd.Parameters.Add("p_tenkh", ten);
+                    omd.Parameters.Add("p_sdt", sdt);
+                    omd.Parameters.Add("p_cccd", cccd);
+                    omd.Parameters.Add("p_mk", mk);
+                    omd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (Exception ex) 
+            {
+                throw ex;
+                return false;
+            }
+        }
     }
 }

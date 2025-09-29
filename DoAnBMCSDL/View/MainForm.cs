@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DoAnBMCSDL.Controller;
 using DoAnBMCSDL.Model;
+using DoAnBMCSDL.utils.Encrytion;
+using DoAnBMCSDL.View.CRUDView.KhachHang;
 using Oracle.ManagedDataAccess.Client;
 using OracleConnect.Controller;
 using OracleConnect.Model;
@@ -21,6 +23,7 @@ namespace OracleConnect.View
         private LoginForm loginForm;
         private MayController mayController;
         private KhachHangController khachHangController;
+        private EncryptionAlgorithms encryptionAlgorithm;
         private Timer sessionTimer;
         public MainForm()
         {
@@ -28,6 +31,7 @@ namespace OracleConnect.View
             loginForm = new LoginForm();
             mayController = new MayController();
             khachHangController = new KhachHangController();
+            encryptionAlgorithm = new EncryptionAlgorithms();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -156,6 +160,12 @@ namespace OracleConnect.View
         private void loadKhachHang()
         {
             List<KhachHang> list = khachHangController.getAllKhachHang();
+            //Decrypt
+            list.ForEach(kh =>
+            {
+                kh.SoDienThoai = encryptionAlgorithm.decryptMessagePlus(kh.SoDienThoai, 10);
+                kh.CCCD = encryptionAlgorithm.decryptMessageMutiply(kh.CCCD, 11);
+            });
             dgrv_kh.AutoGenerateColumns = false;
             dgrv_kh.DataSource = list;
             if (dgrv_kh.Rows.Count == 0) 
@@ -177,6 +187,12 @@ namespace OracleConnect.View
             {
                 loadKhachHang();
             }
+        }
+
+        private void btn_insert_kh_Click(object sender, EventArgs e)
+        {
+            InsertKH insertKH = new InsertKH();
+            insertKH.ShowDialog();
         }
     }
 }
