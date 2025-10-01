@@ -45,7 +45,7 @@ namespace DoAnBMCSDL.Controller
             }
             return list;
         }
-        internal bool insertKhachHang(string ten, string sdt, string cccd, string mk)
+        internal bool insertKhachHang(string ten, string sdt, string cccd, float sodu, string mk)
         {
             Conn = DatabaseUtils.GetConnection();
             if (Conn.State != ConnectionState.Open)
@@ -60,6 +60,7 @@ namespace DoAnBMCSDL.Controller
                     omd.Parameters.Add("p_tenkh", ten);
                     omd.Parameters.Add("p_sdt", sdt);
                     omd.Parameters.Add("p_cccd", cccd);
+                    omd.Parameters.Add("p_sodu", OracleDbType.Decimal).Value = sodu;
                     omd.Parameters.Add("p_mk", mk);
                     omd.ExecuteNonQuery();
                 }

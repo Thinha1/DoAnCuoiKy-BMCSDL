@@ -24,26 +24,56 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
             encryptionAlgorithm = new EncryptionAlgorithms();
         }
 
+        private bool validateData(string ten, string sdt, string cccd, float sodu, string mk)
+        {
+            if (string.IsNullOrWhiteSpace(ten) || string.IsNullOrWhiteSpace(sdt) || string.IsNullOrWhiteSpace(cccd) || float.IsNaN(sodu) || string.IsNullOrWhiteSpace(mk))
+            {
+                MessageBox.Show("Vui lòng điền đầy dủ thông tin!");
+                return false;
+            }
+            else
+            {
+                if (sodu <= 0)
+                {
+                    MessageBox.Show("Số dư không được âm hoặc bằng 0!");
+                    return false;
+                }
+                if ((!sdt.All(char.IsDigit)) && sdt.Length != 10)
+                {
+                    MessageBox.Show("Số điện thoại không hợp lệ");
+                    return false;
+                }
+                if (cccd.Length != 12)
+                {
+                    MessageBox.Show("Căn cước công dân không hợp lệ");
+                    return false;
+                }
+                return true;
+            }
+        }
+
         private void btn_insert_Click(object sender, EventArgs e)
         {
             string tenkh = txt_tenkh.Text;
             string sdt = txt_sdt.Text;
             string cccd = txt_cccd.Text;
+            float sodu = float.Parse(txt_sodu.Text);
             string mk = txt_mk.Text;
-            sdt = encryptionAlgorithm.encryptMessagePlus(sdt, 10);
-            cccd = encryptionAlgorithm.encryptMessageMultiply(cccd, 11);
-            bool check = khachHangController.insertKhachHang(tenkh, sdt, cccd, mk);
-            if (check)
+            if (validateData(tenkh, sdt, cccd, sodu, mk))
             {
-                MessageBox.Show("Thêm thành công!");
-                khachHangController.getAllKhachHang();
-                this.Hide();
-                MainForm mainForm = new MainForm();
-                mainForm.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Thêm thất bại!");
+                sdt = encryptionAlgorithm.encryptMessagePlus(sdt, 10);
+                cccd = encryptionAlgorithm.encryptMessageMultiply(cccd, 11);
+                bool check = khachHangController.insertKhachHang(tenkh, sdt, cccd, sodu, mk);
+                if (check)
+                {
+                    MessageBox.Show("Thêm thành công!");
+                    khachHangController.getAllKhachHang();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Thêm thất bại!");
+                }
             }
         }
 
@@ -51,7 +81,6 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
         {
             MainForm mainForm = new MainForm();
             this.Hide();
-            mainForm.ShowDialog();
         }
     }
 }

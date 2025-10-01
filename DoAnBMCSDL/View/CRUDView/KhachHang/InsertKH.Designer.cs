@@ -38,6 +38,8 @@
             this.txt_mk = new System.Windows.Forms.TextBox();
             this.btn_insert = new System.Windows.Forms.Button();
             this.btn_cncl = new System.Windows.Forms.Button();
+            this.txt_sodu = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -61,7 +63,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(228, 132);
+            this.label3.Location = new System.Drawing.Point(228, 135);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 16);
             this.label3.TabIndex = 2;
@@ -70,7 +72,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(228, 166);
+            this.label5.Location = new System.Drawing.Point(228, 204);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 16);
             this.label5.TabIndex = 4;
@@ -85,7 +87,7 @@
             // 
             // txt_cccd
             // 
-            this.txt_cccd.Location = new System.Drawing.Point(373, 126);
+            this.txt_cccd.Location = new System.Drawing.Point(373, 129);
             this.txt_cccd.Name = "txt_cccd";
             this.txt_cccd.Size = new System.Drawing.Size(147, 22);
             this.txt_cccd.TabIndex = 7;
@@ -99,8 +101,9 @@
             // 
             // txt_mk
             // 
-            this.txt_mk.Location = new System.Drawing.Point(373, 166);
+            this.txt_mk.Location = new System.Drawing.Point(373, 204);
             this.txt_mk.Name = "txt_mk";
+            this.txt_mk.PasswordChar = '*';
             this.txt_mk.Size = new System.Drawing.Size(147, 22);
             this.txt_mk.TabIndex = 9;
             // 
@@ -130,11 +133,29 @@
             this.btn_cncl.UseVisualStyleBackColor = false;
             this.btn_cncl.Click += new System.EventHandler(this.btn_cncl_Click);
             // 
+            // txt_sodu
+            // 
+            this.txt_sodu.Location = new System.Drawing.Point(373, 167);
+            this.txt_sodu.Name = "txt_sodu";
+            this.txt_sodu.Size = new System.Drawing.Size(147, 22);
+            this.txt_sodu.TabIndex = 13;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(228, 173);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(42, 16);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Số dư";
+            // 
             // InsertKH
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(720, 380);
+            this.Controls.Add(this.txt_sodu);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btn_cncl);
             this.Controls.Add(this.btn_insert);
             this.Controls.Add(this.txt_mk);
@@ -164,5 +185,7 @@
         private System.Windows.Forms.TextBox txt_mk;
         private System.Windows.Forms.Button btn_insert;
         private System.Windows.Forms.Button btn_cncl;
+        private System.Windows.Forms.TextBox txt_sodu;
+        private System.Windows.Forms.Label label4;
     }
 }
