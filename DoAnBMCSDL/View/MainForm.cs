@@ -24,7 +24,7 @@ namespace OracleConnect.View
         private MayController mayController;
         private KhachHangController khachHangController;
         private EncryptionAlgorithms encryptionAlgorithm;
-        private Timer sessionTimer;
+        private Timer timer;
         public MainForm()
         {
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace OracleConnect.View
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Timer timer = new Timer();
+            timer = new Timer();
             timer.Interval = 30000; //Check sau 30 giây
             timer.Tick += Timer_Tick;
             timer.Start();
@@ -67,6 +67,7 @@ namespace OracleConnect.View
         {
             if (!DatabaseUtils.checkConnection())
             {
+                timer.Stop();
                 MessageBox.Show("Mất kết nối, form sẽ đóng!",
                                 "Lỗi kết nối",
                                 MessageBoxButtons.OK,
@@ -93,7 +94,7 @@ namespace OracleConnect.View
 
                     //Logout ra sau khi kill
                     MessageBox.Show("Bạn đã thực thi việc đăng xuất, form sẽ thoát.");
-                    this.Close();
+                    this.Hide();
                     loginForm.ShowDialog();
                     return;
                 }
@@ -168,7 +169,7 @@ namespace OracleConnect.View
             });
             dgrv_kh.AutoGenerateColumns = false;
             dgrv_kh.DataSource = list;
-            if (dgrv_kh.Rows.Count == 0) 
+            if (dgrv_kh.Rows.Count == 0)
             {
                 list = new List<KhachHang>
                 {
@@ -183,16 +184,63 @@ namespace OracleConnect.View
             {
                 loadMay();
             }
-            else if (e.TabPage == tab_khach) 
+            else if (e.TabPage == tab_khach)
             {
                 loadKhachHang();
             }
         }
 
+        public void refreshData(string tabName)
+        {
+            if (tabName == "tab_khachhang")
+            {
+                List<KhachHang> listKH = khachHangController.getAllKhachHang();
+                dgrv_kh.DataSource = null;
+                dgrv_kh.DataSource = listKH;
+                tab_khach.Refresh();
+            }
+        }
+
         private void btn_insert_kh_Click(object sender, EventArgs e)
         {
-            InsertKH insertKH = new InsertKH();
+            InsertKH insertKH = new InsertKH(this);
             insertKH.ShowDialog();
+        }
+
+        private void btn_delete_kh_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewColumn col in dgrv_kh.Columns)
+            {
+                Console.WriteLine($"Column Name: {col.Name}, DataPropertyName: {col.DataPropertyName}");
+            }
+
+            if (dgrv_kh.CurrentRow != null)
+            {
+                string id = dgrv_kh.CurrentRow.Cells["col_makh"].Value.ToString();
+                string name = dgrv_kh.CurrentRow.Cells["col_tenkh"].Value.ToString();
+                DialogResult dr = MessageBox.Show($"Bạn có chắc muốn xoá khách hàng {name} (Mã KH: {id})?",
+                "Xác nhận xoá",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+                if (dr == DialogResult.Yes)
+                {
+                    bool result = khachHangController.deleteKhachHangById(id);
+                    if (result)
+                    {
+                        MessageBox.Show("Xoá thành công!");
+                        refreshData("tab_khachhang"); // load lại grid
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xoá thất bại!");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn khách hàng để xoá");
+            }
         }
     }
 }

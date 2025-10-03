@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_logout = new System.Windows.Forms.Button();
             this.lbl_user = new System.Windows.Forms.Label();
             this.btn_logout_all = new System.Windows.Forms.Button();
@@ -42,12 +42,8 @@
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tab_dichvu = new System.Windows.Forms.TabPage();
             this.tab_khach = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn_delete_kh = new System.Windows.Forms.Button();
             this.dgrv_kh = new System.Windows.Forms.DataGridView();
-            this.btn_insert_kh = new System.Windows.Forms.Button();
-            this.tab_may = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.col_makh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_tenkh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_sdt = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +51,10 @@
             this.col_sodu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_ngaytao_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_nguoitao_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_insert_kh = new System.Windows.Forms.Button();
+            this.tab_may = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgrv_may)).BeginInit();
             this.tabControlMain.SuspendLayout();
             this.tab_khach.SuspendLayout();
@@ -179,7 +179,7 @@
             // tab_khach
             // 
             this.tab_khach.BackColor = System.Drawing.Color.White;
-            this.tab_khach.Controls.Add(this.button3);
+            this.tab_khach.Controls.Add(this.btn_delete_kh);
             this.tab_khach.Controls.Add(this.dgrv_kh);
             this.tab_khach.Controls.Add(this.btn_insert_kh);
             this.tab_khach.ForeColor = System.Drawing.Color.Black;
@@ -191,16 +191,17 @@
             this.tab_khach.TabIndex = 1;
             this.tab_khach.Text = "Khách hàng";
             // 
-            // button3
+            // btn_delete_kh
             // 
-            this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button3.Location = new System.Drawing.Point(997, 115);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(101, 41);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "DELETE";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btn_delete_kh.ForeColor = System.Drawing.Color.Black;
+            this.btn_delete_kh.Location = new System.Drawing.Point(997, 115);
+            this.btn_delete_kh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_delete_kh.Name = "btn_delete_kh";
+            this.btn_delete_kh.Size = new System.Drawing.Size(101, 41);
+            this.btn_delete_kh.TabIndex = 7;
+            this.btn_delete_kh.Text = "DELETE";
+            this.btn_delete_kh.UseVisualStyleBackColor = true;
+            this.btn_delete_kh.Click += new System.EventHandler(this.btn_delete_kh_Click);
             // 
             // dgrv_kh
             // 
@@ -219,6 +220,66 @@
             this.dgrv_kh.RowTemplate.Height = 24;
             this.dgrv_kh.Size = new System.Drawing.Size(970, 319);
             this.dgrv_kh.TabIndex = 0;
+            // 
+            // col_makh
+            // 
+            this.col_makh.DataPropertyName = "MaKH";
+            this.col_makh.HeaderText = "Mã khách hàng";
+            this.col_makh.MinimumWidth = 6;
+            this.col_makh.Name = "col_makh";
+            this.col_makh.Width = 125;
+            // 
+            // col_tenkh
+            // 
+            this.col_tenkh.DataPropertyName = "TenKH";
+            this.col_tenkh.HeaderText = "Họ và tên";
+            this.col_tenkh.MinimumWidth = 6;
+            this.col_tenkh.Name = "col_tenkh";
+            this.col_tenkh.Width = 125;
+            // 
+            // col_sdt
+            // 
+            this.col_sdt.DataPropertyName = "SoDienThoai";
+            this.col_sdt.HeaderText = "Số điện thoại";
+            this.col_sdt.MinimumWidth = 6;
+            this.col_sdt.Name = "col_sdt";
+            this.col_sdt.Width = 125;
+            // 
+            // col_cccd
+            // 
+            this.col_cccd.DataPropertyName = "CCCD";
+            this.col_cccd.HeaderText = "CCCD";
+            this.col_cccd.MinimumWidth = 6;
+            this.col_cccd.Name = "col_cccd";
+            this.col_cccd.Width = 125;
+            // 
+            // col_sodu
+            // 
+            this.col_sodu.DataPropertyName = "SoDu";
+            dataGridViewCellStyle3.Format = "#,##0 đ";
+            this.col_sodu.DefaultCellStyle = dataGridViewCellStyle3;
+            this.col_sodu.HeaderText = "Số dư";
+            this.col_sodu.MinimumWidth = 6;
+            this.col_sodu.Name = "col_sodu";
+            this.col_sodu.Width = 125;
+            // 
+            // col_ngaytao_kh
+            // 
+            this.col_ngaytao_kh.DataPropertyName = "NgayTao";
+            dataGridViewCellStyle4.Format = "dd/MM/yy";
+            this.col_ngaytao_kh.DefaultCellStyle = dataGridViewCellStyle4;
+            this.col_ngaytao_kh.HeaderText = "Ngày tạo";
+            this.col_ngaytao_kh.MinimumWidth = 6;
+            this.col_ngaytao_kh.Name = "col_ngaytao_kh";
+            this.col_ngaytao_kh.Width = 125;
+            // 
+            // col_nguoitao_kh
+            // 
+            this.col_nguoitao_kh.DataPropertyName = "NguoiTao";
+            this.col_nguoitao_kh.HeaderText = "Người tạo";
+            this.col_nguoitao_kh.MinimumWidth = 6;
+            this.col_nguoitao_kh.Name = "col_nguoitao_kh";
+            this.col_nguoitao_kh.Width = 125;
             // 
             // btn_insert_kh
             // 
@@ -269,66 +330,6 @@
             this.button1.Text = "INSERT";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // col_makh
-            // 
-            this.col_makh.DataPropertyName = "MaKH";
-            this.col_makh.HeaderText = "Mã khách hàng";
-            this.col_makh.MinimumWidth = 6;
-            this.col_makh.Name = "col_makh";
-            this.col_makh.Width = 125;
-            // 
-            // col_tenkh
-            // 
-            this.col_tenkh.DataPropertyName = "TenKH";
-            this.col_tenkh.HeaderText = "Họ và tên";
-            this.col_tenkh.MinimumWidth = 6;
-            this.col_tenkh.Name = "col_tenkh";
-            this.col_tenkh.Width = 125;
-            // 
-            // col_sdt
-            // 
-            this.col_sdt.DataPropertyName = "SoDienThoai";
-            this.col_sdt.HeaderText = "Số điện thoại";
-            this.col_sdt.MinimumWidth = 6;
-            this.col_sdt.Name = "col_sdt";
-            this.col_sdt.Width = 125;
-            // 
-            // col_cccd
-            // 
-            this.col_cccd.DataPropertyName = "CCCD";
-            this.col_cccd.HeaderText = "CCCD";
-            this.col_cccd.MinimumWidth = 6;
-            this.col_cccd.Name = "col_cccd";
-            this.col_cccd.Width = 125;
-            // 
-            // col_sodu
-            // 
-            this.col_sodu.DataPropertyName = "SoDu";
-            dataGridViewCellStyle1.Format = "#,##0 đ";
-            this.col_sodu.DefaultCellStyle = dataGridViewCellStyle1;
-            this.col_sodu.HeaderText = "Số dư";
-            this.col_sodu.MinimumWidth = 6;
-            this.col_sodu.Name = "col_sodu";
-            this.col_sodu.Width = 125;
-            // 
-            // col_ngaytao_kh
-            // 
-            this.col_ngaytao_kh.DataPropertyName = "NgayTao";
-            dataGridViewCellStyle2.Format = "dd/MM/yy";
-            this.col_ngaytao_kh.DefaultCellStyle = dataGridViewCellStyle2;
-            this.col_ngaytao_kh.HeaderText = "Ngày tạo";
-            this.col_ngaytao_kh.MinimumWidth = 6;
-            this.col_ngaytao_kh.Name = "col_ngaytao_kh";
-            this.col_ngaytao_kh.Width = 125;
-            // 
-            // col_nguoitao_kh
-            // 
-            this.col_nguoitao_kh.DataPropertyName = "NguoiTao";
-            this.col_nguoitao_kh.HeaderText = "Người tạo";
-            this.col_nguoitao_kh.MinimumWidth = 6;
-            this.col_nguoitao_kh.Name = "col_nguoitao_kh";
-            this.col_nguoitao_kh.Width = 125;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -370,7 +371,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_trangthai;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ngaytao;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ngtao;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btn_delete_kh;
         private System.Windows.Forms.DataGridView dgrv_kh;
         private System.Windows.Forms.Button btn_insert_kh;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_makh;

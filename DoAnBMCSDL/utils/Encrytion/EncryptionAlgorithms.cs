@@ -8,13 +8,14 @@ namespace DoAnBMCSDL.utils.Encrytion
 {
     internal class EncryptionAlgorithms
     {
-        char[] characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_".ToCharArray();
+        char[] characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()".ToCharArray();
         int length;
 
         public EncryptionAlgorithms()
         {
             length = characters.Length;
         }
+
         private char encryptCharPlus(char c, int k)
         {
             int index = Array.IndexOf(characters, c);

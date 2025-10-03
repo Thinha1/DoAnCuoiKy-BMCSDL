@@ -105,6 +105,12 @@
     <Compile Include="View\CRUDView\KhachHang\InsertKH.Designer.cs">
       <DependentUpon>InsertKH.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\CRUDView\KhachHang\UpdateKH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CRUDView\KhachHang\UpdateKH.Designer.cs">
+      <DependentUpon>UpdateKH.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginSysdba.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\CRUDView\KhachHang\InsertKH.resx">
       <DependentUpon>InsertKH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CRUDView\KhachHang\UpdateKH.resx">
+      <DependentUpon>UpdateKH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LoginSysdba.resx">
       <DependentUpon>LoginSysdba.cs</DependentUpon>

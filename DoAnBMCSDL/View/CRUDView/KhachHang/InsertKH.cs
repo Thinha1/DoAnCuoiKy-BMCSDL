@@ -17,11 +17,13 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
     {
         KhachHangController khachHangController;
         EncryptionAlgorithms encryptionAlgorithm;
-        public InsertKH()
+        MainForm mainForm;
+        public InsertKH(MainForm form)
         {
             InitializeComponent();
             khachHangController = new KhachHangController();
             encryptionAlgorithm = new EncryptionAlgorithms();
+            this.mainForm = form;
         }
 
         private bool validateData(string ten, string sdt, string cccd, float sodu, string mk)
@@ -67,8 +69,8 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
                 if (check)
                 {
                     MessageBox.Show("Thêm thành công!");
-                    khachHangController.getAllKhachHang();
-                    this.Hide();
+                    this.mainForm.refreshData("tab_khach");
+                    this.Close();
                 }
                 else
                 {

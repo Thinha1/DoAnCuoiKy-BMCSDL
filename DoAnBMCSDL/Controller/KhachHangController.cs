@@ -15,6 +15,7 @@ namespace DoAnBMCSDL.Controller
     {
         private static OracleConnection Conn;
 
+        //Get all khách hàng
         internal List<KhachHang> getAllKhachHang()
         {
             List<KhachHang> list = new List<KhachHang>();
@@ -45,6 +46,65 @@ namespace DoAnBMCSDL.Controller
             }
             return list;
         }
+
+        //Get qua id
+        internal KhachHang getKhacHangById(string id)
+        {
+            KhachHang kh = new KhachHang();
+            string query = "SELECT MaKH, HoTen, SoDienThoai, CCCD, SoDu FROM thinh.KhachHang WHERE MaKH = :id";
+
+            //Connection tinh
+            Conn = DatabaseUtils.GetConnection();
+            if (Conn.State != ConnectionState.Open)
+
+                Conn.Open();
+
+            using (var cmd = new OracleCommand(query, Conn))
+            {
+                cmd.Parameters.Add(new OracleParameter("id", id));
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        kh.MaKH = reader["MaKH"].ToString();
+                        kh.TenKH = reader["HoTen"].ToString();
+                        kh.SoDienThoai = reader["SoDienThoai"].ToString();
+                        kh.CCCD = reader["CCCD"].ToString();
+                        kh.SoDu = float.Parse(reader["SoDu"].ToString());
+                    }
+                }
+            }
+            return kh;
+        }
+
+        //Update khách hàng
+        internal bool updateKhachHang(KhachHang khach)
+        {
+            return true;
+        }
+
+        //Xoá khách hàng
+        public bool deleteKhachHangById(string id)
+        {
+            string query = "DELETE FROM thinh.KhachHang WHERE MaKH = :id";
+            Conn = DatabaseUtils.GetConnection();
+            if (Conn.State != ConnectionState.Open)
+
+                Conn.Open();
+            try
+            {
+                using (var omd = new OracleCommand(query, Conn))
+                {
+                    omd.Parameters.Add(new OracleParameter("id", id));
+                    omd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         internal bool insertKhachHang(string ten, string sdt, string cccd, float sodu, string mk)
         {
             Conn = DatabaseUtils.GetConnection();
@@ -66,7 +126,7 @@ namespace DoAnBMCSDL.Controller
                 }
                 return true;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw ex;
                 return false;
