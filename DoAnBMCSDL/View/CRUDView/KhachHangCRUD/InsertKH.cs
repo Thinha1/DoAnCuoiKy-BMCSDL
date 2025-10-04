@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DoAnBMCSDL.Controller;
 using DoAnBMCSDL.utils.Encrytion;
-using OracleConnect.View;
+using DoAnBMCSDL.View;
 
 namespace DoAnBMCSDL.View.CRUDView.KhachHang
 {
@@ -65,12 +65,12 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
             {
                 sdt = encryptionAlgorithm.encryptMessagePlus(sdt, 10);
                 cccd = encryptionAlgorithm.encryptMessageMultiply(cccd, 11);
-                bool check = khachHangController.insertKhachHang(tenkh, sdt, cccd, sodu, mk);
+                bool check = khachHangController.InsertKhachHang(tenkh, sdt, cccd, sodu, mk);
                 if (check)
                 {
                     MessageBox.Show("Thêm thành công!");
-                    this.mainForm.refreshData("tab_khach");
                     this.Close();
+                    this.mainForm.refreshData("tab_khach");
                 }
                 else
                 {

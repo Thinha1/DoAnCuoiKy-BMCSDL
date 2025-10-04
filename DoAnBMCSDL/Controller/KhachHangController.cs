@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DoAnBMCSDL.Model;
 using Oracle.ManagedDataAccess.Client;
-using OracleConnect;
-using OracleConnect.Model;
+using DoAnBMCSDL;
+using DoAnBMCSDL.Model;
 
 namespace DoAnBMCSDL.Controller
 {
@@ -78,34 +79,41 @@ namespace DoAnBMCSDL.Controller
         }
 
         //Update khách hàng
-        internal bool updateKhachHang(KhachHang khach)
+        internal bool updateKhachHang(KhachHang kh)
         {
-            return true;
-        }
-
-        //Xoá khách hàng
-        public bool deleteKhachHangById(string id)
-        {
-            string query = "DELETE FROM thinh.KhachHang WHERE MaKH = :id";
             Conn = DatabaseUtils.GetConnection();
             if (Conn.State != ConnectionState.Open)
 
                 Conn.Open();
+
             try
             {
-                using (var omd = new OracleCommand(query, Conn))
+                using (OracleCommand omd = new OracleCommand("thinh.P_CapNhat_KhachHang", Conn))
                 {
-                    omd.Parameters.Add(new OracleParameter("id", id));
-                    omd.ExecuteNonQuery();
+                    omd.CommandType = System.Data.CommandType.StoredProcedure;
+                    omd.Parameters.Add("p_makh", kh.MaKH);
+                    omd.Parameters.Add("p_tenkh", kh.TenKH);
+                    omd.Parameters.Add("p_sdt", kh.SoDienThoai);
+                    omd.Parameters.Add("p_cccd", kh.CCCD);
+                    omd.Parameters.Add("p_sodu", OracleDbType.Decimal).Value = kh.SoDu;
+                    if(!string.IsNullOrWhiteSpace(kh.MatKhau)){
+                    omd.Parameters.Add("p_mk", kh.MatKhau);
+                    }
+                    else
+                    {
+                        omd.Parameters.Add("p_mk", DBNull.Value);
+                    }
+                        omd.ExecuteNonQuery();
                     return true;
                 }
             }
             catch (Exception ex)
             {
-                return false;
+                throw ex;
             }
         }
-        internal bool insertKhachHang(string ten, string sdt, string cccd, float sodu, string mk)
+
+        internal bool InsertKhachHang(string ten, string sdt, string cccd, float sodu, string mk)
         {
             Conn = DatabaseUtils.GetConnection();
             if (Conn.State != ConnectionState.Open)
@@ -129,6 +137,28 @@ namespace DoAnBMCSDL.Controller
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        //Xoá khách hàng
+        public bool DeleteKhachHangById(string id)
+        {
+            string query = "DELETE FROM thinh.KhachHang WHERE MaKH = :id";
+            Conn = DatabaseUtils.GetConnection();
+            if (Conn.State != ConnectionState.Open)
+
+                Conn.Open();
+            try
+            {
+                using (var omd = new OracleCommand(query, Conn))
+                {
+                    omd.Parameters.Add(new OracleParameter("id", id));
+                    omd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
                 return false;
             }
         }

@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Oracle.ManagedDataAccess.Client;
-using OracleConnect.Model;
-namespace OracleConnect.Controller
+using DoAnBMCSDL.Model;
+namespace DoAnBMCSDL.Controller
 {
     public class MayController
     {

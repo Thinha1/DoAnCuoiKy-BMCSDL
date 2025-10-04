@@ -1,4 +1,4 @@
-﻿namespace OracleConnect
+﻿namespace DoAnBMCSDL
 {
     partial class LoginForm
     {

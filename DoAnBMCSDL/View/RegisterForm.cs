@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 
-namespace OracleConnect.View
+namespace DoAnBMCSDL.View
 {
     public partial class RegisterForm : Form
     {

@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
-using OracleConnect.View;
+using DoAnBMCSDL.View;
 
-namespace OracleConnect
+namespace DoAnBMCSDL
 {
     public partial class LoginForm : Form
     {

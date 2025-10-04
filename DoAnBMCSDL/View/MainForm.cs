@@ -13,10 +13,10 @@ using DoAnBMCSDL.Model;
 using DoAnBMCSDL.utils.Encrytion;
 using DoAnBMCSDL.View.CRUDView.KhachHang;
 using Oracle.ManagedDataAccess.Client;
-using OracleConnect.Controller;
-using OracleConnect.Model;
+using DoAnBMCSDL.Controller;
+using DoAnBMCSDL.Model;
 
-namespace OracleConnect.View
+namespace DoAnBMCSDL.View
 {
     public partial class MainForm : Form
     {
@@ -195,6 +195,11 @@ namespace OracleConnect.View
             if (tabName == "tab_khachhang")
             {
                 List<KhachHang> listKH = khachHangController.getAllKhachHang();
+                listKH.ForEach(kh =>
+                {
+                    kh.SoDienThoai = encryptionAlgorithm.decryptMessagePlus(kh.SoDienThoai, 10);
+                    kh.CCCD = encryptionAlgorithm.decryptMessageMutiply(kh.CCCD, 11);
+                });
                 dgrv_kh.DataSource = null;
                 dgrv_kh.DataSource = listKH;
                 tab_khach.Refresh();
@@ -209,10 +214,10 @@ namespace OracleConnect.View
 
         private void btn_delete_kh_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewColumn col in dgrv_kh.Columns)
-            {
-                Console.WriteLine($"Column Name: {col.Name}, DataPropertyName: {col.DataPropertyName}");
-            }
+            //foreach (DataGridViewColumn col in dgrv_kh.Columns)
+            //{
+            //    Console.WriteLine($"Column Name: {col.Name}, DataPropertyName: {col.DataPropertyName}");
+            //}
 
             if (dgrv_kh.CurrentRow != null)
             {
@@ -225,7 +230,7 @@ namespace OracleConnect.View
 
                 if (dr == DialogResult.Yes)
                 {
-                    bool result = khachHangController.deleteKhachHangById(id);
+                    bool result = khachHangController.DeleteKhachHangById(id);
                     if (result)
                     {
                         MessageBox.Show("Xoá thành công!");
@@ -241,6 +246,30 @@ namespace OracleConnect.View
             {
                 MessageBox.Show("Vui lòng chọn khách hàng để xoá");
             }
+        }
+
+        private void btn_update_kh_Click(object sender, EventArgs e)
+        {
+            string id = dgrv_kh.CurrentRow.Cells["col_makh"].Value.ToString();
+            string name = dgrv_kh.CurrentRow.Cells["col_tenkh"].Value.ToString();
+            string sdt = dgrv_kh.CurrentRow.Cells["col_sdt"].Value.ToString();
+            string cccd = dgrv_kh.CurrentRow.Cells["col_cccd"].Value.ToString();
+            float soDu = float.Parse(dgrv_kh.CurrentRow.Cells["col_sodu"].Value.ToString());
+            KhachHang kh = new KhachHang
+            {
+                MaKH = id,
+                TenKH = name,
+                SoDienThoai = sdt,
+                CCCD = cccd,
+                SoDu = soDu
+            };
+            UpdateKH updateKH = new UpdateKH(kh);
+            updateKH.ShowDialog();
+        }
+
+        private void icon_refresh_kh_Click(object sender, EventArgs e)
+        {
+            this.refreshData("tab_khachhang");
         }
     }
 }

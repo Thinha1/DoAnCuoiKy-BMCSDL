@@ -1,4 +1,4 @@
-﻿namespace OracleConnect.View
+﻿namespace DoAnBMCSDL.View
 {
     partial class MainForm
     {
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_logout = new System.Windows.Forms.Button();
             this.lbl_user = new System.Windows.Forms.Label();
             this.btn_logout_all = new System.Windows.Forms.Button();
@@ -42,6 +42,8 @@
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tab_dichvu = new System.Windows.Forms.TabPage();
             this.tab_khach = new System.Windows.Forms.TabPage();
+            this.icon_refresh_kh = new FontAwesome.Sharp.IconButton();
+            this.btn_update_kh = new System.Windows.Forms.Button();
             this.btn_delete_kh = new System.Windows.Forms.Button();
             this.dgrv_kh = new System.Windows.Forms.DataGridView();
             this.col_makh = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +57,7 @@
             this.tab_may = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.tab_hoadon = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.dgrv_may)).BeginInit();
             this.tabControlMain.SuspendLayout();
             this.tab_khach.SuspendLayout();
@@ -77,7 +80,7 @@
             // 
             this.lbl_user.AutoSize = true;
             this.lbl_user.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_user.Location = new System.Drawing.Point(1177, 51);
+            this.lbl_user.Location = new System.Drawing.Point(1212, 51);
             this.lbl_user.Name = "lbl_user";
             this.lbl_user.Size = new System.Drawing.Size(121, 29);
             this.lbl_user.TabIndex = 1;
@@ -103,7 +106,7 @@
             this.col_trangthai,
             this.col_ngaytao,
             this.col_ngtao});
-            this.dgrv_may.Location = new System.Drawing.Point(0, 4);
+            this.dgrv_may.Location = new System.Drawing.Point(-4, 2);
             this.dgrv_may.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgrv_may.Name = "dgrv_may";
             this.dgrv_may.RowHeadersWidth = 51;
@@ -156,12 +159,15 @@
             this.tabControlMain.Controls.Add(this.tab_dichvu);
             this.tabControlMain.Controls.Add(this.tab_khach);
             this.tabControlMain.Controls.Add(this.tab_may);
-            this.tabControlMain.ItemSize = new System.Drawing.Size(50, 21);
-            this.tabControlMain.Location = new System.Drawing.Point(28, 26);
+            this.tabControlMain.Controls.Add(this.tab_hoadon);
+            this.tabControlMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControlMain.ItemSize = new System.Drawing.Size(100, 30);
+            this.tabControlMain.Location = new System.Drawing.Point(12, 31);
             this.tabControlMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1143, 358);
+            this.tabControlMain.Size = new System.Drawing.Size(1178, 347);
+            this.tabControlMain.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControlMain.TabIndex = 4;
             this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlMain_Selected);
             // 
@@ -172,13 +178,15 @@
             this.tab_dichvu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tab_dichvu.Name = "tab_dichvu";
             this.tab_dichvu.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tab_dichvu.Size = new System.Drawing.Size(1135, 329);
+            this.tab_dichvu.Size = new System.Drawing.Size(1170, 318);
             this.tab_dichvu.TabIndex = 2;
             this.tab_dichvu.Text = "Dịch vụ";
             // 
             // tab_khach
             // 
             this.tab_khach.BackColor = System.Drawing.Color.White;
+            this.tab_khach.Controls.Add(this.icon_refresh_kh);
+            this.tab_khach.Controls.Add(this.btn_update_kh);
             this.tab_khach.Controls.Add(this.btn_delete_kh);
             this.tab_khach.Controls.Add(this.dgrv_kh);
             this.tab_khach.Controls.Add(this.btn_insert_kh);
@@ -187,14 +195,39 @@
             this.tab_khach.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tab_khach.Name = "tab_khach";
             this.tab_khach.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tab_khach.Size = new System.Drawing.Size(1135, 329);
+            this.tab_khach.Size = new System.Drawing.Size(1170, 318);
             this.tab_khach.TabIndex = 1;
             this.tab_khach.Text = "Khách hàng";
+            // 
+            // icon_refresh_kh
+            // 
+            this.icon_refresh_kh.IconChar = FontAwesome.Sharp.IconChar.Sync;
+            this.icon_refresh_kh.IconColor = System.Drawing.Color.Black;
+            this.icon_refresh_kh.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.icon_refresh_kh.IconSize = 30;
+            this.icon_refresh_kh.Location = new System.Drawing.Point(1058, 22);
+            this.icon_refresh_kh.Name = "icon_refresh_kh";
+            this.icon_refresh_kh.Size = new System.Drawing.Size(46, 33);
+            this.icon_refresh_kh.TabIndex = 9;
+            this.icon_refresh_kh.UseVisualStyleBackColor = true;
+            this.icon_refresh_kh.Click += new System.EventHandler(this.icon_refresh_kh_Click);
+            // 
+            // btn_update_kh
+            // 
+            this.btn_update_kh.ForeColor = System.Drawing.Color.Black;
+            this.btn_update_kh.Location = new System.Drawing.Point(1029, 147);
+            this.btn_update_kh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_update_kh.Name = "btn_update_kh";
+            this.btn_update_kh.Size = new System.Drawing.Size(101, 41);
+            this.btn_update_kh.TabIndex = 8;
+            this.btn_update_kh.Text = "UPDATE";
+            this.btn_update_kh.UseVisualStyleBackColor = true;
+            this.btn_update_kh.Click += new System.EventHandler(this.btn_update_kh_Click);
             // 
             // btn_delete_kh
             // 
             this.btn_delete_kh.ForeColor = System.Drawing.Color.Black;
-            this.btn_delete_kh.Location = new System.Drawing.Point(997, 115);
+            this.btn_delete_kh.Location = new System.Drawing.Point(1029, 210);
             this.btn_delete_kh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_delete_kh.Name = "btn_delete_kh";
             this.btn_delete_kh.Size = new System.Drawing.Size(101, 41);
@@ -218,7 +251,7 @@
             this.dgrv_kh.Name = "dgrv_kh";
             this.dgrv_kh.RowHeadersWidth = 51;
             this.dgrv_kh.RowTemplate.Height = 24;
-            this.dgrv_kh.Size = new System.Drawing.Size(970, 319);
+            this.dgrv_kh.Size = new System.Drawing.Size(988, 314);
             this.dgrv_kh.TabIndex = 0;
             // 
             // col_makh
@@ -227,7 +260,7 @@
             this.col_makh.HeaderText = "Mã khách hàng";
             this.col_makh.MinimumWidth = 6;
             this.col_makh.Name = "col_makh";
-            this.col_makh.Width = 125;
+            this.col_makh.Width = 130;
             // 
             // col_tenkh
             // 
@@ -256,8 +289,8 @@
             // col_sodu
             // 
             this.col_sodu.DataPropertyName = "SoDu";
-            dataGridViewCellStyle3.Format = "#,##0 đ";
-            this.col_sodu.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Format = "#,##0 đ";
+            this.col_sodu.DefaultCellStyle = dataGridViewCellStyle11;
             this.col_sodu.HeaderText = "Số dư";
             this.col_sodu.MinimumWidth = 6;
             this.col_sodu.Name = "col_sodu";
@@ -266,8 +299,8 @@
             // col_ngaytao_kh
             // 
             this.col_ngaytao_kh.DataPropertyName = "NgayTao";
-            dataGridViewCellStyle4.Format = "dd/MM/yy";
-            this.col_ngaytao_kh.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Format = "dd/MM/yy";
+            this.col_ngaytao_kh.DefaultCellStyle = dataGridViewCellStyle12;
             this.col_ngaytao_kh.HeaderText = "Ngày tạo";
             this.col_ngaytao_kh.MinimumWidth = 6;
             this.col_ngaytao_kh.Name = "col_ngaytao_kh";
@@ -284,7 +317,7 @@
             // btn_insert_kh
             // 
             this.btn_insert_kh.ForeColor = System.Drawing.Color.Black;
-            this.btn_insert_kh.Location = new System.Drawing.Point(997, 60);
+            this.btn_insert_kh.Location = new System.Drawing.Point(1029, 79);
             this.btn_insert_kh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_insert_kh.Name = "btn_insert_kh";
             this.btn_insert_kh.Size = new System.Drawing.Size(101, 41);
@@ -299,11 +332,11 @@
             this.tab_may.Controls.Add(this.button1);
             this.tab_may.Controls.Add(this.dgrv_may);
             this.tab_may.ForeColor = System.Drawing.Color.Black;
-            this.tab_may.Location = new System.Drawing.Point(4, 25);
+            this.tab_may.Location = new System.Drawing.Point(4, 34);
             this.tab_may.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tab_may.Name = "tab_may";
             this.tab_may.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tab_may.Size = new System.Drawing.Size(1135, 329);
+            this.tab_may.Size = new System.Drawing.Size(1170, 309);
             this.tab_may.TabIndex = 0;
             this.tab_may.Text = "Máy";
             this.tab_may.UseVisualStyleBackColor = true;
@@ -330,16 +363,27 @@
             this.button1.Text = "INSERT";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // tab_hoadon
+            // 
+            this.tab_hoadon.Location = new System.Drawing.Point(4, 25);
+            this.tab_hoadon.Name = "tab_hoadon";
+            this.tab_hoadon.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_hoadon.Size = new System.Drawing.Size(1170, 318);
+            this.tab_hoadon.TabIndex = 3;
+            this.tab_hoadon.Text = "Hoá đơn";
+            this.tab_hoadon.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1379, 491);
+            this.ClientSize = new System.Drawing.Size(1431, 457);
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.btn_logout_all);
             this.Controls.Add(this.lbl_user);
             this.Controls.Add(this.btn_logout);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
             this.Text = "MainForm";
@@ -374,6 +418,8 @@
         private System.Windows.Forms.Button btn_delete_kh;
         private System.Windows.Forms.DataGridView dgrv_kh;
         private System.Windows.Forms.Button btn_insert_kh;
+        private System.Windows.Forms.Button btn_update_kh;
+        private FontAwesome.Sharp.IconButton icon_refresh_kh;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_makh;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_tenkh;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_sdt;
@@ -381,5 +427,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_sodu;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ngaytao_kh;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoitao_kh;
+        private System.Windows.Forms.TabPage tab_hoadon;
     }
 }

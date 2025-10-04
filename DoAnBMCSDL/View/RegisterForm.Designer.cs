@@ -1,4 +1,4 @@
-﻿namespace OracleConnect.View
+﻿namespace DoAnBMCSDL.View
 {
     partial class RegisterForm
     {

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OracleConnect.View
+namespace DoAnBMCSDL.View
 {
     public partial class LoginSysdba : Form
     {
