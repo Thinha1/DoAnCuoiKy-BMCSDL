@@ -47,7 +47,7 @@ namespace DoAnBMCSDL
             }
             catch (Exception ex)
             {
-                return false;
+                throw ex;
             }
         }
 

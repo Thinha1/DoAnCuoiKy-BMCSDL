@@ -16,13 +16,13 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
     public partial class InsertKH : Form
     {
         KhachHangController khachHangController;
-        EncryptionAlgorithms encryptionAlgorithm;
+        EncryptionUtils encryptionAlgorithm;
         MainForm mainForm;
         public InsertKH(MainForm form)
         {
             InitializeComponent();
             khachHangController = new KhachHangController();
-            encryptionAlgorithm = new EncryptionAlgorithms();
+            encryptionAlgorithm = new EncryptionUtils();
             this.mainForm = form;
         }
 

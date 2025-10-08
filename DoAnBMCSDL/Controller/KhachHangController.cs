@@ -20,7 +20,7 @@ namespace DoAnBMCSDL.Controller
         internal List<KhachHang> getAllKhachHang()
         {
             List<KhachHang> list = new List<KhachHang>();
-            string query = "SELECT MaKH, HoTen, SoDienThoai, CCCD, SoDu, NGUOITAO, NGAYTAO FROM thinh.KhachHang";
+            string query = "SELECT MaKH, HoTen, SoDienThoai, CCCD, SoDu, NGUOITAO, NGAYTAO, NGUOISUA, NGAYSUA FROM thinh.KhachHang";
 
             //Connection tinh
             Conn = DatabaseUtils.GetConnection();
@@ -41,7 +41,9 @@ namespace DoAnBMCSDL.Controller
                         CCCD = reader["CCCD"].ToString(),
                         SoDu = float.Parse(reader["SoDu"].ToString()),
                         NguoiTao = reader["NguoiTao"].ToString(),
-                        NgayTao = reader.GetDateTime(reader.GetOrdinal("NgayTao"))
+                        NgayTao = reader.GetDateTime(reader.GetOrdinal("NgayTao")),
+                        NguoiSua = reader["NguoiSua"].ToString(),
+                        NgaySua = reader.IsDBNull(reader.GetOrdinal("NgaySua")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("NgaySua"))
                     });
                 }
             }

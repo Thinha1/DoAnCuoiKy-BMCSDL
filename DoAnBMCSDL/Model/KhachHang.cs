@@ -23,6 +23,6 @@ namespace DoAnBMCSDL.Model
 
         public string NguoiSua { get; set; }
 
-        public DateTime NgaySua { get; set; }
+        public Nullable<DateTime> NgaySua { get; set; }
     }
 }

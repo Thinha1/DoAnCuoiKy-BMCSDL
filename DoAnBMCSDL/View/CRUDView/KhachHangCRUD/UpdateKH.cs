@@ -18,7 +18,7 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
     {
         MainForm mainForm;
         KhachHangController KhachHangController;
-        EncryptionAlgorithms EncryptionAlgorithms;
+        EncryptionUtils EncryptionAlgorithms;
         private Model.KhachHang kh;
 
         public UpdateKH(Model.KhachHang kh)
@@ -27,7 +27,7 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
             KhachHangController = new KhachHangController();
             this.kh = kh;
             this.mainForm = new MainForm();
-            EncryptionAlgorithms = new EncryptionAlgorithms();
+            EncryptionAlgorithms = new EncryptionUtils();
         }
 
         private void UpdateKH_Load(object sender, EventArgs e)

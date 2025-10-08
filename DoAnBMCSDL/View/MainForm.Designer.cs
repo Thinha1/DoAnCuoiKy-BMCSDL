@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_logout = new System.Windows.Forms.Button();
             this.lbl_user = new System.Windows.Forms.Label();
             this.btn_logout_all = new System.Windows.Forms.Button();
@@ -46,6 +47,11 @@
             this.btn_update_kh = new System.Windows.Forms.Button();
             this.btn_delete_kh = new System.Windows.Forms.Button();
             this.dgrv_kh = new System.Windows.Forms.DataGridView();
+            this.btn_insert_kh = new System.Windows.Forms.Button();
+            this.tab_may = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tab_hoadon = new System.Windows.Forms.TabPage();
             this.col_makh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_tenkh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_sdt = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,11 +59,8 @@
             this.col_sodu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_ngaytao_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_nguoitao_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_insert_kh = new System.Windows.Forms.Button();
-            this.tab_may = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tab_hoadon = new System.Windows.Forms.TabPage();
+            this.col_ngaysua_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_nguoisua_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgrv_may)).BeginInit();
             this.tabControlMain.SuspendLayout();
             this.tab_khach.SuspendLayout();
@@ -174,11 +177,11 @@
             // tab_dichvu
             // 
             this.tab_dichvu.BackColor = System.Drawing.Color.Transparent;
-            this.tab_dichvu.Location = new System.Drawing.Point(4, 25);
+            this.tab_dichvu.Location = new System.Drawing.Point(4, 34);
             this.tab_dichvu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tab_dichvu.Name = "tab_dichvu";
             this.tab_dichvu.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tab_dichvu.Size = new System.Drawing.Size(1170, 318);
+            this.tab_dichvu.Size = new System.Drawing.Size(1170, 309);
             this.tab_dichvu.TabIndex = 2;
             this.tab_dichvu.Text = "Dịch vụ";
             // 
@@ -191,11 +194,11 @@
             this.tab_khach.Controls.Add(this.dgrv_kh);
             this.tab_khach.Controls.Add(this.btn_insert_kh);
             this.tab_khach.ForeColor = System.Drawing.Color.Black;
-            this.tab_khach.Location = new System.Drawing.Point(4, 25);
+            this.tab_khach.Location = new System.Drawing.Point(4, 34);
             this.tab_khach.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tab_khach.Name = "tab_khach";
             this.tab_khach.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tab_khach.Size = new System.Drawing.Size(1170, 318);
+            this.tab_khach.Size = new System.Drawing.Size(1170, 309);
             this.tab_khach.TabIndex = 1;
             this.tab_khach.Text = "Khách hàng";
             // 
@@ -246,73 +249,15 @@
             this.col_cccd,
             this.col_sodu,
             this.col_ngaytao_kh,
-            this.col_nguoitao_kh});
+            this.col_nguoitao_kh,
+            this.col_ngaysua_kh,
+            this.col_nguoisua_kh});
             this.dgrv_kh.Location = new System.Drawing.Point(3, 5);
             this.dgrv_kh.Name = "dgrv_kh";
             this.dgrv_kh.RowHeadersWidth = 51;
             this.dgrv_kh.RowTemplate.Height = 24;
             this.dgrv_kh.Size = new System.Drawing.Size(988, 314);
             this.dgrv_kh.TabIndex = 0;
-            // 
-            // col_makh
-            // 
-            this.col_makh.DataPropertyName = "MaKH";
-            this.col_makh.HeaderText = "Mã khách hàng";
-            this.col_makh.MinimumWidth = 6;
-            this.col_makh.Name = "col_makh";
-            this.col_makh.Width = 130;
-            // 
-            // col_tenkh
-            // 
-            this.col_tenkh.DataPropertyName = "TenKH";
-            this.col_tenkh.HeaderText = "Họ và tên";
-            this.col_tenkh.MinimumWidth = 6;
-            this.col_tenkh.Name = "col_tenkh";
-            this.col_tenkh.Width = 125;
-            // 
-            // col_sdt
-            // 
-            this.col_sdt.DataPropertyName = "SoDienThoai";
-            this.col_sdt.HeaderText = "Số điện thoại";
-            this.col_sdt.MinimumWidth = 6;
-            this.col_sdt.Name = "col_sdt";
-            this.col_sdt.Width = 125;
-            // 
-            // col_cccd
-            // 
-            this.col_cccd.DataPropertyName = "CCCD";
-            this.col_cccd.HeaderText = "CCCD";
-            this.col_cccd.MinimumWidth = 6;
-            this.col_cccd.Name = "col_cccd";
-            this.col_cccd.Width = 125;
-            // 
-            // col_sodu
-            // 
-            this.col_sodu.DataPropertyName = "SoDu";
-            dataGridViewCellStyle11.Format = "#,##0 đ";
-            this.col_sodu.DefaultCellStyle = dataGridViewCellStyle11;
-            this.col_sodu.HeaderText = "Số dư";
-            this.col_sodu.MinimumWidth = 6;
-            this.col_sodu.Name = "col_sodu";
-            this.col_sodu.Width = 125;
-            // 
-            // col_ngaytao_kh
-            // 
-            this.col_ngaytao_kh.DataPropertyName = "NgayTao";
-            dataGridViewCellStyle12.Format = "dd/MM/yy";
-            this.col_ngaytao_kh.DefaultCellStyle = dataGridViewCellStyle12;
-            this.col_ngaytao_kh.HeaderText = "Ngày tạo";
-            this.col_ngaytao_kh.MinimumWidth = 6;
-            this.col_ngaytao_kh.Name = "col_ngaytao_kh";
-            this.col_ngaytao_kh.Width = 125;
-            // 
-            // col_nguoitao_kh
-            // 
-            this.col_nguoitao_kh.DataPropertyName = "NguoiTao";
-            this.col_nguoitao_kh.HeaderText = "Người tạo";
-            this.col_nguoitao_kh.MinimumWidth = 6;
-            this.col_nguoitao_kh.Name = "col_nguoitao_kh";
-            this.col_nguoitao_kh.Width = 125;
             // 
             // btn_insert_kh
             // 
@@ -365,13 +310,92 @@
             // 
             // tab_hoadon
             // 
-            this.tab_hoadon.Location = new System.Drawing.Point(4, 25);
+            this.tab_hoadon.Location = new System.Drawing.Point(4, 34);
             this.tab_hoadon.Name = "tab_hoadon";
             this.tab_hoadon.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_hoadon.Size = new System.Drawing.Size(1170, 318);
+            this.tab_hoadon.Size = new System.Drawing.Size(1170, 309);
             this.tab_hoadon.TabIndex = 3;
             this.tab_hoadon.Text = "Hoá đơn";
             this.tab_hoadon.UseVisualStyleBackColor = true;
+            // 
+            // col_makh
+            // 
+            this.col_makh.DataPropertyName = "MaKH";
+            this.col_makh.HeaderText = "Mã khách hàng";
+            this.col_makh.MinimumWidth = 6;
+            this.col_makh.Name = "col_makh";
+            this.col_makh.Width = 130;
+            // 
+            // col_tenkh
+            // 
+            this.col_tenkh.DataPropertyName = "TenKH";
+            this.col_tenkh.HeaderText = "Họ và tên";
+            this.col_tenkh.MinimumWidth = 6;
+            this.col_tenkh.Name = "col_tenkh";
+            this.col_tenkh.Width = 125;
+            // 
+            // col_sdt
+            // 
+            this.col_sdt.DataPropertyName = "SoDienThoai";
+            this.col_sdt.HeaderText = "Số điện thoại";
+            this.col_sdt.MinimumWidth = 6;
+            this.col_sdt.Name = "col_sdt";
+            this.col_sdt.Width = 125;
+            // 
+            // col_cccd
+            // 
+            this.col_cccd.DataPropertyName = "CCCD";
+            this.col_cccd.HeaderText = "CCCD";
+            this.col_cccd.MinimumWidth = 6;
+            this.col_cccd.Name = "col_cccd";
+            this.col_cccd.Width = 125;
+            // 
+            // col_sodu
+            // 
+            this.col_sodu.DataPropertyName = "SoDu";
+            dataGridViewCellStyle1.Format = "#,##0 đ";
+            this.col_sodu.DefaultCellStyle = dataGridViewCellStyle1;
+            this.col_sodu.HeaderText = "Số dư";
+            this.col_sodu.MinimumWidth = 6;
+            this.col_sodu.Name = "col_sodu";
+            this.col_sodu.Width = 125;
+            // 
+            // col_ngaytao_kh
+            // 
+            this.col_ngaytao_kh.DataPropertyName = "NgayTao";
+            dataGridViewCellStyle2.Format = "dd/MM/yy";
+            this.col_ngaytao_kh.DefaultCellStyle = dataGridViewCellStyle2;
+            this.col_ngaytao_kh.HeaderText = "Ngày tạo";
+            this.col_ngaytao_kh.MinimumWidth = 6;
+            this.col_ngaytao_kh.Name = "col_ngaytao_kh";
+            this.col_ngaytao_kh.Width = 125;
+            // 
+            // col_nguoitao_kh
+            // 
+            this.col_nguoitao_kh.DataPropertyName = "NguoiTao";
+            this.col_nguoitao_kh.HeaderText = "Người tạo";
+            this.col_nguoitao_kh.MinimumWidth = 6;
+            this.col_nguoitao_kh.Name = "col_nguoitao_kh";
+            this.col_nguoitao_kh.Width = 125;
+            // 
+            // col_ngaysua_kh
+            // 
+            this.col_ngaysua_kh.DataPropertyName = "NgaySua";
+            dataGridViewCellStyle3.Format = "dd/MM/yy";
+            dataGridViewCellStyle3.NullValue = null;
+            this.col_ngaysua_kh.DefaultCellStyle = dataGridViewCellStyle3;
+            this.col_ngaysua_kh.HeaderText = "Ngày sửa";
+            this.col_ngaysua_kh.MinimumWidth = 6;
+            this.col_ngaysua_kh.Name = "col_ngaysua_kh";
+            this.col_ngaysua_kh.Width = 125;
+            // 
+            // col_nguoisua_kh
+            // 
+            this.col_nguoisua_kh.DataPropertyName = "NguoiSua";
+            this.col_nguoisua_kh.HeaderText = "Người sửa";
+            this.col_nguoisua_kh.MinimumWidth = 6;
+            this.col_nguoisua_kh.Name = "col_nguoisua_kh";
+            this.col_nguoisua_kh.Width = 125;
             // 
             // MainForm
             // 
@@ -420,6 +444,7 @@
         private System.Windows.Forms.Button btn_insert_kh;
         private System.Windows.Forms.Button btn_update_kh;
         private FontAwesome.Sharp.IconButton icon_refresh_kh;
+        private System.Windows.Forms.TabPage tab_hoadon;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_makh;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_tenkh;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_sdt;
@@ -427,6 +452,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_sodu;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ngaytao_kh;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoitao_kh;
-        private System.Windows.Forms.TabPage tab_hoadon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_ngaysua_kh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoisua_kh;
     }
 }

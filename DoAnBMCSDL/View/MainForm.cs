@@ -23,7 +23,7 @@ namespace DoAnBMCSDL.View
         private LoginForm loginForm;
         private MayController mayController;
         private KhachHangController khachHangController;
-        private EncryptionAlgorithms encryptionAlgorithm;
+        private EncryptionUtils encryptionAlgorithm;
         private Timer timer;
         public MainForm()
         {
@@ -31,7 +31,7 @@ namespace DoAnBMCSDL.View
             loginForm = new LoginForm();
             mayController = new MayController();
             khachHangController = new KhachHangController();
-            encryptionAlgorithm = new EncryptionAlgorithms();
+            encryptionAlgorithm = new EncryptionUtils();
         }
 
         private void MainForm_Load(object sender, EventArgs e)

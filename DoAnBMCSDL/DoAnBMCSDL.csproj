@@ -102,7 +102,7 @@
     <Compile Include="Model\KhachHang.cs" />
     <Compile Include="Model\May.cs" />
     <Compile Include="utils\DatabaseUtils.cs" />
-    <Compile Include="utils\Encrytion\EncryptionAlgorithms.cs" />
+    <Compile Include="utils\Encrytion\EncryptionUtils.cs" />
     <Compile Include="View\ChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
