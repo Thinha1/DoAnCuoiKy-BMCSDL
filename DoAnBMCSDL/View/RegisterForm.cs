@@ -74,42 +74,39 @@ namespace DoAnBMCSDL.View
 
             if (checkValid(host, port, sid, user, password))
             {
-                if (DatabaseUtils.Connect())
+                try
                 {
-                    try
+                    string defaultSQL = "alter session set \"_oracle_script\" = true";
+                    using (OracleCommand omd = new OracleCommand(defaultSQL, DatabaseUtils.GetConnection()))
                     {
-                        string defaultSQL = "alter session set \"_oracle_script\" = true";
-                        using (OracleCommand omd = new OracleCommand(defaultSQL, DatabaseUtils.GetConnection()))
-                        {
-                            omd.ExecuteNonQuery();
-                        }
-                        string createSQL = $"create user {user} identified by {password}";
-                        using (OracleCommand omd = new OracleCommand(createSQL, DatabaseUtils.GetConnection()))
-                        {
-                            omd.ExecuteNonQuery();
-                        }
-                        string grantSQL = $"grant create session to {user}";
-                        using (OracleCommand omd = new OracleCommand(grantSQL, DatabaseUtils.GetConnection()))
-                        {
-                            omd.ExecuteNonQuery();
-                        }
-                        string logoutGrantSQL = $"grant execute on SYS.LOGOUT_USER to {user}";
-                        using (OracleCommand omd = new OracleCommand(logoutGrantSQL, DatabaseUtils.GetConnection()))
-                        {
-                            omd.ExecuteNonQuery();
-                        }
-                        MessageBox.Show("Đăng ký thành công!\nQuay lại trang đăng nhập");
-                        this.Hide();
-                        if (loginForm == null)
-                        {
-                            loginForm = new LoginForm();
-                        }
-                        loginForm.ShowDialog();
+                        omd.ExecuteNonQuery();
                     }
-                    catch (Exception ex)
+                    string createSQL = $"create user {user} identified by {password}";
+                    using (OracleCommand omd = new OracleCommand(createSQL, DatabaseUtils.GetConnection()))
                     {
-                        MessageBox.Show(ex.Message);
+                        omd.ExecuteNonQuery();
                     }
+                    string grantSQL = $"grant create session to {user}";
+                    using (OracleCommand omd = new OracleCommand(grantSQL, DatabaseUtils.GetConnection()))
+                    {
+                        omd.ExecuteNonQuery();
+                    }
+                    string logoutGrantSQL = $"grant execute on SYS.P_LOGOUT_USER to {user}";
+                    using (OracleCommand omd = new OracleCommand(logoutGrantSQL, DatabaseUtils.GetConnection()))
+                    {
+                        omd.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("Đăng ký thành công!\nQuay lại trang đăng nhập");
+                    this.Hide();
+                    if (loginForm == null)
+                    {
+                        loginForm = new LoginForm();
+                    }
+                    loginForm.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
             else

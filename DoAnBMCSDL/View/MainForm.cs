@@ -84,7 +84,7 @@ namespace DoAnBMCSDL.View
                 try
                 {
                     //Chạy lệnh kill hết session
-                    using (OracleCommand omd = new OracleCommand("SYS.LOGOUT_USER", DatabaseUtils.GetConnection()))
+                    using (OracleCommand omd = new OracleCommand("SYS.P_LOGOUT_USER", DatabaseUtils.GetConnection()))
                     {
                         omd.CommandType = System.Data.CommandType.StoredProcedure;
                         omd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = Test.username;
@@ -94,7 +94,7 @@ namespace DoAnBMCSDL.View
 
                     //Logout ra sau khi kill
                     MessageBox.Show("Bạn đã thực thi việc đăng xuất, form sẽ thoát.");
-                    this.Hide();
+                    this.Close();
                     loginForm.ShowDialog();
                     return;
                 }
@@ -118,7 +118,7 @@ namespace DoAnBMCSDL.View
                 try
                 {
                     //Chạy lệnh kill hết session
-                    using (OracleCommand omd = new OracleCommand("LOGOUT_USER_ALL", DatabaseUtils.GetConnection()))
+                    using (OracleCommand omd = new OracleCommand("P_LOGOUT_USER_ALL", DatabaseUtils.GetConnection()))
                     {
                         omd.CommandType = System.Data.CommandType.StoredProcedure;
                         omd.ExecuteNonQuery();
@@ -127,13 +127,15 @@ namespace DoAnBMCSDL.View
                     //Logout ra sau khi kill
                     MessageBox.Show("Bạn đã thực thi việc đóng connection của tất cả user, form sẽ thoát.");
                     this.Hide();
+                    timer.Stop();
                     loginForm.ShowDialog();
                     return;
                 }
                 catch (OracleException)
                 {
-                    MessageBox.Show("Không tồn tại procedure này!");
+                    MessageBox.Show("Đăng xuất thành công!");
                     this.Hide();
+                    timer.Stop();
                     loginForm.ShowDialog();
                     return;
 
