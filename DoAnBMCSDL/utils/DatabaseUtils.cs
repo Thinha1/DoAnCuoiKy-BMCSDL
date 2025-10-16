@@ -48,9 +48,10 @@ namespace DoAnBMCSDL
             catch (Exception ex)
             {
                 return false;
+          
             }
         }
-
+        
         public static OracleConnection GetConnection()
         {
             if (Conn == null || Conn.State != System.Data.ConnectionState.Open)
