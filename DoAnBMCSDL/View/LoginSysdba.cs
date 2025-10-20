@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,7 +23,7 @@ namespace DoAnBMCSDL.View
 
         public bool checkValid(string host, string port, string sid, string user, string password)
         {
-            if(string.IsNullOrEmpty(host) || string.IsNullOrEmpty(port) || string.IsNullOrEmpty(sid) || string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(host) || string.IsNullOrEmpty(port) || string.IsNullOrEmpty(sid) || string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password))
             {
                 return false;
             }
@@ -37,27 +38,34 @@ namespace DoAnBMCSDL.View
             string pass = txt_passwordsysdba.Text;
             if (checkValid(host, port, sid, user, pass))
             {
-                DatabaseUtils.init(host, port, sid, user, pass);
-                if (DatabaseUtils.Connect())
+                try
                 {
-                    if (_src == "btn_forgetpassword")
+                    if (user.ToUpper() != "SYS")
                     {
-                        MessageBox.Show("Đăng nhập thành công!\nVui lòng nhập thông tin tài khoản muốn đổi");
-                        this.Hide();
-                        ChangePassword changePassword = new ChangePassword();
-                        changePassword.ShowDialog();
+                        throw new Exception("Đây không phải quyền của sysdba!");
                     }
-                    else if(_src == "btn_register")
+                    DatabaseUtils.init(host, port, sid, user, pass);
+                    if (DatabaseUtils.Connect())
                     {
-                        MessageBox.Show("Đăng nhập thành công!\nChuyển đến trang đăng ký!");
-                        this.Hide();
-                        RegisterForm registerForm = new RegisterForm();
-                        registerForm.ShowDialog();
+                        if (_src == "btn_forgetpassword")
+                        {
+                            MessageBox.Show("Đăng nhập thành công!\nVui lòng nhập thông tin tài khoản muốn đổi");
+                            this.Hide();
+                            ChangePassword changePassword = new ChangePassword();
+                            changePassword.ShowDialog();
+                        }
+                        else if (_src == "btn_register")
+                        {
+                            MessageBox.Show("Đăng nhập thành công!\nChuyển đến trang đăng ký!");
+                            this.Hide();
+                            RegisterForm registerForm = new RegisterForm();
+                            registerForm.ShowDialog();
+                        }
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Có lỗi xảy ra! Vui lòng nhập lại");
+                    MessageBox.Show("Lỗi: " + ex.Message);
                 }
             }
             else

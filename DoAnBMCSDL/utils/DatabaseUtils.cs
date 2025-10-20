@@ -47,8 +47,12 @@ namespace DoAnBMCSDL
             }
             catch (Exception ex)
             {
+<<<<<<< HEAD
                 return false;
           
+=======
+                throw ex;
+>>>>>>> origin/main
             }
         }
         

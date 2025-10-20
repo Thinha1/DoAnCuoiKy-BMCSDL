@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DoAnBMCSDL.utils.Encrytion
 {
-    internal class EncryptionAlgorithms
+    internal class EncryptionUtils
     {
-        char[] characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()".ToCharArray();
+        char[] characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[];:,<.>?|".ToCharArray();
         int length;
 
-        public EncryptionAlgorithms()
+        public EncryptionUtils()
         {
             length = characters.Length;
         }

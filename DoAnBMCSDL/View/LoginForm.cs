@@ -72,24 +72,27 @@ namespace DoAnBMCSDL
             string password = txt_password.Text;
             if (checkValid(host, port, sid, user, password))
             {
-                DatabaseUtils.init(host, port, sid, user, password);
-                if (DatabaseUtils.Connect())
+                try
                 {
-                    OracleConnection o = DatabaseUtils.GetConnection();
-                    MessageBox.Show($"Success!\nVersion: {o.ServerVersion}");
-                    Test.username = user;
-                    Test.port = port;
-                    Test.sid = sid;
-                    Test.host = host;
-                    Test.username = user;
-                    Test.password = password;
-                    this.Hide();
-                    MainForm m = new MainForm();
-                    m.ShowDialog();
+                    DatabaseUtils.init(host, port, sid, user, password);
+                    if (DatabaseUtils.Connect())
+                    {
+                        OracleConnection o = DatabaseUtils.GetConnection();
+                        MessageBox.Show($"Success!\nVersion: {o.ServerVersion}");
+                        Test.username = user;
+                        Test.port = port;
+                        Test.sid = sid;
+                        Test.host = host;
+                        Test.username = user;
+                        Test.password = password;
+                        this.Hide();
+                        MainForm m = new MainForm();
+                        m.ShowDialog();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Có lỗi xảy ra!");
+                    MessageBox.Show($"Lỗi: {ex.Message}");
                 }
             }
         }

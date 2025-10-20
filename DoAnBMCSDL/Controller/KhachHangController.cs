@@ -20,7 +20,7 @@ namespace DoAnBMCSDL.Controller
         internal List<KhachHang> getAllKhachHang()
         {
             List<KhachHang> list = new List<KhachHang>();
-            string query = "SELECT MaKH, HoTen, SoDienThoai, CCCD, SoDu, NGUOITAO, NGAYTAO FROM thinh.KhachHang";
+            string query = "SELECT MaKH, HoTen, SoDienThoai, CCCD, SoDu, NGUOITAO, NGAYTAO, NGUOISUA, NGAYSUA FROM thinh.KhachHang";
 
             //Connection tinh
             Conn = DatabaseUtils.GetConnection();
@@ -41,7 +41,9 @@ namespace DoAnBMCSDL.Controller
                         CCCD = reader["CCCD"].ToString(),
                         SoDu = float.Parse(reader["SoDu"].ToString()),
                         NguoiTao = reader["NguoiTao"].ToString(),
-                        NgayTao = reader.GetDateTime(reader.GetOrdinal("NgayTao"))
+                        NgayTao = reader.GetDateTime(reader.GetOrdinal("NgayTao")),
+                        NguoiSua = reader["NguoiSua"].ToString(),
+                        NgaySua = reader.IsDBNull(reader.GetOrdinal("NgaySua")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("NgaySua"))
                     });
                 }
             }
@@ -90,7 +92,7 @@ namespace DoAnBMCSDL.Controller
             {
                 using (OracleCommand omd = new OracleCommand("thinh.P_CapNhat_KhachHang", Conn))
                 {
-                    omd.CommandType = System.Data.CommandType.StoredProcedure;
+                    omd.CommandType = CommandType.StoredProcedure;
                     omd.Parameters.Add("p_makh", kh.MaKH);
                     omd.Parameters.Add("p_tenkh", kh.TenKH);
                     omd.Parameters.Add("p_sdt", kh.SoDienThoai);
@@ -124,7 +126,7 @@ namespace DoAnBMCSDL.Controller
             {
                 using (OracleCommand omd = new OracleCommand("thinh.P_Them_KhachHang", Conn))
                 {
-                    omd.CommandType = System.Data.CommandType.StoredProcedure;
+                    omd.CommandType = CommandType.StoredProcedure;
                     omd.Parameters.Add("p_tenkh", ten);
                     omd.Parameters.Add("p_sdt", sdt);
                     omd.Parameters.Add("p_cccd", cccd);
@@ -143,16 +145,16 @@ namespace DoAnBMCSDL.Controller
         //Xoá khách hàng
         public bool DeleteKhachHangById(string id)
         {
-            string query = "DELETE FROM thinh.KhachHang WHERE MaKH = :id";
             Conn = DatabaseUtils.GetConnection();
             if (Conn.State != ConnectionState.Open)
 
                 Conn.Open();
             try
             {
-                using (var omd = new OracleCommand(query, Conn))
+                using (var omd = new OracleCommand("thinh.P_XOA_KHACHHANG", Conn))
                 {
-                    omd.Parameters.Add(new OracleParameter("id", id));
+                    omd.CommandType = CommandType.StoredProcedure;
+                    omd.Parameters.Add(new OracleParameter("p_makh", id));
                     omd.ExecuteNonQuery();
                     return true;
                 }
