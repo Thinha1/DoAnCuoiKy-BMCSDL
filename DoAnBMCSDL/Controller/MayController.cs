@@ -40,5 +40,28 @@ namespace DoAnBMCSDL.Controller
             return list;
         }
 
+        public bool InsertMay(string loai, string trangThai)
+        {
+            Conn = DatabaseUtils.GetConnection();
+            if (Conn.State != ConnectionState.Open)
+
+                Conn.Open();
+
+            try
+            {
+                using (OracleCommand omd = new OracleCommand("thinh.P_Them_May", Conn))
+                {
+                    omd.CommandType = CommandType.StoredProcedure;
+                    omd.Parameters.Add("p_loai", loai);
+                    omd.Parameters.Add("p_trangthai", trangThai);
+                    omd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

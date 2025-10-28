@@ -39,6 +39,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txt_host = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btn_return = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label2
@@ -83,7 +84,7 @@
             // 
             this.btn_register.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btn_register.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_register.Location = new System.Drawing.Point(348, 338);
+            this.btn_register.Location = new System.Drawing.Point(267, 336);
             this.btn_register.Name = "btn_register";
             this.btn_register.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btn_register.Size = new System.Drawing.Size(181, 77);
@@ -99,6 +100,7 @@
             this.txt_sid.Name = "txt_sid";
             this.txt_sid.Size = new System.Drawing.Size(239, 34);
             this.txt_sid.TabIndex = 7;
+            this.txt_sid.Text = "quanlynet";
             // 
             // labelsid
             // 
@@ -118,6 +120,7 @@
             this.txt_port.Name = "txt_port";
             this.txt_port.Size = new System.Drawing.Size(239, 34);
             this.txt_port.TabIndex = 9;
+            this.txt_port.Text = "1521";
             // 
             // label1
             // 
@@ -149,11 +152,26 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Host:";
             // 
+            // btn_return
+            // 
+            this.btn_return.BackColor = System.Drawing.Color.Red;
+            this.btn_return.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_return.ForeColor = System.Drawing.Color.Black;
+            this.btn_return.Location = new System.Drawing.Point(474, 336);
+            this.btn_return.Name = "btn_return";
+            this.btn_return.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btn_return.Size = new System.Drawing.Size(181, 77);
+            this.btn_return.TabIndex = 12;
+            this.btn_return.Text = "RETURN\r\n";
+            this.btn_return.UseVisualStyleBackColor = false;
+            this.btn_return.Click += new System.EventHandler(this.btn_return_Click);
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(876, 470);
+            this.Controls.Add(this.btn_return);
             this.Controls.Add(this.txt_host);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txt_port);
@@ -185,5 +203,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_host;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btn_return;
     }
 }

@@ -87,7 +87,7 @@
             this.txt_tenkh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_tenkh.Location = new System.Drawing.Point(373, 54);
             this.txt_tenkh.Name = "txt_tenkh";
-            this.txt_tenkh.Size = new System.Drawing.Size(147, 27);
+            this.txt_tenkh.Size = new System.Drawing.Size(250, 27);
             this.txt_tenkh.TabIndex = 5;
             // 
             // txt_cccd
@@ -95,7 +95,7 @@
             this.txt_cccd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_cccd.Location = new System.Drawing.Point(373, 129);
             this.txt_cccd.Name = "txt_cccd";
-            this.txt_cccd.Size = new System.Drawing.Size(147, 27);
+            this.txt_cccd.Size = new System.Drawing.Size(250, 27);
             this.txt_cccd.TabIndex = 7;
             // 
             // txt_sdt
@@ -103,7 +103,7 @@
             this.txt_sdt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_sdt.Location = new System.Drawing.Point(373, 88);
             this.txt_sdt.Name = "txt_sdt";
-            this.txt_sdt.Size = new System.Drawing.Size(147, 27);
+            this.txt_sdt.Size = new System.Drawing.Size(250, 27);
             this.txt_sdt.TabIndex = 8;
             // 
             // txt_mk
@@ -112,15 +112,15 @@
             this.txt_mk.Location = new System.Drawing.Point(373, 204);
             this.txt_mk.Name = "txt_mk";
             this.txt_mk.PasswordChar = '*';
-            this.txt_mk.Size = new System.Drawing.Size(147, 27);
+            this.txt_mk.Size = new System.Drawing.Size(250, 27);
             this.txt_mk.TabIndex = 9;
             // 
             // btn_insert
             // 
             this.btn_insert.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btn_insert.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_insert.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_insert.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_insert.Location = new System.Drawing.Point(224, 265);
+            this.btn_insert.Location = new System.Drawing.Point(253, 282);
             this.btn_insert.Name = "btn_insert";
             this.btn_insert.Size = new System.Drawing.Size(126, 36);
             this.btn_insert.TabIndex = 10;
@@ -131,9 +131,9 @@
             // btn_cncl
             // 
             this.btn_cncl.BackColor = System.Drawing.Color.Tomato;
-            this.btn_cncl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cncl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cncl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_cncl.Location = new System.Drawing.Point(394, 265);
+            this.btn_cncl.Location = new System.Drawing.Point(423, 282);
             this.btn_cncl.Name = "btn_cncl";
             this.btn_cncl.Size = new System.Drawing.Size(126, 36);
             this.btn_cncl.TabIndex = 11;
@@ -146,7 +146,7 @@
             this.txt_sodu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_sodu.Location = new System.Drawing.Point(373, 167);
             this.txt_sodu.Name = "txt_sodu";
-            this.txt_sodu.Size = new System.Drawing.Size(147, 27);
+            this.txt_sodu.Size = new System.Drawing.Size(250, 27);
             this.txt_sodu.TabIndex = 13;
             // 
             // label4

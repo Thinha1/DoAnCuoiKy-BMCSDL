@@ -1,6 +1,7 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace DoAnBMCSDL
         public static string sid;
         public static string user;
         public static string password;
-        
+
         public static void init(string host, string port, string sid, string user, string password)
         {
             DatabaseUtils.host = host;
@@ -28,25 +29,26 @@ namespace DoAnBMCSDL
         {
             try
             {
-                if (Conn == null)
-                {
-                    string consys = "";
-                    if (user.ToUpper() == "SYS")
-                        consys = ";DBA Privilege=SYSDBA;";
 
-                    string connectionString = $"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={host})(PORT={port}))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME={sid})));" +
-                                              $"User ID={user};Password={password}" + consys;
+                // Chuỗi kết nối mới
+                var builder = new OracleConnectionStringBuilder();
+                builder["Data Source"] = $"(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={host})(PORT={port}))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME={sid})))";
+                builder["User ID"] = user;
+                builder["Password"] = password;
 
-                    Conn = new OracleConnection(connectionString);
-                }
+                if (!string.IsNullOrEmpty(user) && user.ToUpper() == "SYS")
+                    builder["DBA Privilege"] = "SYSDBA";
 
-                if (Conn.State != System.Data.ConnectionState.Open)
-                    Conn.Open();
+                Conn = new OracleConnection(builder.ConnectionString);
+                Conn.Open();
+
 
                 return true;
             }
             catch (Exception ex)
             {
+                Conn = null;
+                return false;
                 throw ex;
             }
         }
@@ -62,20 +64,35 @@ namespace DoAnBMCSDL
 
         public static void CloseConnection()
         {
-            if(Conn != null)
+            try
             {
-                Conn.Close();
-            }    
+                if (Conn != null)
+                {
+                    if (Conn.State != ConnectionState.Closed)
+                        Conn.Close();   // 🔸 chỉ đóng connection hiện tại
+
+                    Conn.Dispose();     // 🔸 giải phóng resource
+                    Conn = null;        // 🔸 cho phép tạo connection mới sau này
+                    Console.WriteLine("Kết nối đã được đóng và giải phóng.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi đóng kết nối: " + ex.Message);
+            }
         }
+
+
+
 
         public static bool checkConnection()
         {
-            if(Conn.State == System.Data.ConnectionState.Open)
+            if (Conn.State == System.Data.ConnectionState.Open)
             {
                 return true;
             }
             return false;
         }
-            
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers.Text;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 using DoAnBMCSDL.Controller;
 using DoAnBMCSDL.utils.Encrytion;
 using DoAnBMCSDL.View;
@@ -18,12 +20,16 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
         KhachHangController khachHangController;
         EncryptionUtils encryptionAlgorithm;
         MainForm mainForm;
+        DESApp dESApp;
+        DESDB dESDB;
         public InsertKH(MainForm form)
         {
             InitializeComponent();
             khachHangController = new KhachHangController();
             encryptionAlgorithm = new EncryptionUtils();
             this.mainForm = form;
+            this.dESApp = new DESApp();
+            this.dESDB = new DESDB();
         }
 
         private bool validateData(string ten, string sdt, string cccd, float sodu, string mk)
@@ -65,6 +71,11 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
             {
                 sdt = encryptionAlgorithm.encryptMessagePlus(sdt, 10);
                 cccd = encryptionAlgorithm.encryptMessageMultiply(cccd, 11);
+
+                string keyString = "private key";
+                byte[] keyBytes = Encoding.UTF8.GetBytes(keyString);
+                byte[] encodedPass = dESApp.Encrypt(mk, keyBytes);
+                mk = Convert.ToBase64String(encodedPass);
                 bool check = khachHangController.InsertKhachHang(tenkh, sdt, cccd, sodu, mk);
                 if (check)
                 {

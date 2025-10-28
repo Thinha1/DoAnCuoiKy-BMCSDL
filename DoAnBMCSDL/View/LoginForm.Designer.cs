@@ -48,7 +48,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(202, 37);
+            this.label1.Location = new System.Drawing.Point(261, 43);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(235, 38);
@@ -58,106 +58,111 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(119, 124);
+            this.label2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(164, 130);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 17);
+            this.label2.Size = new System.Drawing.Size(52, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Host:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(119, 155);
+            this.label3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(167, 159);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 17);
+            this.label3.Size = new System.Drawing.Size(49, 19);
             this.label3.TabIndex = 2;
             this.label3.Text = "Port:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(119, 192);
+            this.label4.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(167, 197);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 17);
+            this.label4.Size = new System.Drawing.Size(40, 19);
             this.label4.TabIndex = 3;
             this.label4.Text = "Sid:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(119, 220);
+            this.label5.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(167, 227);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 17);
+            this.label5.Size = new System.Drawing.Size(52, 19);
             this.label5.TabIndex = 4;
             this.label5.Text = "User:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(119, 255);
+            this.label6.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(167, 260);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 17);
+            this.label6.Size = new System.Drawing.Size(93, 19);
             this.label6.TabIndex = 5;
             this.label6.Text = "Password:";
             // 
             // txt_host
             // 
-            this.txt_host.Location = new System.Drawing.Point(209, 122);
+            this.txt_host.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_host.Location = new System.Drawing.Point(268, 127);
             this.txt_host.Margin = new System.Windows.Forms.Padding(4);
             this.txt_host.Name = "txt_host";
-            this.txt_host.Size = new System.Drawing.Size(287, 22);
+            this.txt_host.Size = new System.Drawing.Size(287, 27);
             this.txt_host.TabIndex = 6;
             // 
             // txt_port
             // 
-            this.txt_port.Location = new System.Drawing.Point(209, 154);
+            this.txt_port.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_port.Location = new System.Drawing.Point(268, 159);
             this.txt_port.Margin = new System.Windows.Forms.Padding(4);
             this.txt_port.Name = "txt_port";
-            this.txt_port.Size = new System.Drawing.Size(287, 22);
+            this.txt_port.Size = new System.Drawing.Size(287, 27);
             this.txt_port.TabIndex = 7;
             this.txt_port.Text = "1521";
             // 
             // txt_sid
             // 
-            this.txt_sid.Location = new System.Drawing.Point(209, 192);
+            this.txt_sid.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_sid.Location = new System.Drawing.Point(268, 197);
             this.txt_sid.Margin = new System.Windows.Forms.Padding(4);
             this.txt_sid.Name = "txt_sid";
-            this.txt_sid.Size = new System.Drawing.Size(287, 22);
+            this.txt_sid.Size = new System.Drawing.Size(287, 27);
             this.txt_sid.TabIndex = 8;
             this.txt_sid.Text = "quanlynet";
             // 
             // txt_user
             // 
-            this.txt_user.Location = new System.Drawing.Point(209, 222);
+            this.txt_user.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_user.Location = new System.Drawing.Point(268, 227);
             this.txt_user.Margin = new System.Windows.Forms.Padding(4);
             this.txt_user.Name = "txt_user";
-            this.txt_user.Size = new System.Drawing.Size(287, 22);
+            this.txt_user.Size = new System.Drawing.Size(287, 27);
             this.txt_user.TabIndex = 9;
             // 
             // txt_password
             // 
-            this.txt_password.Location = new System.Drawing.Point(209, 255);
+            this.txt_password.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_password.Location = new System.Drawing.Point(268, 260);
             this.txt_password.Margin = new System.Windows.Forms.Padding(4);
             this.txt_password.Name = "txt_password";
             this.txt_password.PasswordChar = '*';
-            this.txt_password.Size = new System.Drawing.Size(287, 22);
+            this.txt_password.Size = new System.Drawing.Size(287, 27);
             this.txt_password.TabIndex = 10;
             // 
             // btn_login
             // 
             this.btn_login.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btn_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_login.Location = new System.Drawing.Point(272, 309);
+            this.btn_login.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_login.Location = new System.Drawing.Point(309, 309);
             this.btn_login.Name = "btn_login";
             this.btn_login.Size = new System.Drawing.Size(143, 45);
             this.btn_login.TabIndex = 11;
@@ -168,8 +173,8 @@
             // btn_register
             // 
             this.btn_register.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.btn_register.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_register.Location = new System.Drawing.Point(272, 360);
+            this.btn_register.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_register.Location = new System.Drawing.Point(309, 360);
             this.btn_register.Name = "btn_register";
             this.btn_register.Size = new System.Drawing.Size(143, 45);
             this.btn_register.TabIndex = 12;

@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DoAnBMCSDL.utils.Encrytion;
 using Oracle.ManagedDataAccess.Client;
 
 namespace DoAnBMCSDL.View
@@ -15,6 +16,9 @@ namespace DoAnBMCSDL.View
     public partial class RegisterForm : Form
     {
         private LoginForm loginForm;
+        private static OracleConnection Conn;
+        EncryptionFunc encryptionFunc = new EncryptionFunc();
+        EncryptionUtils encryptionUtils = new EncryptionUtils();
         public RegisterForm()
         {
             InitializeComponent();
@@ -74,29 +78,34 @@ namespace DoAnBMCSDL.View
 
             if (checkValid(host, port, sid, user, password))
             {
+
+                DatabaseUtils.init(host, port, sid, "login", "123");
+                DatabaseUtils.Connect();
+                EncryptionFunc.initConnection(DatabaseUtils.GetConnection());
+                //Mã hoá 2 trường user và password
+                //Tầng ứng dụng
+                user = encryptionUtils.encryptMessagePlus(user, 11);
+                password = encryptionUtils.encryptMessageMultiply(password, 11);
+                //Tầng cơ sở dữ liệu
+                user = encryptionFunc.encryptCipher_Func(user, 11);
+                password = encryptionFunc.encryptMultiply_Func(password, 11);
+                MessageBox.Show($"{user}, {password}");
                 try
                 {
-                    string defaultSQL = "alter session set \"_oracle_script\" = true";
-                    using (OracleCommand omd = new OracleCommand(defaultSQL, DatabaseUtils.GetConnection()))
+                    Conn = DatabaseUtils.GetConnection();
+                    if (Conn.State != ConnectionState.Open)
+
+                        Conn.Open();
+
+                    using (OracleCommand omd = new OracleCommand("sys.P_REGISTER", Conn))
                     {
-                        omd.ExecuteNonQuery();
-                    }
-                    string createSQL = $"create user {user} identified by {password}";
-                    using (OracleCommand omd = new OracleCommand(createSQL, DatabaseUtils.GetConnection()))
-                    {
-                        omd.ExecuteNonQuery();
-                    }
-                    string grantSQL = $"grant create session to {user}";
-                    using (OracleCommand omd = new OracleCommand(grantSQL, DatabaseUtils.GetConnection()))
-                    {
-                        omd.ExecuteNonQuery();
-                    }
-                    string logoutGrantSQL = $"grant execute on SYS.P_LOGOUT_USER to {user}";
-                    using (OracleCommand omd = new OracleCommand(logoutGrantSQL, DatabaseUtils.GetConnection()))
-                    {
+                        omd.CommandType = CommandType.StoredProcedure;
+                        omd.Parameters.Add("p_username", OracleDbType.Varchar2, 100).Value = user;
+                        omd.Parameters.Add("p_password", OracleDbType.Varchar2, 100).Value = password;
                         omd.ExecuteNonQuery();
                     }
                     MessageBox.Show("Đăng ký thành công!\nQuay lại trang đăng nhập");
+                    DatabaseUtils.CloseConnection();
                     this.Hide();
                     if (loginForm == null)
                     {
@@ -113,6 +122,13 @@ namespace DoAnBMCSDL.View
             {
                 MessageBox.Show("Đăng ký thất bại!");
             }
+        }
+
+        private void btn_return_Click(object sender, EventArgs e)
+        {
+            LoginForm loginForm = new LoginForm();
+            this.Hide();
+            loginForm.ShowDialog();
         }
     }
 }

@@ -15,6 +15,7 @@ using DoAnBMCSDL.View.CRUDView.KhachHang;
 using Oracle.ManagedDataAccess.Client;
 using DoAnBMCSDL.Controller;
 using DoAnBMCSDL.Model;
+using DoAnBMCSDL.View.CRUDView.MayCRUD;
 
 namespace DoAnBMCSDL.View
 {
@@ -25,6 +26,7 @@ namespace DoAnBMCSDL.View
         private KhachHangController khachHangController;
         private EncryptionUtils encryptionAlgorithm;
         private Timer timer;
+        private EncryptionFunc encryptionFunc;
         public MainForm()
         {
             InitializeComponent();
@@ -32,6 +34,7 @@ namespace DoAnBMCSDL.View
             mayController = new MayController();
             khachHangController = new KhachHangController();
             encryptionAlgorithm = new EncryptionUtils();
+            encryptionFunc = new EncryptionFunc();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -40,27 +43,15 @@ namespace DoAnBMCSDL.View
             timer.Interval = 30000; //Check sau 30 giây
             timer.Tick += Timer_Tick;
             timer.Start();
-            //Hiển thị tên user
-            OracleConnection o = DatabaseUtils.GetConnection();
-            string name = Test.username;
-            if (!string.IsNullOrWhiteSpace(name))
-            {
-                lbl_user.Text = $"Welcome {Test.username}";
-                lbl_user.Refresh();
-            }
-            else
-            {
-                lbl_user.Text = "Welcome guest";
-                lbl_user.Refresh();
-            }
-            if (Test.username.ToUpper() == "SYS")
-            {
-                btn_logout_all.Visible = true;
-            }
-            else
-            {
-                btn_logout_all.Visible = false;
-            }
+            ////Hiển thị tên user
+            //if (Test.username.ToUpper() == "SYS")
+            //{
+            btn_logout_all.Visible = true;
+            //}
+            //else
+            //{
+            //    btn_logout_all.Visible = false;
+            //}
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -94,7 +85,8 @@ namespace DoAnBMCSDL.View
 
                     //Logout ra sau khi kill
                     MessageBox.Show("Bạn đã thực thi việc đăng xuất, form sẽ thoát.");
-                    this.Close();
+                    timer.Dispose();
+                    this.Hide();
                     loginForm.ShowDialog();
                     return;
                 }
@@ -272,6 +264,18 @@ namespace DoAnBMCSDL.View
         private void icon_refresh_kh_Click(object sender, EventArgs e)
         {
             this.refreshData("tab_khachhang");
+        }
+
+        private void btn_refresh_Click(object sender, EventArgs e)
+        {
+            mayController.GetAllMay();
+        }
+
+        private void btn_insertMay_Click(object sender, EventArgs e)
+        {
+            InsertMay insertMay = new InsertMay();
+            this.Hide();
+            insertMay.ShowDialog();
         }
     }
 }

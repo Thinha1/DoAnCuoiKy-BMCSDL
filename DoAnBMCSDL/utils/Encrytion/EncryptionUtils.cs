@@ -8,7 +8,7 @@ namespace DoAnBMCSDL.utils.Encrytion
 {
     internal class EncryptionUtils
     {
-        char[] characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[];:,<.>?|".ToCharArray();
+        char[] characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{};:<>,./?".ToCharArray();
         int length;
 
         public EncryptionUtils()

@@ -9,11 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 using DoAnBMCSDL.View;
+using DoAnBMCSDL.utils.Encrytion;
 
 namespace DoAnBMCSDL
 {
     public partial class LoginForm : Form
     {
+        EncryptionFunc encryptionFunc = new EncryptionFunc();
+        EncryptionUtils encryptionUtils = new EncryptionUtils();
         public LoginForm()
         {
             InitializeComponent();
@@ -74,43 +77,50 @@ namespace DoAnBMCSDL
             {
                 try
                 {
+                    DatabaseUtils.init(host, port, sid, "thinh", "123");
+                    DatabaseUtils.Connect();
+                    EncryptionFunc.initConnection(DatabaseUtils.GetConnection());
+                    //mã hoá để kiểm tra user/password
+                    user = encryptionUtils.encryptMessagePlus(user, 11);
+                    password = encryptionUtils.encryptMessageMultiply(password, 11);
+                    //Tầng cơ sở dữ liệu
+                    user = encryptionFunc.encryptCipher_Func(user, 11);
+                    password = encryptionFunc.encryptMultiply_Func(password, 11);
+                    MessageBox.Show($"{user}, {password}");
+                    DatabaseUtils.CloseConnection();
                     DatabaseUtils.init(host, port, sid, user, password);
                     if (DatabaseUtils.Connect())
                     {
                         OracleConnection o = DatabaseUtils.GetConnection();
                         MessageBox.Show($"Success!\nVersion: {o.ServerVersion}");
-                        Test.username = user;
-                        Test.port = port;
-                        Test.sid = sid;
-                        Test.host = host;
-                        Test.username = user;
-                        Test.password = password;
                         this.Hide();
                         MainForm m = new MainForm();
                         m.ShowDialog();
                     }
+                    else
+                    {
+                        MessageBox.Show("Lỗi");
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Lỗi: {ex.Message}");
+                    MessageBox.Show($"Lỗi: {ex}");
                 }
             }
         }
 
         private void btn_register_Click(object sender, EventArgs e)
         {
-            Button b = sender as Button;
             this.Hide();
-            LoginSysdba loginSysdba = new LoginSysdba(b.Name);
-            loginSysdba.ShowDialog();
+            RegisterForm registerForm = new RegisterForm();
+            registerForm.ShowDialog();
         }
 
         private void btn_forgetpassword_Click(object sender, EventArgs e)
         {
-            Button b = sender as Button;
-            LoginSysdba loginSysdba = new LoginSysdba(b.Name);
+            ChangePassword password = new ChangePassword();
+            password.ShowDialog();
             this.Hide();
-            loginSysdba.ShowDialog();
         }
     }
 }
