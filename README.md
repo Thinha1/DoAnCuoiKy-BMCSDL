@@ -28,4 +28,4 @@ Hệ thống không chỉ quản lý thông tin máy trạm, người dùng, th�
 ## 🛠️ Cài đặt
 1. Clone repo về máy:
    ```bash
-   git clone (https://github.com/Thinha1/DoAnCuoiKy-BMCSDL.git
+   git clone https://github.com/Thinha1/DoAnCuoiKy-BMCSDL.git
