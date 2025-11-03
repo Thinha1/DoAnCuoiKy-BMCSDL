@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace DoAnBMCSDL.Model
 {
-    public class May
+    internal class DichVu
     {
-        public string MaMay { get; set; }
+        public string MaDV { get; set; }
 
-        public string Loai { get; set; }
+        public string TenDV { get; set; }
 
-        public string TrangThai { get; set; }
+        public float DonGia { get; set; }
 
         public string NguoiTao { get; set; }
 
@@ -21,6 +21,5 @@ namespace DoAnBMCSDL.Model
         public string NguoiSua { get; set; }
 
         public DateTime? NgaySua { get; set; }
-
     }
 }

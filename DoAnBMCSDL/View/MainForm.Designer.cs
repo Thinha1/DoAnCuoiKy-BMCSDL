@@ -58,16 +58,30 @@
             this.col_nguoisua_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_insert_kh = new System.Windows.Forms.Button();
             this.tab_may = new System.Windows.Forms.TabPage();
-            this.tab_hoadon = new System.Windows.Forms.TabPage();
+            this.btn_update_may = new System.Windows.Forms.Button();
+            this.btn_del_may = new System.Windows.Forms.Button();
+            this.btn_insertMay = new System.Windows.Forms.Button();
             this.btn_refresh = new FontAwesome.Sharp.IconButton();
+            this.tab_hoadon = new System.Windows.Forms.TabPage();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.btn_insertMay = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.drgv_dv = new System.Windows.Forms.DataGridView();
+            this.col_madv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_tendv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_dongia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_ngaytao_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_nguoitao_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_ngaysua_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_nguoisua_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgrv_may)).BeginInit();
             this.tabControlMain.SuspendLayout();
+            this.tab_dichvu.SuspendLayout();
             this.tab_khach.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrv_kh)).BeginInit();
             this.tab_may.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.drgv_dv)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_logout
@@ -179,6 +193,11 @@
             // tab_dichvu
             // 
             this.tab_dichvu.BackColor = System.Drawing.Color.Transparent;
+            this.tab_dichvu.Controls.Add(this.drgv_dv);
+            this.tab_dichvu.Controls.Add(this.iconButton1);
+            this.tab_dichvu.Controls.Add(this.button1);
+            this.tab_dichvu.Controls.Add(this.button2);
+            this.tab_dichvu.Controls.Add(this.button3);
             this.tab_dichvu.Location = new System.Drawing.Point(4, 34);
             this.tab_dichvu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tab_dichvu.Name = "tab_dichvu";
@@ -354,8 +373,8 @@
             // 
             // tab_may
             // 
-            this.tab_may.Controls.Add(this.button1);
-            this.tab_may.Controls.Add(this.button2);
+            this.tab_may.Controls.Add(this.btn_update_may);
+            this.tab_may.Controls.Add(this.btn_del_may);
             this.tab_may.Controls.Add(this.btn_insertMay);
             this.tab_may.Controls.Add(this.btn_refresh);
             this.tab_may.Controls.Add(this.dgrv_may);
@@ -369,15 +388,41 @@
             this.tab_may.Text = "Máy";
             this.tab_may.UseVisualStyleBackColor = true;
             // 
-            // tab_hoadon
+            // btn_update_may
             // 
-            this.tab_hoadon.Location = new System.Drawing.Point(4, 34);
-            this.tab_hoadon.Name = "tab_hoadon";
-            this.tab_hoadon.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_hoadon.Size = new System.Drawing.Size(1170, 309);
-            this.tab_hoadon.TabIndex = 3;
-            this.tab_hoadon.Text = "Hoá đơn";
-            this.tab_hoadon.UseVisualStyleBackColor = true;
+            this.btn_update_may.ForeColor = System.Drawing.Color.Black;
+            this.btn_update_may.Location = new System.Drawing.Point(1023, 148);
+            this.btn_update_may.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_update_may.Name = "btn_update_may";
+            this.btn_update_may.Size = new System.Drawing.Size(101, 41);
+            this.btn_update_may.TabIndex = 13;
+            this.btn_update_may.Text = "UPDATE";
+            this.btn_update_may.UseVisualStyleBackColor = true;
+            this.btn_update_may.Click += new System.EventHandler(this.btn_update_may_Click);
+            // 
+            // btn_del_may
+            // 
+            this.btn_del_may.ForeColor = System.Drawing.Color.Black;
+            this.btn_del_may.Location = new System.Drawing.Point(1023, 211);
+            this.btn_del_may.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_del_may.Name = "btn_del_may";
+            this.btn_del_may.Size = new System.Drawing.Size(101, 41);
+            this.btn_del_may.TabIndex = 12;
+            this.btn_del_may.Text = "DELETE";
+            this.btn_del_may.UseVisualStyleBackColor = true;
+            this.btn_del_may.Click += new System.EventHandler(this.btn_del_may_Click);
+            // 
+            // btn_insertMay
+            // 
+            this.btn_insertMay.ForeColor = System.Drawing.Color.Black;
+            this.btn_insertMay.Location = new System.Drawing.Point(1023, 80);
+            this.btn_insertMay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_insertMay.Name = "btn_insertMay";
+            this.btn_insertMay.Size = new System.Drawing.Size(101, 41);
+            this.btn_insertMay.TabIndex = 11;
+            this.btn_insertMay.Text = "INSERT";
+            this.btn_insertMay.UseVisualStyleBackColor = true;
+            this.btn_insertMay.Click += new System.EventHandler(this.btn_insertMay_Click);
             // 
             // btn_refresh
             // 
@@ -392,39 +437,127 @@
             this.btn_refresh.UseVisualStyleBackColor = true;
             this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
             // 
+            // tab_hoadon
+            // 
+            this.tab_hoadon.Location = new System.Drawing.Point(4, 34);
+            this.tab_hoadon.Name = "tab_hoadon";
+            this.tab_hoadon.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_hoadon.Size = new System.Drawing.Size(1170, 309);
+            this.tab_hoadon.TabIndex = 3;
+            this.tab_hoadon.Text = "Hoá đơn";
+            this.tab_hoadon.UseVisualStyleBackColor = true;
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Sync;
+            this.iconButton1.IconColor = System.Drawing.Color.Black;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 30;
+            this.iconButton1.Location = new System.Drawing.Point(1074, 44);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(46, 33);
+            this.iconButton1.TabIndex = 13;
+            this.iconButton1.UseVisualStyleBackColor = true;
+            // 
             // button1
             // 
             this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(1023, 148);
+            this.button1.Location = new System.Drawing.Point(1045, 169);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(101, 41);
-            this.button1.TabIndex = 13;
+            this.button1.TabIndex = 12;
             this.button1.Text = "UPDATE";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
             this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(1023, 211);
+            this.button2.Location = new System.Drawing.Point(1045, 232);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(101, 41);
-            this.button2.TabIndex = 12;
+            this.button2.TabIndex = 11;
             this.button2.Text = "DELETE";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // btn_insertMay
+            // button3
             // 
-            this.btn_insertMay.ForeColor = System.Drawing.Color.Black;
-            this.btn_insertMay.Location = new System.Drawing.Point(1023, 80);
-            this.btn_insertMay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_insertMay.Name = "btn_insertMay";
-            this.btn_insertMay.Size = new System.Drawing.Size(101, 41);
-            this.btn_insertMay.TabIndex = 11;
-            this.btn_insertMay.Text = "INSERT";
-            this.btn_insertMay.UseVisualStyleBackColor = true;
-            this.btn_insertMay.Click += new System.EventHandler(this.btn_insertMay_Click);
+            this.button3.ForeColor = System.Drawing.Color.Black;
+            this.button3.Location = new System.Drawing.Point(1045, 101);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(101, 41);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "INSERT";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // drgv_dv
+            // 
+            this.drgv_dv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.drgv_dv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.col_madv,
+            this.col_tendv,
+            this.col_dongia,
+            this.col_ngaytao_dv,
+            this.col_nguoitao_dv,
+            this.col_ngaysua_dv,
+            this.col_nguoisua_dv});
+            this.drgv_dv.Location = new System.Drawing.Point(0, 3);
+            this.drgv_dv.Name = "drgv_dv";
+            this.drgv_dv.RowHeadersWidth = 51;
+            this.drgv_dv.RowTemplate.Height = 24;
+            this.drgv_dv.Size = new System.Drawing.Size(1010, 310);
+            this.drgv_dv.TabIndex = 14;
+            // 
+            // col_madv
+            // 
+            this.col_madv.HeaderText = "Mã dịch vụ";
+            this.col_madv.MinimumWidth = 6;
+            this.col_madv.Name = "col_madv";
+            this.col_madv.Width = 125;
+            // 
+            // col_tendv
+            // 
+            this.col_tendv.HeaderText = "Tên dịch vụ";
+            this.col_tendv.MinimumWidth = 6;
+            this.col_tendv.Name = "col_tendv";
+            this.col_tendv.Width = 125;
+            // 
+            // col_dongia
+            // 
+            this.col_dongia.HeaderText = "Đơn giá";
+            this.col_dongia.MinimumWidth = 6;
+            this.col_dongia.Name = "col_dongia";
+            this.col_dongia.Width = 125;
+            // 
+            // col_ngaytao_dv
+            // 
+            this.col_ngaytao_dv.HeaderText = "Ngày tạo";
+            this.col_ngaytao_dv.MinimumWidth = 6;
+            this.col_ngaytao_dv.Name = "col_ngaytao_dv";
+            this.col_ngaytao_dv.Width = 125;
+            // 
+            // col_nguoitao_dv
+            // 
+            this.col_nguoitao_dv.HeaderText = "Người tạo";
+            this.col_nguoitao_dv.MinimumWidth = 6;
+            this.col_nguoitao_dv.Name = "col_nguoitao_dv";
+            this.col_nguoitao_dv.Width = 125;
+            // 
+            // col_ngaysua_dv
+            // 
+            this.col_ngaysua_dv.HeaderText = "Ngày sửa";
+            this.col_ngaysua_dv.MinimumWidth = 6;
+            this.col_ngaysua_dv.Name = "col_ngaysua_dv";
+            this.col_ngaysua_dv.Width = 125;
+            // 
+            // col_nguoisua_dv
+            // 
+            this.col_nguoisua_dv.HeaderText = "Người sửa";
+            this.col_nguoisua_dv.MinimumWidth = 6;
+            this.col_nguoisua_dv.Name = "col_nguoisua_dv";
+            this.col_nguoisua_dv.Width = 125;
             // 
             // MainForm
             // 
@@ -443,9 +576,11 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgrv_may)).EndInit();
             this.tabControlMain.ResumeLayout(false);
+            this.tab_dichvu.ResumeLayout(false);
             this.tab_khach.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgrv_kh)).EndInit();
             this.tab_may.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.drgv_dv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -482,8 +617,20 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ngaysua_kh;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoisua_kh;
         private FontAwesome.Sharp.IconButton btn_refresh;
+        private System.Windows.Forms.Button btn_update_may;
+        private System.Windows.Forms.Button btn_del_may;
+        private System.Windows.Forms.Button btn_insertMay;
+        private System.Windows.Forms.DataGridView drgv_dv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_madv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_tendv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_dongia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_ngaytao_dv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoitao_dv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_ngaysua_dv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoisua_dv;
+        private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button btn_insertMay;
+        private System.Windows.Forms.Button button3;
     }
 }

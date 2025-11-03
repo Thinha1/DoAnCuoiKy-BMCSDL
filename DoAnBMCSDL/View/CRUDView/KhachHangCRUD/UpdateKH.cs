@@ -19,6 +19,8 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
         MainForm mainForm;
         KhachHangController KhachHangController;
         EncryptionUtils EncryptionAlgorithms;
+        DESDB DESDB = new DESDB(DatabaseUtils.GetConnection());
+        DESApp DESApp = new DESApp();
         private Model.KhachHang kh;
 
         public UpdateKH(Model.KhachHang kh)
@@ -54,6 +56,15 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
             {
                 khachHangNew.SoDienThoai = EncryptionAlgorithms.encryptMessagePlus(khachHangNew.SoDienThoai, 10);
                 khachHangNew.CCCD = EncryptionAlgorithms.encryptMessageMultiply(khachHangNew.CCCD, 11);
+                if (!string.IsNullOrWhiteSpace(txt_mk.Text))
+                {
+                    string keyString = "NHIBEOVL";
+                    byte[] keyBytes = Encoding.UTF8.GetBytes(keyString);
+                    byte[] encodedPass = DESApp.Encrypt(khachHangNew.MatKhau, keyBytes);
+                    string mk = Convert.ToBase64String(encodedPass);
+                    byte[] mkBytes = DESApp.Encrypt(mk, keyBytes);
+                    khachHangNew.MatKhau = Convert.ToBase64String(mkBytes);
+                }
                 bool check = KhachHangController.updateKhachHang(khachHangNew);
                 if (check)
                 {

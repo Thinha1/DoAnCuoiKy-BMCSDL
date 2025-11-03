@@ -24,6 +24,7 @@ namespace DoAnBMCSDL.View
         private LoginForm loginForm;
         private MayController mayController;
         private KhachHangController khachHangController;
+        private DichVuController dichVuController;
         private EncryptionUtils encryptionAlgorithm;
         private Timer timer;
         private EncryptionFunc encryptionFunc;
@@ -33,6 +34,7 @@ namespace DoAnBMCSDL.View
             loginForm = new LoginForm();
             mayController = new MayController();
             khachHangController = new KhachHangController();
+            dichVuController = new DichVuController();
             encryptionAlgorithm = new EncryptionUtils();
             encryptionFunc = new EncryptionFunc();
         }
@@ -172,6 +174,20 @@ namespace DoAnBMCSDL.View
             }
         }
 
+        private void loadDichVu()
+        {
+            List<DichVu> list = dichVuController.getAllDichVu();
+            drgv_dv.AutoGenerateColumns = false;
+            drgv_dv.DataSource = list;
+            if (dgrv_kh.Rows.Count == 0)
+            {
+                list = new List<DichVu>
+                {
+                    new DichVu{MaDV = "N/A", TenDV = "N/A"}
+                };
+            }
+        }
+
         private void tabControlMain_Selected(object sender, TabControlEventArgs e)
         {
             if (e.TabPage == tab_may)
@@ -181,6 +197,10 @@ namespace DoAnBMCSDL.View
             else if (e.TabPage == tab_khach)
             {
                 loadKhachHang();
+            }
+            else if(e.TabPage == tab_dichvu)
+            {
+                loadDichVu();
             }
         }
 
@@ -271,11 +291,55 @@ namespace DoAnBMCSDL.View
             mayController.GetAllMay();
         }
 
+        //Xử lý máy
         private void btn_insertMay_Click(object sender, EventArgs e)
         {
             InsertMay insertMay = new InsertMay();
             this.Hide();
             insertMay.ShowDialog();
+        }
+
+        private void btn_update_may_Click(object sender, EventArgs e)
+        {
+            string mamay = dgrv_may.CurrentRow.Cells["col_mamay"].Value.ToString();
+            string loai = dgrv_may.CurrentRow.Cells["col_loai"].Value.ToString();
+            string trangthai = dgrv_may.CurrentRow.Cells["col_trangthai"].Value.ToString();
+            May m = new May();
+            m.MaMay = mamay;
+            m.Loai = loai;
+            m.TrangThai = trangthai;
+            this.Hide();
+            UpdateMay updateMay = new UpdateMay(m);
+            updateMay.ShowDialog();
+        }
+
+        private void btn_del_may_Click(object sender, EventArgs e)
+        {
+            if (dgrv_may.CurrentRow != null)
+            {
+                string id = dgrv_may.CurrentRow.Cells["col_mamay"].Value.ToString();
+                DialogResult dr = MessageBox.Show($"Bạn có chắc muốn xoá máy {id} không ?",
+                "Xác nhận xoá",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+                if (dr == DialogResult.Yes)
+                {
+                    bool result = mayController.DeleteMayById(id);
+                    if (result)
+                    {
+                        MessageBox.Show("Xoá thành công!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xoá thất bại!");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn máy để xoá");
+            }
         }
     }
 }

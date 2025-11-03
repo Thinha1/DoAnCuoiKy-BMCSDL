@@ -44,6 +44,9 @@ namespace DoAnBMCSDL.View.CRUDView.MayCRUD
             if(mayController.InsertMay(loai, trangThai))
             {
                 MessageBox.Show("Thêm máy thành công!");
+                this.Hide();
+                MainForm m = new MainForm();
+                m.ShowDialog();
             }
             else
             {

@@ -29,7 +29,7 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
             encryptionAlgorithm = new EncryptionUtils();
             this.mainForm = form;
             this.dESApp = new DESApp();
-            this.dESDB = new DESDB();
+            this.dESDB = new DESDB(DatabaseUtils.GetConnection());
         }
 
         private bool validateData(string ten, string sdt, string cccd, float sodu, string mk)
@@ -72,7 +72,7 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
                 sdt = encryptionAlgorithm.encryptMessagePlus(sdt, 10);
                 cccd = encryptionAlgorithm.encryptMessageMultiply(cccd, 11);
 
-                string keyString = "private key";
+                string keyString = "NHIBEOVL";
                 byte[] keyBytes = Encoding.UTF8.GetBytes(keyString);
                 byte[] encodedPass = dESApp.Encrypt(mk, keyBytes);
                 mk = Convert.ToBase64String(encodedPass);

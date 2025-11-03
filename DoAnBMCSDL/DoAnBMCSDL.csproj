@@ -99,8 +99,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\DichVuController.cs" />
     <Compile Include="Controller\KhachHangController.cs" />
     <Compile Include="Controller\MayController.cs" />
+    <Compile Include="Model\DichVu.cs" />
     <Compile Include="Model\KhachHang.cs" />
     <Compile Include="Model\May.cs" />
     <Compile Include="utils\DatabaseUtils.cs" />

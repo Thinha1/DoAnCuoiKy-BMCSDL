@@ -14,7 +14,7 @@ namespace DoAnBMCSDL.Controller
         internal List<May> GetAllMay()
         {
             List<May> list = new List<May>();
-            string query = "SELECT MaMay, Loai, TrangThai, NGUOITAO, NGAYTAO FROM thinh.MAY";
+            string query = "SELECT MaMay, Loai, TrangThai, NGUOITAO, NGAYTAO, NGUOISUA, NGAYSUA FROM thinh.MAY";
 
             //Connection tinh
             Conn = DatabaseUtils.GetConnection();
@@ -33,7 +33,9 @@ namespace DoAnBMCSDL.Controller
                         Loai = reader["LOAI"].ToString(),
                         TrangThai = reader["TRANGTHAI"].ToString(),
                         NguoiTao = reader["NGUOITAO"].ToString(),
-                        NgayTao = reader.GetDateTime(reader.GetOrdinal("NGAYTAO"))
+                        NgayTao = reader.GetDateTime(reader.GetOrdinal("NGAYTAO")),
+                        NguoiSua = reader["NGUOISUA"].ToString(),
+                        NgaySua = reader.IsDBNull(reader.GetOrdinal("NGAYSUA")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("NGAYSUA"))
                     });
                 }
             }
@@ -61,6 +63,53 @@ namespace DoAnBMCSDL.Controller
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public bool UpdateMay(May m)
+        {
+            Conn = DatabaseUtils.GetConnection();
+            if (Conn.State != ConnectionState.Open)
+
+                Conn.Open();
+
+            try
+            {
+                using (OracleCommand omd = new OracleCommand("thinh.P_SuaMay", Conn))
+                {
+                    omd.CommandType = CommandType.StoredProcedure;
+                    omd.Parameters.Add("p_MaMay", m.MaMay);
+                    omd.Parameters.Add("p_Loai", m.Loai);
+                    omd.Parameters.Add("p_TrangThai", m.TrangThai);
+                    omd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool DeleteMayById(string id)
+        {
+            Conn = DatabaseUtils.GetConnection();
+            if (Conn.State != ConnectionState.Open)
+
+                Conn.Open();
+            try
+            {
+                using (var omd = new OracleCommand("thinh.P_XOA_MAY", Conn))
+                {
+                    omd.CommandType = CommandType.StoredProcedure;
+                    omd.Parameters.Add(new OracleParameter("p_mamay", id));
+                    omd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
     }

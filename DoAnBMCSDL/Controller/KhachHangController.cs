@@ -9,12 +9,14 @@ using DoAnBMCSDL.Model;
 using Oracle.ManagedDataAccess.Client;
 using DoAnBMCSDL;
 using DoAnBMCSDL.Model;
+using DoAnBMCSDL.utils.Encrytion;
 
 namespace DoAnBMCSDL.Controller
 {
     internal class KhachHangController
     {
         private static OracleConnection Conn;
+        DESDB dESDB = new DESDB(DatabaseUtils.GetConnection());
 
         //Get all khách hàng
         internal List<KhachHang> getAllKhachHang()
