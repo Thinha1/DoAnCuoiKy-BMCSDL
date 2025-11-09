@@ -58,11 +58,14 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
                 khachHangNew.CCCD = EncryptionAlgorithms.encryptMessageMultiply(khachHangNew.CCCD, 11);
                 if (!string.IsNullOrWhiteSpace(txt_mk.Text))
                 {
-                    string keyString = "NHIBEOVL";
-                    byte[] keyBytes = Encoding.UTF8.GetBytes(keyString);
-                    byte[] encodedPass = DESApp.Encrypt(khachHangNew.MatKhau, keyBytes);
+                    byte[] key = DESApp.GenerateKey();
+                    byte[] encodedPass = DESApp.Encrypt(khachHangNew.MatKhau, key);
+                    
+                    
                     string mk = Convert.ToBase64String(encodedPass);
-                    byte[] mkBytes = DESApp.Encrypt(mk, keyBytes);
+
+                    string keyStr = Convert.ToBase64String(key);
+                    byte[] mkBytes = DESDB.encryptDES(mk, keyStr);
                     khachHangNew.MatKhau = Convert.ToBase64String(mkBytes);
                 }
                 bool check = KhachHangController.updateKhachHang(khachHangNew);

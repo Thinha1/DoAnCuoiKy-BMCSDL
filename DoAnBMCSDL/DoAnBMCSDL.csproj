@@ -48,8 +48,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="FontAwesome.Sharp, Version=6.6.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.6.6.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.9, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.9\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -100,9 +106,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\DichVuController.cs" />
+    <Compile Include="Controller\HoaDonController.cs" />
     <Compile Include="Controller\KhachHangController.cs" />
     <Compile Include="Controller\MayController.cs" />
+    <Compile Include="Model\ChiTietHoaDon.cs" />
     <Compile Include="Model\DichVu.cs" />
+    <Compile Include="Model\HoaDon.cs" />
     <Compile Include="Model\KhachHang.cs" />
     <Compile Include="Model\May.cs" />
     <Compile Include="utils\DatabaseUtils.cs" />
@@ -110,11 +119,18 @@
     <Compile Include="utils\Encrytion\DESDB.cs" />
     <Compile Include="utils\Encrytion\EncryptionFunc.cs" />
     <Compile Include="utils\Encrytion\EncryptionUtils.cs" />
+    <Compile Include="utils\pdfExport\HoaDonExporter.cs" />
     <Compile Include="View\ChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\ChangePassword.Designer.cs">
       <DependentUpon>ChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChiTietHoaDonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ChiTietHoaDonForm.Designer.cs">
+      <DependentUpon>ChiTietHoaDonForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\CRUDView\KhachHangCRUD\InsertKH.cs">
       <SubType>Form</SubType>
@@ -159,10 +175,19 @@
     <Compile Include="View\RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SignView\DigitalSignatureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SignView\DigitalSignatureForm.Designer.cs">
+      <DependentUpon>DigitalSignatureForm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\ChangePassword.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ChiTietHoaDonForm.resx">
+      <DependentUpon>ChiTietHoaDonForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\CRUDView\KhachHangCRUD\InsertKH.resx">
       <DependentUpon>InsertKH.cs</DependentUpon>
@@ -184,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SignView\DigitalSignatureForm.resx">
+      <DependentUpon>DigitalSignatureForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
