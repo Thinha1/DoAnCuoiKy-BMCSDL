@@ -15,7 +15,7 @@ namespace DoAnBMCSDL.Controller
         public List<DichVu> getAllDichVu()
         {
             List<DichVu> list = new List<DichVu>();
-            string query = "SELECT MaDV, TenDV, DonGia, NguoiTao, NgayTao, NguoiSua, NgaySua from thinh.DICHVU";
+            string query = "SELECT * from thinh.DICHVU";
             Conn = DatabaseUtils.GetConnection();
             if (Conn.State != ConnectionState.Open)
 

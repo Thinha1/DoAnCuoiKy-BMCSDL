@@ -13,6 +13,16 @@ namespace DoAnBMCSDL.utils.Encrytion
         //Vector khởi tạo
         byte[] IV = { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
 
+        public byte[] GenerateKey()
+        {
+            byte[] key;
+            using(DES des = DES.Create())
+            {
+                key = des.Key;
+            }
+            return key;
+        }
+
         public byte[] Encrypt(string plaintext, byte[] key)
         {
             try

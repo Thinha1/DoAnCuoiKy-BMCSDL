@@ -25,16 +25,19 @@ namespace DoAnBMCSDL.View
         private MayController mayController;
         private KhachHangController khachHangController;
         private DichVuController dichVuController;
+        private HoaDonController hoaDonController;
         private EncryptionUtils encryptionAlgorithm;
         private Timer timer;
         private EncryptionFunc encryptionFunc;
         public MainForm()
         {
             InitializeComponent();
+            CenterToScreen();
             loginForm = new LoginForm();
             mayController = new MayController();
             khachHangController = new KhachHangController();
             dichVuController = new DichVuController();
+            hoaDonController = new HoaDonController();
             encryptionAlgorithm = new EncryptionUtils();
             encryptionFunc = new EncryptionFunc();
         }
@@ -45,15 +48,6 @@ namespace DoAnBMCSDL.View
             timer.Interval = 30000; //Check sau 30 giây
             timer.Tick += Timer_Tick;
             timer.Start();
-            ////Hiển thị tên user
-            //if (Test.username.ToUpper() == "SYS")
-            //{
-            btn_logout_all.Visible = true;
-            //}
-            //else
-            //{
-            //    btn_logout_all.Visible = false;
-            //}
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -102,44 +96,6 @@ namespace DoAnBMCSDL.View
                 MessageBox.Show("Có lỗi xảy ra!");
             }
         }
-
-        private void btn_logout_all_Click(object sender, EventArgs e)
-        {
-            DatabaseUtils.init(Test.host, Test.port, Test.sid, Test.username, Test.password);
-
-            if (DatabaseUtils.Connect())
-            {
-                try
-                {
-                    //Chạy lệnh kill hết session
-                    using (OracleCommand omd = new OracleCommand("P_LOGOUT_USER_ALL", DatabaseUtils.GetConnection()))
-                    {
-                        omd.CommandType = System.Data.CommandType.StoredProcedure;
-                        omd.ExecuteNonQuery();
-                    }
-
-                    //Logout ra sau khi kill
-                    MessageBox.Show("Bạn đã thực thi việc đóng connection của tất cả user, form sẽ thoát.");
-                    this.Hide();
-                    timer.Stop();
-                    loginForm.ShowDialog();
-                    return;
-                }
-                catch (OracleException)
-                {
-                    MessageBox.Show("Đăng xuất thành công!");
-                    this.Hide();
-                    timer.Stop();
-                    loginForm.ShowDialog();
-                    return;
-
-                }
-            }
-            else
-            {
-                MessageBox.Show("Có lỗi xảy ra!");
-            }
-        }
         private void loadMay()
         {
             List<May> list = mayController.GetAllMay();
@@ -177,13 +133,27 @@ namespace DoAnBMCSDL.View
         private void loadDichVu()
         {
             List<DichVu> list = dichVuController.getAllDichVu();
-            drgv_dv.AutoGenerateColumns = false;
-            drgv_dv.DataSource = list;
-            if (dgrv_kh.Rows.Count == 0)
+            dgrv_dv.AutoGenerateColumns = false;
+            dgrv_dv.DataSource = list;
+            if (dgrv_dv.Rows.Count == 0)
             {
                 list = new List<DichVu>
                 {
                     new DichVu{MaDV = "N/A", TenDV = "N/A"}
+                };
+            }
+        }
+
+        private void loadHoaDon()
+        {
+            List<HoaDon> list = hoaDonController.getAllHoaDon();
+            dgrv_hd.AutoGenerateColumns = false;
+            dgrv_hd.DataSource = list;
+            if (dgrv_hd.Rows.Count == 0)
+            {
+                list = new List<HoaDon>
+                {
+                    new HoaDon{MaHD = "N/A", MaKH = "N/A"}
                 };
             }
         }
@@ -202,6 +172,10 @@ namespace DoAnBMCSDL.View
             {
                 loadDichVu();
             }
+            else
+            {
+                loadHoaDon();
+            }
         }
 
         public void refreshData(string tabName)
@@ -217,6 +191,20 @@ namespace DoAnBMCSDL.View
                 dgrv_kh.DataSource = null;
                 dgrv_kh.DataSource = listKH;
                 tab_khach.Refresh();
+            }
+            else if (tabName == "tab_dichvu")
+            {
+                List<DichVu> listDV = dichVuController.getAllDichVu();
+                dgrv_dv.DataSource = null;
+                dgrv_dv.DataSource = listDV;
+                tab_dichvu.Refresh();
+            }
+            else if(tabName == "tab_hoadon")
+            {
+                List<HoaDon> listHD = hoaDonController.getAllHoaDon();
+                dgrv_hd.DataSource = null;
+                dgrv_hd.DataSource = listHD;
+                tab_hoadon.Refresh();
             }
         }
 
@@ -340,6 +328,22 @@ namespace DoAnBMCSDL.View
             {
                 MessageBox.Show("Vui lòng chọn máy để xoá");
             }
+        }
+
+        private void btn_rf_dv_Click(object sender, EventArgs e)
+        {
+            refreshData("tab_dichvu");
+        }
+
+        private void btn_rf_hd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_xemcthd_Click(object sender, EventArgs e)
+        {
+            ChiTietHoaDonForm cthd = new ChiTietHoaDonForm(dgrv_hd.CurrentRow.Cells["col_mahd"].Value.ToString());
+            cthd.ShowDialog();
         }
     }
 }
