@@ -30,7 +30,8 @@ namespace DoAnBMCSDL.utils.pdfExport
         {
             List<ChiTietHoaDon> chiTietList = hoaDonController.getAllChiTietHoaDon(maHD);
             // Khởi tạo document A4
-            Document doc = new Document(PageSize.A4, 50, 50, 50, 50);
+            Document
+                doc = new Document(PageSize.A4, 50, 50, 50, 50);
 
             using (FileStream fs = new FileStream(filePath, FileMode.Create))
             {

@@ -87,11 +87,11 @@ namespace DoAnBMCSDL
 
         public static bool checkConnection()
         {
-            if (Conn.State == System.Data.ConnectionState.Open)
+            if (Conn.State != System.Data.ConnectionState.Open)
             {
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
 
     }

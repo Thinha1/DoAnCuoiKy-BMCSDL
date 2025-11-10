@@ -15,7 +15,12 @@ using DoAnBMCSDL.View.CRUDView.KhachHang;
 using Oracle.ManagedDataAccess.Client;
 using DoAnBMCSDL.Controller;
 using DoAnBMCSDL.Model;
+using System.IO;
 using DoAnBMCSDL.View.CRUDView.MayCRUD;
+using DoAnBMCSDL.View.CRUDView.KhachHangCRUD;
+//using DoAnBMCSDL.View.ListView;
+using DoAnBMCSDL.View.CRUDView.KhachHangCRUD;
+using System.Linq.Expressions;
 
 namespace DoAnBMCSDL.View
 {
@@ -29,6 +34,18 @@ namespace DoAnBMCSDL.View
         private EncryptionUtils encryptionAlgorithm;
         private Timer timer;
         private EncryptionFunc encryptionFunc;
+
+
+        //===============THÊM CÁC BIẾN MỚI CHO MÃ HÓA FILE KHÁCH HÀNG
+        private DESApp desApp;
+
+        private string dataFilePath = Path.Combine(Application.StartupPath, "danhsach_kh_mahoa.txt");
+        private string keyFilePath = Path.Combine(Application.StartupPath, "des_key.key");
+
+
+
+
+
         public MainForm()
         {
             InitializeComponent();
@@ -40,6 +57,11 @@ namespace DoAnBMCSDL.View
             hoaDonController = new HoaDonController();
             encryptionAlgorithm = new EncryptionUtils();
             encryptionFunc = new EncryptionFunc();
+
+
+            //KHỞI TẠO ĐỐI TƯỢNG 
+            desApp = new DESApp();
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -344,6 +366,65 @@ namespace DoAnBMCSDL.View
         {
             ChiTietHoaDonForm cthd = new ChiTietHoaDonForm(dgrv_hd.CurrentRow.Cells["col_mahd"].Value.ToString());
             cthd.ShowDialog();
+        }
+
+
+
+
+        //gọi hàm mã hóa RSA và DES
+
+
+        //xuất file txt
+        private void btnExportFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<KhachHang> list = dgrv_kh.DataSource as List<KhachHang>;
+                if (list == null || list.Count == 0)
+                {
+                    MessageBox.Show("Không có dữ liệu khách hàng để mã hóa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                //tạo key DES và lưu vào file
+                byte[] desKey = desApp.GenerateKey();
+                File.WriteAllBytes(keyFilePath, desKey);
+                Console.WriteLine($"DES Key đã được lưu vào file: {keyFilePath}");
+
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("MaKH,TenKH,SoDienThoai,CCCD,SoDu,MatKhau,NguoiTao,NgayTao,NguoiSua,NgaySua");
+                foreach (KhachHang kh in list)
+                {
+                    sb.AppendLine($"{kh.MaKH}, {kh.TenKH},{kh.SoDienThoai}, {kh.CCCD}, {kh.SoDu},{kh.MatKhau},{kh.NgayTao},{kh.NgayTao},{kh.NguoiSua},{kh.NgaySua}");
+
+                }
+
+
+
+                byte[] encrytedData = desApp.Encrypt(sb.ToString(), desKey);
+                string base64EncryptedData = Convert.ToBase64String(encrytedData);
+
+                //  Lưu file dữ liệu đã mã hóa
+                File.WriteAllText(dataFilePath, base64EncryptedData, Encoding.UTF8);
+
+                MessageBox.Show($"Đã mã hóa DES và xuất file thành công!\n\n" +
+                                $"Dữ liệu: {dataFilePath}\n" +
+                                $"Khóa: {keyFilePath}", "Hoàn tất");
+            }
+            
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi mã hóa và xuất file: {ex.Message}");
+                MessageBox.Show($"Lỗi khi mã hóa và xuất file: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        //show form decrypt DES cho khách hàng
+        private void btnDecyptDes_Click(object sender, EventArgs e)
+        {
+            DecryptDes decryptDes = new DecryptDes();
+            decryptDes.ShowDialog();
         }
     }
 }

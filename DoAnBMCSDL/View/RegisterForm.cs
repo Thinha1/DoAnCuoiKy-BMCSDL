@@ -79,6 +79,7 @@ namespace DoAnBMCSDL.View
             if (checkValid(host, port, sid, user, password))
             {
 
+                //Mượn quyền
                 DatabaseUtils.init(host, port, sid, "login", "123");
                 DatabaseUtils.Connect();
                 EncryptionFunc.initConnection(DatabaseUtils.GetConnection());
@@ -90,9 +91,9 @@ namespace DoAnBMCSDL.View
                 try
                 {
                     Conn = DatabaseUtils.GetConnection();
-                    if (Conn.State != ConnectionState.Open)
+                    //if (Conn.State != ConnectionState.Open)
 
-                        Conn.Open();
+                    //    Conn.Open();
 
                     using (OracleCommand omd = new OracleCommand("sys.P_REGISTER", Conn))
                     {

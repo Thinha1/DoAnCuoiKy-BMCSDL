@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.dgrv_cthd = new System.Windows.Forms.DataGridView();
-            this.btn_kyhd = new System.Windows.Forms.Button();
-            this.btn_rtn = new System.Windows.Forms.Button();
-            this.btn_xuatfilepdf = new System.Windows.Forms.Button();
             this.col_mahd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_madv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_soluong = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,6 +37,9 @@
             this.col_nguoitao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_ngaysua = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_nguoisua = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_kyhd = new System.Windows.Forms.Button();
+            this.btn_rtn = new System.Windows.Forms.Button();
+            this.btn_xuatfilepdf = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgrv_cthd)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,39 +61,7 @@
             this.dgrv_cthd.RowTemplate.Height = 24;
             this.dgrv_cthd.Size = new System.Drawing.Size(917, 280);
             this.dgrv_cthd.TabIndex = 0;
-            // 
-            // btn_kyhd
-            // 
-            this.btn_kyhd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_kyhd.Location = new System.Drawing.Point(954, 95);
-            this.btn_kyhd.Name = "btn_kyhd";
-            this.btn_kyhd.Size = new System.Drawing.Size(185, 73);
-            this.btn_kyhd.TabIndex = 1;
-            this.btn_kyhd.Text = "KÝ HOÁ ĐƠN";
-            this.btn_kyhd.UseVisualStyleBackColor = true;
-            this.btn_kyhd.Click += new System.EventHandler(this.btn_kyhd_Click);
-            // 
-            // btn_rtn
-            // 
-            this.btn_rtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_rtn.Location = new System.Drawing.Point(954, 317);
-            this.btn_rtn.Name = "btn_rtn";
-            this.btn_rtn.Size = new System.Drawing.Size(185, 75);
-            this.btn_rtn.TabIndex = 2;
-            this.btn_rtn.Text = "TRỞ VỀ";
-            this.btn_rtn.UseVisualStyleBackColor = true;
-            this.btn_rtn.Click += new System.EventHandler(this.btn_rtn_Click);
-            // 
-            // btn_xuatfilepdf
-            // 
-            this.btn_xuatfilepdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_xuatfilepdf.Location = new System.Drawing.Point(954, 205);
-            this.btn_xuatfilepdf.Name = "btn_xuatfilepdf";
-            this.btn_xuatfilepdf.Size = new System.Drawing.Size(185, 75);
-            this.btn_xuatfilepdf.TabIndex = 3;
-            this.btn_xuatfilepdf.Text = "XUẤT FILE PDF";
-            this.btn_xuatfilepdf.UseVisualStyleBackColor = true;
-            this.btn_xuatfilepdf.Click += new System.EventHandler(this.btn_xuatfilepdf_Click);
+            this.dgrv_cthd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrv_cthd_CellContentClick);
             // 
             // col_mahd
             // 
@@ -158,6 +126,39 @@
             this.col_nguoisua.MinimumWidth = 6;
             this.col_nguoisua.Name = "col_nguoisua";
             this.col_nguoisua.Width = 125;
+            // 
+            // btn_kyhd
+            // 
+            this.btn_kyhd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_kyhd.Location = new System.Drawing.Point(954, 95);
+            this.btn_kyhd.Name = "btn_kyhd";
+            this.btn_kyhd.Size = new System.Drawing.Size(185, 73);
+            this.btn_kyhd.TabIndex = 1;
+            this.btn_kyhd.Text = "KÝ HOÁ ĐƠN";
+            this.btn_kyhd.UseVisualStyleBackColor = true;
+            this.btn_kyhd.Click += new System.EventHandler(this.btn_kyhd_Click);
+            // 
+            // btn_rtn
+            // 
+            this.btn_rtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_rtn.Location = new System.Drawing.Point(954, 317);
+            this.btn_rtn.Name = "btn_rtn";
+            this.btn_rtn.Size = new System.Drawing.Size(185, 75);
+            this.btn_rtn.TabIndex = 2;
+            this.btn_rtn.Text = "TRỞ VỀ";
+            this.btn_rtn.UseVisualStyleBackColor = true;
+            this.btn_rtn.Click += new System.EventHandler(this.btn_rtn_Click);
+            // 
+            // btn_xuatfilepdf
+            // 
+            this.btn_xuatfilepdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_xuatfilepdf.Location = new System.Drawing.Point(954, 205);
+            this.btn_xuatfilepdf.Name = "btn_xuatfilepdf";
+            this.btn_xuatfilepdf.Size = new System.Drawing.Size(185, 75);
+            this.btn_xuatfilepdf.TabIndex = 3;
+            this.btn_xuatfilepdf.Text = "XUẤT FILE PDF";
+            this.btn_xuatfilepdf.UseVisualStyleBackColor = true;
+            this.btn_xuatfilepdf.Click += new System.EventHandler(this.btn_xuatfilepdf_Click);
             // 
             // ChiTietHoaDonForm
             // 
