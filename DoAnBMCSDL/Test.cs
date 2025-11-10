@@ -15,6 +15,8 @@ namespace DoAnBMCSDL
         public static string sid;
         public static string username;
         public static string password;
+
+        [STAThread]
         static void Main(String[] args)
         {
             LoginForm form = new LoginForm();

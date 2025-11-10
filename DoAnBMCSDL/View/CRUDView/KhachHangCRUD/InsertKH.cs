@@ -20,16 +20,16 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
         KhachHangController khachHangController;
         EncryptionUtils encryptionAlgorithm;
         MainForm mainForm;
-        DESApp dESApp;
-        DESDB dESDB;
+        DESApp DESApp;
+        DESDB DESDB;
         public InsertKH(MainForm form)
         {
             InitializeComponent();
             khachHangController = new KhachHangController();
             encryptionAlgorithm = new EncryptionUtils();
             this.mainForm = form;
-            this.dESApp = new DESApp();
-            this.dESDB = new DESDB(DatabaseUtils.GetConnection());
+            this.DESApp = new DESApp();
+            this.DESDB = new DESDB(DatabaseUtils.GetConnection());
         }
 
         private bool validateData(string ten, string sdt, string cccd, float sodu, string mk)
@@ -72,10 +72,15 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
                 sdt = encryptionAlgorithm.encryptMessagePlus(sdt, 10);
                 cccd = encryptionAlgorithm.encryptMessageMultiply(cccd, 11);
 
-                string keyString = "private key";
-                byte[] keyBytes = Encoding.UTF8.GetBytes(keyString);
-                byte[] encodedPass = dESApp.Encrypt(mk, keyBytes);
+                //Mã hoá tầng ứng dụng
+                byte[] key = DESApp.GenerateKey();
+                byte[] encodedPass = DESApp.Encrypt(mk, key);
                 mk = Convert.ToBase64String(encodedPass);
+
+                //Mã hoá csdl
+                string keyStr = Convert.ToBase64String(key);
+                byte[] mkBytes = DESDB.encryptDES(mk, keyStr);
+                mk = Convert.ToBase64String(mkBytes);
                 bool check = khachHangController.InsertKhachHang(tenkh, sdt, cccd, sodu, mk);
                 if (check)
                 {

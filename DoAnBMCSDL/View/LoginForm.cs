@@ -81,16 +81,18 @@ namespace DoAnBMCSDL
                     DatabaseUtils.Connect();
                     EncryptionFunc.initConnection(DatabaseUtils.GetConnection());
                     //mã hoá để kiểm tra user/password
-                    user = encryptionUtils.encryptMessagePlus(user, 11);
-                    password = encryptionUtils.encryptMessageMultiply(password, 11);
                     //Tầng cơ sở dữ liệu
                     user = encryptionFunc.encryptCipher_Func(user, 11);
                     password = encryptionFunc.encryptMultiply_Func(password, 11);
+                    //tầng ứng dụng
+                    user = encryptionUtils.encryptMessagePlus(user, 11);
+                    password = encryptionUtils.encryptMessageMultiply(password, 11);
                     MessageBox.Show($"{user}, {password}");
                     DatabaseUtils.CloseConnection();
                     DatabaseUtils.init(host, port, sid, user, password);
                     if (DatabaseUtils.Connect())
                     {
+                        Test.username = user;
                         OracleConnection o = DatabaseUtils.GetConnection();
                         MessageBox.Show($"Success!\nVersion: {o.ServerVersion}");
                         this.Hide();

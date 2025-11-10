@@ -15,7 +15,12 @@ using DoAnBMCSDL.View.CRUDView.KhachHang;
 using Oracle.ManagedDataAccess.Client;
 using DoAnBMCSDL.Controller;
 using DoAnBMCSDL.Model;
+using System.IO;
 using DoAnBMCSDL.View.CRUDView.MayCRUD;
+using DoAnBMCSDL.View.CRUDView.KhachHangCRUD;
+//using DoAnBMCSDL.View.ListView;
+using DoAnBMCSDL.View.CRUDView.KhachHangCRUD;
+using System.Linq.Expressions;
 
 namespace DoAnBMCSDL.View
 {
@@ -24,17 +29,39 @@ namespace DoAnBMCSDL.View
         private LoginForm loginForm;
         private MayController mayController;
         private KhachHangController khachHangController;
+        private DichVuController dichVuController;
+        private HoaDonController hoaDonController;
         private EncryptionUtils encryptionAlgorithm;
         private Timer timer;
         private EncryptionFunc encryptionFunc;
+
+
+        //===============THÊM CÁC BIẾN MỚI CHO MÃ HÓA FILE KHÁCH HÀNG
+        private DESApp desApp;
+
+        private string dataFilePath = Path.Combine(Application.StartupPath, "danhsach_kh_mahoa.txt");
+        private string keyFilePath = Path.Combine(Application.StartupPath, "des_key.key");
+
+
+
+
+
         public MainForm()
         {
             InitializeComponent();
+            CenterToScreen();
             loginForm = new LoginForm();
             mayController = new MayController();
             khachHangController = new KhachHangController();
+            dichVuController = new DichVuController();
+            hoaDonController = new HoaDonController();
             encryptionAlgorithm = new EncryptionUtils();
             encryptionFunc = new EncryptionFunc();
+
+
+            //KHỞI TẠO ĐỐI TƯỢNG 
+            desApp = new DESApp();
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -43,15 +70,6 @@ namespace DoAnBMCSDL.View
             timer.Interval = 30000; //Check sau 30 giây
             timer.Tick += Timer_Tick;
             timer.Start();
-            ////Hiển thị tên user
-            //if (Test.username.ToUpper() == "SYS")
-            //{
-            btn_logout_all.Visible = true;
-            //}
-            //else
-            //{
-            //    btn_logout_all.Visible = false;
-            //}
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -100,44 +118,6 @@ namespace DoAnBMCSDL.View
                 MessageBox.Show("Có lỗi xảy ra!");
             }
         }
-
-        private void btn_logout_all_Click(object sender, EventArgs e)
-        {
-            DatabaseUtils.init(Test.host, Test.port, Test.sid, Test.username, Test.password);
-
-            if (DatabaseUtils.Connect())
-            {
-                try
-                {
-                    //Chạy lệnh kill hết session
-                    using (OracleCommand omd = new OracleCommand("P_LOGOUT_USER_ALL", DatabaseUtils.GetConnection()))
-                    {
-                        omd.CommandType = System.Data.CommandType.StoredProcedure;
-                        omd.ExecuteNonQuery();
-                    }
-
-                    //Logout ra sau khi kill
-                    MessageBox.Show("Bạn đã thực thi việc đóng connection của tất cả user, form sẽ thoát.");
-                    this.Hide();
-                    timer.Stop();
-                    loginForm.ShowDialog();
-                    return;
-                }
-                catch (OracleException)
-                {
-                    MessageBox.Show("Đăng xuất thành công!");
-                    this.Hide();
-                    timer.Stop();
-                    loginForm.ShowDialog();
-                    return;
-
-                }
-            }
-            else
-            {
-                MessageBox.Show("Có lỗi xảy ra!");
-            }
-        }
         private void loadMay()
         {
             List<May> list = mayController.GetAllMay();
@@ -172,6 +152,34 @@ namespace DoAnBMCSDL.View
             }
         }
 
+        private void loadDichVu()
+        {
+            List<DichVu> list = dichVuController.getAllDichVu();
+            dgrv_dv.AutoGenerateColumns = false;
+            dgrv_dv.DataSource = list;
+            if (dgrv_dv.Rows.Count == 0)
+            {
+                list = new List<DichVu>
+                {
+                    new DichVu{MaDV = "N/A", TenDV = "N/A"}
+                };
+            }
+        }
+
+        private void loadHoaDon()
+        {
+            List<HoaDon> list = hoaDonController.getAllHoaDon();
+            dgrv_hd.AutoGenerateColumns = false;
+            dgrv_hd.DataSource = list;
+            if (dgrv_hd.Rows.Count == 0)
+            {
+                list = new List<HoaDon>
+                {
+                    new HoaDon{MaHD = "N/A", MaKH = "N/A"}
+                };
+            }
+        }
+
         private void tabControlMain_Selected(object sender, TabControlEventArgs e)
         {
             if (e.TabPage == tab_may)
@@ -181,6 +189,14 @@ namespace DoAnBMCSDL.View
             else if (e.TabPage == tab_khach)
             {
                 loadKhachHang();
+            }
+            else if(e.TabPage == tab_dichvu)
+            {
+                loadDichVu();
+            }
+            else
+            {
+                loadHoaDon();
             }
         }
 
@@ -197,6 +213,20 @@ namespace DoAnBMCSDL.View
                 dgrv_kh.DataSource = null;
                 dgrv_kh.DataSource = listKH;
                 tab_khach.Refresh();
+            }
+            else if (tabName == "tab_dichvu")
+            {
+                List<DichVu> listDV = dichVuController.getAllDichVu();
+                dgrv_dv.DataSource = null;
+                dgrv_dv.DataSource = listDV;
+                tab_dichvu.Refresh();
+            }
+            else if(tabName == "tab_hoadon")
+            {
+                List<HoaDon> listHD = hoaDonController.getAllHoaDon();
+                dgrv_hd.DataSource = null;
+                dgrv_hd.DataSource = listHD;
+                tab_hoadon.Refresh();
             }
         }
 
@@ -271,11 +301,130 @@ namespace DoAnBMCSDL.View
             mayController.GetAllMay();
         }
 
+        //Xử lý máy
         private void btn_insertMay_Click(object sender, EventArgs e)
         {
             InsertMay insertMay = new InsertMay();
             this.Hide();
             insertMay.ShowDialog();
+        }
+
+        private void btn_update_may_Click(object sender, EventArgs e)
+        {
+            string mamay = dgrv_may.CurrentRow.Cells["col_mamay"].Value.ToString();
+            string loai = dgrv_may.CurrentRow.Cells["col_loai"].Value.ToString();
+            string trangthai = dgrv_may.CurrentRow.Cells["col_trangthai"].Value.ToString();
+            May m = new May();
+            m.MaMay = mamay;
+            m.Loai = loai;
+            m.TrangThai = trangthai;
+            this.Hide();
+            UpdateMay updateMay = new UpdateMay(m);
+            updateMay.ShowDialog();
+        }
+
+        private void btn_del_may_Click(object sender, EventArgs e)
+        {
+            if (dgrv_may.CurrentRow != null)
+            {
+                string id = dgrv_may.CurrentRow.Cells["col_mamay"].Value.ToString();
+                DialogResult dr = MessageBox.Show($"Bạn có chắc muốn xoá máy {id} không ?",
+                "Xác nhận xoá",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+                if (dr == DialogResult.Yes)
+                {
+                    bool result = mayController.DeleteMayById(id);
+                    if (result)
+                    {
+                        MessageBox.Show("Xoá thành công!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xoá thất bại!");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn máy để xoá");
+            }
+        }
+
+        private void btn_rf_dv_Click(object sender, EventArgs e)
+        {
+            refreshData("tab_dichvu");
+        }
+
+        private void btn_rf_hd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_xemcthd_Click(object sender, EventArgs e)
+        {
+            ChiTietHoaDonForm cthd = new ChiTietHoaDonForm(dgrv_hd.CurrentRow.Cells["col_mahd"].Value.ToString());
+            cthd.ShowDialog();
+        }
+
+
+
+
+        //gọi hàm mã hóa RSA và DES
+
+
+        //xuất file txt
+        private void btnExportFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<KhachHang> list = dgrv_kh.DataSource as List<KhachHang>;
+                if (list == null || list.Count == 0)
+                {
+                    MessageBox.Show("Không có dữ liệu khách hàng để mã hóa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                //tạo key DES và lưu vào file
+                byte[] desKey = desApp.GenerateKey();
+                File.WriteAllBytes(keyFilePath, desKey);
+                Console.WriteLine($"DES Key đã được lưu vào file: {keyFilePath}");
+
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("MaKH,TenKH,SoDienThoai,CCCD,SoDu,MatKhau,NguoiTao,NgayTao,NguoiSua,NgaySua");
+                foreach (KhachHang kh in list)
+                {
+                    sb.AppendLine($"{kh.MaKH}, {kh.TenKH},{kh.SoDienThoai}, {kh.CCCD}, {kh.SoDu},{kh.MatKhau},{kh.NgayTao},{kh.NgayTao},{kh.NguoiSua},{kh.NgaySua}");
+
+                }
+
+
+
+                byte[] encrytedData = desApp.Encrypt(sb.ToString(), desKey);
+                string base64EncryptedData = Convert.ToBase64String(encrytedData);
+
+                //  Lưu file dữ liệu đã mã hóa
+                File.WriteAllText(dataFilePath, base64EncryptedData, Encoding.UTF8);
+
+                MessageBox.Show($"Đã mã hóa DES và xuất file thành công!\n\n" +
+                                $"Dữ liệu: {dataFilePath}\n" +
+                                $"Khóa: {keyFilePath}", "Hoàn tất");
+            }
+            
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi mã hóa và xuất file: {ex.Message}");
+                MessageBox.Show($"Lỗi khi mã hóa và xuất file: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        //show form decrypt DES cho khách hàng
+        private void btnDecyptDes_Click(object sender, EventArgs e)
+        {
+            DecryptDes decryptDes = new DecryptDes();
+            decryptDes.ShowDialog();
         }
     }
 }

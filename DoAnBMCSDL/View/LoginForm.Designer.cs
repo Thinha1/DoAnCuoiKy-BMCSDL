@@ -41,7 +41,7 @@
             this.txt_password = new System.Windows.Forms.TextBox();
             this.btn_login = new System.Windows.Forms.Button();
             this.btn_register = new System.Windows.Forms.Button();
-            this.btn_forgetpassword = new System.Windows.Forms.Button();
+            this.btn_ktchuky = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -182,17 +182,17 @@
             this.btn_register.UseVisualStyleBackColor = false;
             this.btn_register.Click += new System.EventHandler(this.btn_register_Click);
             // 
-            // btn_forgetpassword
+            // btn_ktchuky
             // 
-            this.btn_forgetpassword.BackColor = System.Drawing.Color.White;
-            this.btn_forgetpassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_forgetpassword.Location = new System.Drawing.Point(601, 460);
-            this.btn_forgetpassword.Name = "btn_forgetpassword";
-            this.btn_forgetpassword.Size = new System.Drawing.Size(143, 56);
-            this.btn_forgetpassword.TabIndex = 13;
-            this.btn_forgetpassword.Text = "FORGET PASSWORD?";
-            this.btn_forgetpassword.UseVisualStyleBackColor = false;
-            this.btn_forgetpassword.Click += new System.EventHandler(this.btn_forgetpassword_Click);
+            this.btn_ktchuky.BackColor = System.Drawing.Color.White;
+            this.btn_ktchuky.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ktchuky.Location = new System.Drawing.Point(601, 460);
+            this.btn_ktchuky.Name = "btn_ktchuky";
+            this.btn_ktchuky.Size = new System.Drawing.Size(143, 56);
+            this.btn_ktchuky.TabIndex = 13;
+            this.btn_ktchuky.Text = "CHECK SIGNATURE\r\n";
+            this.btn_ktchuky.UseVisualStyleBackColor = false;
+            this.btn_ktchuky.Click += new System.EventHandler(this.btn_forgetpassword_Click);
             // 
             // LoginForm
             // 
@@ -200,7 +200,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(756, 569);
-            this.Controls.Add(this.btn_forgetpassword);
+            this.Controls.Add(this.btn_ktchuky);
             this.Controls.Add(this.btn_register);
             this.Controls.Add(this.btn_login);
             this.Controls.Add(this.txt_password);
@@ -238,6 +238,6 @@
         private System.Windows.Forms.TextBox txt_password;
         private System.Windows.Forms.Button btn_login;
         private System.Windows.Forms.Button btn_register;
-        private System.Windows.Forms.Button btn_forgetpassword;
+        private System.Windows.Forms.Button btn_ktchuky;
     }
 }
