@@ -78,6 +78,8 @@
             this.col_nguoitaohd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_ngaysuahd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_nguoisuahd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnExportFile = new System.Windows.Forms.Button();
+            this.btnDecyptDes = new System.Windows.Forms.Button();
             this.col_makh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_tenkh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_sdt = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -333,6 +335,8 @@
             // tab_khach
             // 
             this.tab_khach.BackColor = System.Drawing.Color.White;
+            this.tab_khach.Controls.Add(this.btnDecyptDes);
+            this.tab_khach.Controls.Add(this.btnExportFile);
             this.tab_khach.Controls.Add(this.icon_refresh_kh);
             this.tab_khach.Controls.Add(this.btn_update_kh);
             this.tab_khach.Controls.Add(this.btn_delete_kh);
@@ -621,6 +625,25 @@
             this.col_nguoisuahd.Name = "col_nguoisuahd";
             this.col_nguoisuahd.Width = 125;
             // 
+            // btnExportFile
+            // 
+            this.btnExportFile.Location = new System.Drawing.Point(1029, 283);
+            this.btnExportFile.Name = "btnExportFile";
+            this.btnExportFile.Size = new System.Drawing.Size(101, 55);
+            this.btnExportFile.TabIndex = 10;
+            this.btnExportFile.Text = "Xuất File";
+            this.btnExportFile.UseVisualStyleBackColor = true;
+            this.btnExportFile.Click += new System.EventHandler(this.btnExportFile_Click);
+            // 
+            // btnDecyptDes
+            // 
+            this.btnDecyptDes.Location = new System.Drawing.Point(1029, 353);
+            this.btnDecyptDes.Name = "btnDecyptDes";
+            this.btnDecyptDes.Size = new System.Drawing.Size(101, 65);
+            this.btnDecyptDes.TabIndex = 11;
+            this.btnDecyptDes.Text = "Giải mã file";
+            this.btnDecyptDes.UseVisualStyleBackColor = true;
+            this.btnDecyptDes.Click += new System.EventHandler(this.btnDecyptDes_Click);
             // col_makh
             // 
             this.col_makh.DataPropertyName = "MaKH";
@@ -785,6 +808,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoitaohd;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ngaysuahd;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoisuahd;
+        private System.Windows.Forms.Button btnExportFile;
+        private System.Windows.Forms.Button btnDecyptDes;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_makh;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_tenkh;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_sdt;

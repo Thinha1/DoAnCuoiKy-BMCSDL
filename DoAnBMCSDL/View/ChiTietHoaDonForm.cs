@@ -61,5 +61,10 @@ namespace DoAnBMCSDL.View
                 MessageBox.Show("Xuất hóa đơn thành công!");
             }
         }
+
+        private void dgrv_cthd_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

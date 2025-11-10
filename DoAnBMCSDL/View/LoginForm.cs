@@ -77,15 +77,16 @@ namespace DoAnBMCSDL
             {
                 try
                 {
-                    DatabaseUtils.init(host, port, sid, "thinh", "123");
+                    DatabaseUtils.init(host, port, sid, "login", "123");
                     DatabaseUtils.Connect();
                     EncryptionFunc.initConnection(DatabaseUtils.GetConnection());
                     //mã hoá để kiểm tra user/password
-                    user = encryptionUtils.encryptMessagePlus(user, 11);
-                    password = encryptionUtils.encryptMessageMultiply(password, 11);
                     //Tầng cơ sở dữ liệu
                     user = encryptionFunc.encryptCipher_Func(user, 11);
                     password = encryptionFunc.encryptMultiply_Func(password, 11);
+                    //tầng ứng dụng
+                    user = encryptionUtils.encryptMessagePlus(user, 11);
+                    password = encryptionUtils.encryptMessageMultiply(password, 11);
                     MessageBox.Show($"{user}, {password}");
                     DatabaseUtils.CloseConnection();
                     DatabaseUtils.init(host, port, sid, user, password);
