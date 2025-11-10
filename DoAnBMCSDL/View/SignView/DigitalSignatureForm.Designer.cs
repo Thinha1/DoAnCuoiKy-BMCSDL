@@ -28,35 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_genkey = new System.Windows.Forms.Button();
-            this.txt_privatekey = new System.Windows.Forms.TextBox();
             this.btn_openprivatek = new System.Windows.Forms.Button();
             this.btn_openpdf = new System.Windows.Forms.Button();
             this.txt_pdf = new System.Windows.Forms.TextBox();
             this.btn_sign = new System.Windows.Forms.Button();
             this.txt_publickeyfile = new System.Windows.Forms.TextBox();
             this.btn_openpublick = new System.Windows.Forms.Button();
+            this.txt_privatekey = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // btn_genkey
-            // 
-            this.btn_genkey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_genkey.Location = new System.Drawing.Point(50, 523);
-            this.btn_genkey.Name = "btn_genkey";
-            this.btn_genkey.Size = new System.Drawing.Size(150, 93);
-            this.btn_genkey.TabIndex = 0;
-            this.btn_genkey.Text = "GENERATE KEY";
-            this.btn_genkey.UseVisualStyleBackColor = true;
-            this.btn_genkey.Click += new System.EventHandler(this.btn_genkey_Click);
-            // 
-            // txt_privatekey
-            // 
-            this.txt_privatekey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_privatekey.Location = new System.Drawing.Point(50, 50);
-            this.txt_privatekey.Multiline = true;
-            this.txt_privatekey.Name = "txt_privatekey";
-            this.txt_privatekey.Size = new System.Drawing.Size(675, 240);
-            this.txt_privatekey.TabIndex = 1;
             // 
             // btn_openprivatek
             // 
@@ -70,7 +49,7 @@
             // 
             // btn_openpdf
             // 
-            this.btn_openpdf.Location = new System.Drawing.Point(742, 311);
+            this.btn_openpdf.Location = new System.Drawing.Point(742, 207);
             this.btn_openpdf.Name = "btn_openpdf";
             this.btn_openpdf.Size = new System.Drawing.Size(147, 73);
             this.btn_openpdf.TabIndex = 3;
@@ -81,7 +60,7 @@
             // txt_pdf
             // 
             this.txt_pdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_pdf.Location = new System.Drawing.Point(50, 333);
+            this.txt_pdf.Location = new System.Drawing.Point(39, 229);
             this.txt_pdf.Name = "txt_pdf";
             this.txt_pdf.Size = new System.Drawing.Size(675, 27);
             this.txt_pdf.TabIndex = 4;
@@ -89,7 +68,7 @@
             // btn_sign
             // 
             this.btn_sign.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_sign.Location = new System.Drawing.Point(617, 523);
+            this.btn_sign.Location = new System.Drawing.Point(426, 359);
             this.btn_sign.Name = "btn_sign";
             this.btn_sign.Size = new System.Drawing.Size(150, 93);
             this.btn_sign.TabIndex = 5;
@@ -100,26 +79,34 @@
             // txt_publickeyfile
             // 
             this.txt_publickeyfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_publickeyfile.Location = new System.Drawing.Point(50, 424);
+            this.txt_publickeyfile.Location = new System.Drawing.Point(39, 150);
             this.txt_publickeyfile.Name = "txt_publickeyfile";
             this.txt_publickeyfile.Size = new System.Drawing.Size(675, 27);
             this.txt_publickeyfile.TabIndex = 7;
             // 
             // btn_openpublick
             // 
-            this.btn_openpublick.Location = new System.Drawing.Point(742, 402);
+            this.btn_openpublick.Location = new System.Drawing.Point(742, 128);
             this.btn_openpublick.Name = "btn_openpublick";
             this.btn_openpublick.Size = new System.Drawing.Size(147, 73);
             this.btn_openpublick.TabIndex = 6;
-            this.btn_openpublick.Text = "OPEN PUBLIC KEY FILE\r\n";
+            this.btn_openpublick.Text = "OPEN CERTIFICATE KEY FILE\r\n";
             this.btn_openpublick.UseVisualStyleBackColor = true;
             this.btn_openpublick.Click += new System.EventHandler(this.btn_openpublick_Click);
+            // 
+            // txt_privatekey
+            // 
+            this.txt_privatekey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_privatekey.Location = new System.Drawing.Point(39, 72);
+            this.txt_privatekey.Name = "txt_privatekey";
+            this.txt_privatekey.Size = new System.Drawing.Size(675, 27);
+            this.txt_privatekey.TabIndex = 1;
             // 
             // DigitalSignatureForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(953, 650);
+            this.ClientSize = new System.Drawing.Size(953, 550);
             this.Controls.Add(this.txt_publickeyfile);
             this.Controls.Add(this.btn_openpublick);
             this.Controls.Add(this.btn_sign);
@@ -127,7 +114,6 @@
             this.Controls.Add(this.btn_openpdf);
             this.Controls.Add(this.btn_openprivatek);
             this.Controls.Add(this.txt_privatekey);
-            this.Controls.Add(this.btn_genkey);
             this.Name = "DigitalSignatureForm";
             this.Text = "DigitalSignatureForm";
             this.ResumeLayout(false);
@@ -136,14 +122,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btn_genkey;
-        private System.Windows.Forms.TextBox txt_privatekey;
         private System.Windows.Forms.Button btn_openprivatek;
         private System.Windows.Forms.Button btn_openpdf;
         private System.Windows.Forms.TextBox txt_pdf;
         private System.Windows.Forms.Button btn_sign;
         private System.Windows.Forms.TextBox txt_publickeyfile;
         private System.Windows.Forms.Button btn_openpublick;
+        private System.Windows.Forms.TextBox txt_privatekey;
     }
 }

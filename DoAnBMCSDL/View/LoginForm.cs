@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 using DoAnBMCSDL.View;
 using DoAnBMCSDL.utils.Encrytion;
+using DoAnBMCSDL.View.SignView;
 
 namespace DoAnBMCSDL
 {
@@ -122,6 +123,12 @@ namespace DoAnBMCSDL
             ChangePassword password = new ChangePassword();
             password.ShowDialog();
             this.Hide();
+        }
+
+        private void btn_ktchuky_Click(object sender, EventArgs e)
+        {
+            VerifySignature verifySignature = new VerifySignature();
+            verifySignature.ShowDialog();
         }
     }
 }

@@ -62,13 +62,12 @@ namespace DoAnBMCSDL.View.SignView
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.Filter = "Text files (*.txt)|*.txt";
-                openFileDialog.Title = "Chọn file key";
+                openFileDialog.Filter = "Pem files (*.pem)|*.pem";
+                openFileDialog.Title = "Chọn file pem";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    string key = File.ReadAllText(openFileDialog.FileName);
-                    txt_privatekey.Text = key;  // hiển thị lên TextBox
+                    txt_privatekey.Text = openFileDialog.FileName;  // hiển thị lên TextBox
                 }
             }
         }
@@ -83,34 +82,6 @@ namespace DoAnBMCSDL.View.SignView
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     txt_pdf.Text = openFileDialog.FileName;
-                }
-            }
-        }
-
-        private RSACryptoServiceProvider LoadPrivateKeyFromTextBox(string keyText)
-        {
-            // Tạo object RSA
-            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
-
-            try
-            {
-                // Thử interpret keyText như Base64 CspBlob
-                byte[] blob = Convert.FromBase64String(keyText); // nếu key lưu theo ExportCspBlob(true)
-                rsa.ImportCspBlob(blob); // load key vào RSA
-                return rsa;
-            }
-            catch
-            {
-                // Nếu không phải Base64, thử interpret như XML (FromXmlString)
-                try
-                {
-                    rsa.FromXmlString(keyText); // key lưu dạng XML string
-                    return rsa;
-                }
-                catch
-                {
-                    rsa.Dispose();
-                    throw new Exception("Không nhận diện được định dạng private key. Hãy truyền Base64(CspBlob) hoặc XML key.");
                 }
             }
         }
@@ -147,35 +118,36 @@ namespace DoAnBMCSDL.View.SignView
                     return;
                 }
 
-                string keyText = txt_privatekey.Text; // TextBox chứa private key Base64 hoặc XML
+                string keyText = txt_privatekey.Text;
                 if (string.IsNullOrWhiteSpace(keyText))
                 {
                     MessageBox.Show("Chưa load private key.");
                     return;
                 }
 
-                // Load private key
-                RSACryptoServiceProvider rsa = LoadPrivateKeyFromTextBox(keyText);
+                string outputDir = @"D:\Documents\BaiTap\BMCSDL\DoAn\DoAnBMCSDL\DoAnBMCSDL\hoadondaky";
+                if (!Directory.Exists(outputDir))
+                    Directory.CreateDirectory(outputDir);
 
-                string outputDir = @"D:\Documents\BaiTap\BMCSDL\DoAn\DoAnBMCSDL\DoAnBMCSDL";
+                string signedPdfPath = Path.Combine(outputDir, $"{_mahd}_signed.pdf");
 
-                //// 1) Tạo chữ ký số .sig
-                //string sigPath = exporter.CreateRSASignature(pdfPath, rsa);
+                string certPath = txt_privatekey.Text;
+                string keyPath = txt_publickeyfile.Text;
 
-                //// 2) Tạo PDF overlay
-                //string signedPdfPath = Path.Combine(Path.GetDirectoryName(pdfPath),
-                //                                    Path.GetFileNameWithoutExtension(pdfPath) + "_signed.pdf");
-                //exporter.OverlaySignatureOnPdf(pdfPath, signedPdfPath, "QUÁN NET MIXUEGAMING");
+                // 5) Ký PDF trực tiếp
+                exporter.SignPdf(pdfPath, signedPdfPath, keyPath, certPath, "QUÁN NET MIXUEGAMING");
 
-                //string email = hoadonController.getEmailByMaHD(_mahd);
+                // 6) Lấy email khách hàng và public key path
+                string email = hoadonController.getEmailByMaHD(_mahd);
+                string publicKeyPath = txt_publickeyfile.Text;
 
-                //string publicKeyPath = txt_publickeyfile.Text;
-
-                // 3) Gửi email kèm PDF + file .sig + public key
-                //exporter.SendInvoiceEmail(email, "HOÁ ĐƠN ĐIỆN TỬ", "Quán Net Mixuegaming gửi hoá đơn điện tử",
-                //                          signedPdfPath, publicKeyPath);
-
-                rsa.Dispose();
+                // 7) Gửi email kèm PDF và public key
+                exporter.SendInvoiceEmail(email,
+                    "HOÁ ĐƠN ĐIỆN TỬ",
+                    "Quán Net Mixuegaming gửi hoá đơn điện tử đến quý khách.",
+                    signedPdfPath,
+                    publicKeyPath
+                );
 
                 MessageBox.Show($"Ký xong.\nĐã gửi mail cho khách hàng");
             }
@@ -190,8 +162,8 @@ namespace DoAnBMCSDL.View.SignView
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.Filter = "PDF files (*.txt)|*.txt";
-                openFileDialog.Title = "Chọn file public key cần gửi";
+                openFileDialog.Filter = "Pem files (*.pem)|*.pem";
+                openFileDialog.Title = "Chọn file cert mà bạn muốn gửi";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
