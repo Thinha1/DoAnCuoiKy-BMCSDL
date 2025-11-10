@@ -77,7 +77,7 @@ namespace DoAnBMCSDL
             {
                 try
                 {
-                    DatabaseUtils.init(host, port, sid, "thinh", "123");
+                    DatabaseUtils.init(host, port, sid, "login", "123");
                     DatabaseUtils.Connect();
                     EncryptionFunc.initConnection(DatabaseUtils.GetConnection());
                     //mã hoá để kiểm tra user/password

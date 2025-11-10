@@ -79,6 +79,7 @@ namespace DoAnBMCSDL.View
             if (checkValid(host, port, sid, user, password))
             {
 
+                //Mượn quyền
                 DatabaseUtils.init(host, port, sid, "login", "123");
                 DatabaseUtils.Connect();
                 EncryptionFunc.initConnection(DatabaseUtils.GetConnection());
