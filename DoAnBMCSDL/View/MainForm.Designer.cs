@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_logout = new System.Windows.Forms.Button();
             this.lbl_user = new System.Windows.Forms.Label();
             this.dgrv_may = new System.Windows.Forms.DataGridView();
@@ -42,6 +42,13 @@
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tab_dichvu = new System.Windows.Forms.TabPage();
             this.dgrv_dv = new System.Windows.Forms.DataGridView();
+            this.col_madv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_tendv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_dongia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_ngaytao_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_nguoitao_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_ngaysua_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_nguoisua_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_rf_dv = new FontAwesome.Sharp.IconButton();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -51,15 +58,6 @@
             this.btn_update_kh = new System.Windows.Forms.Button();
             this.btn_delete_kh = new System.Windows.Forms.Button();
             this.dgrv_kh = new System.Windows.Forms.DataGridView();
-            this.col_makh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_tenkh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_sdt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_cccd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_sodu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_ngaytao_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_nguoitao_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_ngaysua_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_nguoisua_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_insert_kh = new System.Windows.Forms.Button();
             this.tab_may = new System.Windows.Forms.TabPage();
             this.btn_update_may = new System.Windows.Forms.Button();
@@ -67,16 +65,9 @@
             this.btn_insertMay = new System.Windows.Forms.Button();
             this.btn_refresh = new FontAwesome.Sharp.IconButton();
             this.tab_hoadon = new System.Windows.Forms.TabPage();
+            this.btn_rf_hd = new FontAwesome.Sharp.IconButton();
             this.btn_xemcthd = new System.Windows.Forms.Button();
             this.dgrv_hd = new System.Windows.Forms.DataGridView();
-            this.col_madv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_tendv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_dongia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_ngaytao_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_nguoitao_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_ngaysua_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_nguoisua_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_rf_hd = new FontAwesome.Sharp.IconButton();
             this.col_mahd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_mamay_hd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_makhhd = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -87,6 +78,16 @@
             this.col_nguoitaohd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_ngaysuahd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_nguoisuahd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_makh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_tenkh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_sdt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_cccd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_sodu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_ngaytao_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_nguoitao_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_ngaysua_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_nguoisua_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgrv_may)).BeginInit();
             this.tabControlMain.SuspendLayout();
             this.tab_dichvu.SuspendLayout();
@@ -227,6 +228,62 @@
             this.dgrv_dv.Size = new System.Drawing.Size(1010, 420);
             this.dgrv_dv.TabIndex = 14;
             // 
+            // col_madv
+            // 
+            this.col_madv.DataPropertyName = "MaDV";
+            this.col_madv.HeaderText = "Mã dịch vụ";
+            this.col_madv.MinimumWidth = 6;
+            this.col_madv.Name = "col_madv";
+            this.col_madv.Width = 125;
+            // 
+            // col_tendv
+            // 
+            this.col_tendv.DataPropertyName = "TenDV";
+            this.col_tendv.HeaderText = "Tên dịch vụ";
+            this.col_tendv.MinimumWidth = 6;
+            this.col_tendv.Name = "col_tendv";
+            this.col_tendv.Width = 160;
+            // 
+            // col_dongia
+            // 
+            this.col_dongia.DataPropertyName = "DonGia";
+            this.col_dongia.HeaderText = "Đơn giá";
+            this.col_dongia.MinimumWidth = 6;
+            this.col_dongia.Name = "col_dongia";
+            this.col_dongia.Width = 125;
+            // 
+            // col_ngaytao_dv
+            // 
+            this.col_ngaytao_dv.DataPropertyName = "NgayTao";
+            this.col_ngaytao_dv.HeaderText = "Ngày tạo";
+            this.col_ngaytao_dv.MinimumWidth = 6;
+            this.col_ngaytao_dv.Name = "col_ngaytao_dv";
+            this.col_ngaytao_dv.Width = 125;
+            // 
+            // col_nguoitao_dv
+            // 
+            this.col_nguoitao_dv.DataPropertyName = "NguoiTao";
+            this.col_nguoitao_dv.HeaderText = "Người tạo";
+            this.col_nguoitao_dv.MinimumWidth = 6;
+            this.col_nguoitao_dv.Name = "col_nguoitao_dv";
+            this.col_nguoitao_dv.Width = 125;
+            // 
+            // col_ngaysua_dv
+            // 
+            this.col_ngaysua_dv.DataPropertyName = "NgaySua";
+            this.col_ngaysua_dv.HeaderText = "Ngày sửa";
+            this.col_ngaysua_dv.MinimumWidth = 6;
+            this.col_ngaysua_dv.Name = "col_ngaysua_dv";
+            this.col_ngaysua_dv.Width = 125;
+            // 
+            // col_nguoisua_dv
+            // 
+            this.col_nguoisua_dv.DataPropertyName = "NguoiSua";
+            this.col_nguoisua_dv.HeaderText = "Người sửa";
+            this.col_nguoisua_dv.MinimumWidth = 6;
+            this.col_nguoisua_dv.Name = "col_nguoisua_dv";
+            this.col_nguoisua_dv.Width = 125;
+            // 
             // btn_rf_dv
             // 
             this.btn_rf_dv.IconChar = FontAwesome.Sharp.IconChar.Sync;
@@ -334,6 +391,7 @@
             this.col_makh,
             this.col_tenkh,
             this.col_sdt,
+            this.col_email,
             this.col_cccd,
             this.col_sodu,
             this.col_ngaytao_kh,
@@ -346,85 +404,6 @@
             this.dgrv_kh.RowTemplate.Height = 24;
             this.dgrv_kh.Size = new System.Drawing.Size(988, 422);
             this.dgrv_kh.TabIndex = 0;
-            // 
-            // col_makh
-            // 
-            this.col_makh.DataPropertyName = "MaKH";
-            this.col_makh.HeaderText = "Mã khách hàng";
-            this.col_makh.MinimumWidth = 6;
-            this.col_makh.Name = "col_makh";
-            this.col_makh.Width = 130;
-            // 
-            // col_tenkh
-            // 
-            this.col_tenkh.DataPropertyName = "TenKH";
-            this.col_tenkh.HeaderText = "Họ và tên";
-            this.col_tenkh.MinimumWidth = 6;
-            this.col_tenkh.Name = "col_tenkh";
-            this.col_tenkh.Width = 125;
-            // 
-            // col_sdt
-            // 
-            this.col_sdt.DataPropertyName = "SoDienThoai";
-            this.col_sdt.HeaderText = "Số điện thoại";
-            this.col_sdt.MinimumWidth = 6;
-            this.col_sdt.Name = "col_sdt";
-            this.col_sdt.Width = 125;
-            // 
-            // col_cccd
-            // 
-            this.col_cccd.DataPropertyName = "CCCD";
-            this.col_cccd.HeaderText = "CCCD";
-            this.col_cccd.MinimumWidth = 6;
-            this.col_cccd.Name = "col_cccd";
-            this.col_cccd.Width = 125;
-            // 
-            // col_sodu
-            // 
-            this.col_sodu.DataPropertyName = "SoDu";
-            dataGridViewCellStyle7.Format = "#,##0 đ";
-            this.col_sodu.DefaultCellStyle = dataGridViewCellStyle7;
-            this.col_sodu.HeaderText = "Số dư";
-            this.col_sodu.MinimumWidth = 6;
-            this.col_sodu.Name = "col_sodu";
-            this.col_sodu.Width = 125;
-            // 
-            // col_ngaytao_kh
-            // 
-            this.col_ngaytao_kh.DataPropertyName = "NgayTao";
-            dataGridViewCellStyle8.Format = "dd/MM/yy";
-            this.col_ngaytao_kh.DefaultCellStyle = dataGridViewCellStyle8;
-            this.col_ngaytao_kh.HeaderText = "Ngày tạo";
-            this.col_ngaytao_kh.MinimumWidth = 6;
-            this.col_ngaytao_kh.Name = "col_ngaytao_kh";
-            this.col_ngaytao_kh.Width = 125;
-            // 
-            // col_nguoitao_kh
-            // 
-            this.col_nguoitao_kh.DataPropertyName = "NguoiTao";
-            this.col_nguoitao_kh.HeaderText = "Người tạo";
-            this.col_nguoitao_kh.MinimumWidth = 6;
-            this.col_nguoitao_kh.Name = "col_nguoitao_kh";
-            this.col_nguoitao_kh.Width = 125;
-            // 
-            // col_ngaysua_kh
-            // 
-            this.col_ngaysua_kh.DataPropertyName = "NgaySua";
-            dataGridViewCellStyle9.Format = "dd/MM/yy";
-            dataGridViewCellStyle9.NullValue = null;
-            this.col_ngaysua_kh.DefaultCellStyle = dataGridViewCellStyle9;
-            this.col_ngaysua_kh.HeaderText = "Ngày sửa";
-            this.col_ngaysua_kh.MinimumWidth = 6;
-            this.col_ngaysua_kh.Name = "col_ngaysua_kh";
-            this.col_ngaysua_kh.Width = 125;
-            // 
-            // col_nguoisua_kh
-            // 
-            this.col_nguoisua_kh.DataPropertyName = "NguoiSua";
-            this.col_nguoisua_kh.HeaderText = "Người sửa";
-            this.col_nguoisua_kh.MinimumWidth = 6;
-            this.col_nguoisua_kh.Name = "col_nguoisua_kh";
-            this.col_nguoisua_kh.Width = 125;
             // 
             // btn_insert_kh
             // 
@@ -517,6 +496,19 @@
             this.tab_hoadon.Text = "Hoá đơn";
             this.tab_hoadon.UseVisualStyleBackColor = true;
             // 
+            // btn_rf_hd
+            // 
+            this.btn_rf_hd.IconChar = FontAwesome.Sharp.IconChar.Sync;
+            this.btn_rf_hd.IconColor = System.Drawing.Color.Black;
+            this.btn_rf_hd.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_rf_hd.IconSize = 30;
+            this.btn_rf_hd.Location = new System.Drawing.Point(1057, 19);
+            this.btn_rf_hd.Name = "btn_rf_hd";
+            this.btn_rf_hd.Size = new System.Drawing.Size(46, 33);
+            this.btn_rf_hd.TabIndex = 14;
+            this.btn_rf_hd.UseVisualStyleBackColor = true;
+            this.btn_rf_hd.Click += new System.EventHandler(this.btn_rf_hd_Click);
+            // 
             // btn_xemcthd
             // 
             this.btn_xemcthd.Location = new System.Drawing.Point(1014, 67);
@@ -549,80 +541,13 @@
             this.dgrv_hd.Size = new System.Drawing.Size(983, 423);
             this.dgrv_hd.TabIndex = 0;
             // 
-            // col_madv
-            // 
-            this.col_madv.DataPropertyName = "MaDV";
-            this.col_madv.HeaderText = "Mã dịch vụ";
-            this.col_madv.MinimumWidth = 6;
-            this.col_madv.Name = "col_madv";
-            // 
-            // col_tendv
-            // 
-            this.col_tendv.DataPropertyName = "TenDV";
-            this.col_tendv.HeaderText = "Tên dịch vụ";
-            this.col_tendv.MinimumWidth = 6;
-            this.col_tendv.Name = "col_tendv";
-            this.col_tendv.Width = 160;
-            // 
-            // col_dongia
-            // 
-            this.col_dongia.DataPropertyName = "DonGia";
-            this.col_dongia.HeaderText = "Đơn giá";
-            this.col_dongia.MinimumWidth = 6;
-            this.col_dongia.Name = "col_dongia";
-            this.col_dongia.Width = 125;
-            // 
-            // col_ngaytao_dv
-            // 
-            this.col_ngaytao_dv.DataPropertyName = "NgayTao";
-            this.col_ngaytao_dv.HeaderText = "Ngày tạo";
-            this.col_ngaytao_dv.MinimumWidth = 6;
-            this.col_ngaytao_dv.Name = "col_ngaytao_dv";
-            this.col_ngaytao_dv.Width = 125;
-            // 
-            // col_nguoitao_dv
-            // 
-            this.col_nguoitao_dv.DataPropertyName = "NguoiTao";
-            this.col_nguoitao_dv.HeaderText = "Người tạo";
-            this.col_nguoitao_dv.MinimumWidth = 6;
-            this.col_nguoitao_dv.Name = "col_nguoitao_dv";
-            this.col_nguoitao_dv.Width = 125;
-            // 
-            // col_ngaysua_dv
-            // 
-            this.col_ngaysua_dv.DataPropertyName = "NgaySua";
-            this.col_ngaysua_dv.HeaderText = "Ngày sửa";
-            this.col_ngaysua_dv.MinimumWidth = 6;
-            this.col_ngaysua_dv.Name = "col_ngaysua_dv";
-            this.col_ngaysua_dv.Width = 125;
-            // 
-            // col_nguoisua_dv
-            // 
-            this.col_nguoisua_dv.DataPropertyName = "NguoiSua";
-            this.col_nguoisua_dv.HeaderText = "Người sửa";
-            this.col_nguoisua_dv.MinimumWidth = 6;
-            this.col_nguoisua_dv.Name = "col_nguoisua_dv";
-            this.col_nguoisua_dv.Width = 125;
-            // 
-            // btn_rf_hd
-            // 
-            this.btn_rf_hd.IconChar = FontAwesome.Sharp.IconChar.Sync;
-            this.btn_rf_hd.IconColor = System.Drawing.Color.Black;
-            this.btn_rf_hd.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_rf_hd.IconSize = 30;
-            this.btn_rf_hd.Location = new System.Drawing.Point(1057, 19);
-            this.btn_rf_hd.Name = "btn_rf_hd";
-            this.btn_rf_hd.Size = new System.Drawing.Size(46, 33);
-            this.btn_rf_hd.TabIndex = 14;
-            this.btn_rf_hd.UseVisualStyleBackColor = true;
-            this.btn_rf_hd.Click += new System.EventHandler(this.btn_rf_hd_Click);
-            // 
             // col_mahd
             // 
             this.col_mahd.DataPropertyName = "MaHD";
             this.col_mahd.HeaderText = "Mã hoá đơn";
             this.col_mahd.MinimumWidth = 6;
             this.col_mahd.Name = "col_mahd";
+            this.col_mahd.Width = 125;
             // 
             // col_mamay_hd
             // 
@@ -630,6 +555,7 @@
             this.col_mamay_hd.HeaderText = "Mã máy";
             this.col_mamay_hd.MinimumWidth = 6;
             this.col_mamay_hd.Name = "col_mamay_hd";
+            this.col_mamay_hd.Width = 125;
             // 
             // col_makhhd
             // 
@@ -695,6 +621,93 @@
             this.col_nguoisuahd.Name = "col_nguoisuahd";
             this.col_nguoisuahd.Width = 125;
             // 
+            // col_makh
+            // 
+            this.col_makh.DataPropertyName = "MaKH";
+            this.col_makh.HeaderText = "Mã khách hàng";
+            this.col_makh.MinimumWidth = 6;
+            this.col_makh.Name = "col_makh";
+            this.col_makh.Width = 130;
+            // 
+            // col_tenkh
+            // 
+            this.col_tenkh.DataPropertyName = "TenKH";
+            this.col_tenkh.HeaderText = "Họ và tên";
+            this.col_tenkh.MinimumWidth = 6;
+            this.col_tenkh.Name = "col_tenkh";
+            this.col_tenkh.Width = 125;
+            // 
+            // col_sdt
+            // 
+            this.col_sdt.DataPropertyName = "SoDienThoai";
+            this.col_sdt.HeaderText = "Số điện thoại";
+            this.col_sdt.MinimumWidth = 6;
+            this.col_sdt.Name = "col_sdt";
+            this.col_sdt.Width = 125;
+            // 
+            // col_email
+            // 
+            this.col_email.DataPropertyName = "Email";
+            this.col_email.HeaderText = "Email";
+            this.col_email.MinimumWidth = 6;
+            this.col_email.Name = "col_email";
+            this.col_email.Width = 125;
+            // 
+            // col_cccd
+            // 
+            this.col_cccd.DataPropertyName = "CCCD";
+            this.col_cccd.HeaderText = "CCCD";
+            this.col_cccd.MinimumWidth = 6;
+            this.col_cccd.Name = "col_cccd";
+            this.col_cccd.Width = 125;
+            // 
+            // col_sodu
+            // 
+            this.col_sodu.DataPropertyName = "SoDu";
+            dataGridViewCellStyle1.Format = "#,##0 đ";
+            this.col_sodu.DefaultCellStyle = dataGridViewCellStyle1;
+            this.col_sodu.HeaderText = "Số dư";
+            this.col_sodu.MinimumWidth = 6;
+            this.col_sodu.Name = "col_sodu";
+            this.col_sodu.Width = 125;
+            // 
+            // col_ngaytao_kh
+            // 
+            this.col_ngaytao_kh.DataPropertyName = "NgayTao";
+            dataGridViewCellStyle2.Format = "dd/MM/yy";
+            this.col_ngaytao_kh.DefaultCellStyle = dataGridViewCellStyle2;
+            this.col_ngaytao_kh.HeaderText = "Ngày tạo";
+            this.col_ngaytao_kh.MinimumWidth = 6;
+            this.col_ngaytao_kh.Name = "col_ngaytao_kh";
+            this.col_ngaytao_kh.Width = 125;
+            // 
+            // col_nguoitao_kh
+            // 
+            this.col_nguoitao_kh.DataPropertyName = "NguoiTao";
+            this.col_nguoitao_kh.HeaderText = "Người tạo";
+            this.col_nguoitao_kh.MinimumWidth = 6;
+            this.col_nguoitao_kh.Name = "col_nguoitao_kh";
+            this.col_nguoitao_kh.Width = 125;
+            // 
+            // col_ngaysua_kh
+            // 
+            this.col_ngaysua_kh.DataPropertyName = "NgaySua";
+            dataGridViewCellStyle3.Format = "dd/MM/yy";
+            dataGridViewCellStyle3.NullValue = null;
+            this.col_ngaysua_kh.DefaultCellStyle = dataGridViewCellStyle3;
+            this.col_ngaysua_kh.HeaderText = "Ngày sửa";
+            this.col_ngaysua_kh.MinimumWidth = 6;
+            this.col_ngaysua_kh.Name = "col_ngaysua_kh";
+            this.col_ngaysua_kh.Width = 125;
+            // 
+            // col_nguoisua_kh
+            // 
+            this.col_nguoisua_kh.DataPropertyName = "NguoiSua";
+            this.col_nguoisua_kh.HeaderText = "Người sửa";
+            this.col_nguoisua_kh.MinimumWidth = 6;
+            this.col_nguoisua_kh.Name = "col_nguoisua_kh";
+            this.col_nguoisua_kh.Width = 125;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -743,15 +756,6 @@
         private System.Windows.Forms.Button btn_update_kh;
         private FontAwesome.Sharp.IconButton icon_refresh_kh;
         private System.Windows.Forms.TabPage tab_hoadon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_makh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_tenkh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_sdt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_cccd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_sodu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_ngaytao_kh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoitao_kh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_ngaysua_kh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoisua_kh;
         private FontAwesome.Sharp.IconButton btn_refresh;
         private System.Windows.Forms.Button btn_update_may;
         private System.Windows.Forms.Button btn_del_may;
@@ -781,5 +785,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoitaohd;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ngaysuahd;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoisuahd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_makh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_tenkh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_sdt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_cccd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_sodu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_ngaytao_kh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoitao_kh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_ngaysua_kh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoisua_kh;
     }
 }

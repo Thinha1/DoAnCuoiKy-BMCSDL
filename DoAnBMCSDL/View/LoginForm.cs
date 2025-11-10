@@ -91,6 +91,7 @@ namespace DoAnBMCSDL
                     DatabaseUtils.init(host, port, sid, user, password);
                     if (DatabaseUtils.Connect())
                     {
+                        Test.username = user;
                         OracleConnection o = DatabaseUtils.GetConnection();
                         MessageBox.Show($"Success!\nVersion: {o.ServerVersion}");
                         this.Hide();

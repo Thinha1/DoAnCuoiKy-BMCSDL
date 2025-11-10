@@ -13,6 +13,8 @@ namespace DoAnBMCSDL.Model
         public string SoDienThoai { get; set; }
 
         public string CCCD { get; set; }
+
+        public string Email { get; set; }
         public float SoDu {  get; set; }
 
         public string MatKhau {  get; set; }
