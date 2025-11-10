@@ -32,9 +32,9 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
             this.DESDB = new DESDB(DatabaseUtils.GetConnection());
         }
 
-        private bool validateData(string ten, string sdt, string cccd, float sodu, string mk)
+        private bool validateData(string ten, string sdt, string cccd, string email, float sodu, string mk)
         {
-            if (string.IsNullOrWhiteSpace(ten) || string.IsNullOrWhiteSpace(sdt) || string.IsNullOrWhiteSpace(cccd) || float.IsNaN(sodu) || string.IsNullOrWhiteSpace(mk))
+            if (string.IsNullOrWhiteSpace(ten) || string.IsNullOrWhiteSpace(sdt) || string.IsNullOrWhiteSpace(cccd) || float.IsNaN(sodu) || string.IsNullOrWhiteSpace(mk) || string.IsNullOrWhiteSpace(email))
             {
                 MessageBox.Show("Vui lòng điền đầy dủ thông tin!");
                 return false;
@@ -46,16 +46,6 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
                     MessageBox.Show("Số dư không được âm hoặc bằng 0!");
                     return false;
                 }
-                if ((!sdt.All(char.IsDigit)) && sdt.Length != 10)
-                {
-                    MessageBox.Show("Số điện thoại không hợp lệ");
-                    return false;
-                }
-                if (cccd.Length != 12)
-                {
-                    MessageBox.Show("Căn cước công dân không hợp lệ");
-                    return false;
-                }
                 return true;
             }
         }
@@ -65,10 +55,12 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
             string tenkh = txt_tenkh.Text;
             string sdt = txt_sdt.Text;
             string cccd = txt_cccd.Text;
+            string email = txt_email.Text;
             float sodu = float.Parse(txt_sodu.Text);
             string mk = txt_mk.Text;
-            if (validateData(tenkh, sdt, cccd, sodu, mk))
+            if (validateData(tenkh, sdt, cccd, email, sodu, mk))
             {
+                MessageBox.Show($"CCCD = '{cccd}', Length = {cccd.Length}");
                 sdt = encryptionAlgorithm.encryptMessagePlus(sdt, 10);
                 cccd = encryptionAlgorithm.encryptMessageMultiply(cccd, 11);
 
@@ -81,7 +73,7 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
                 string keyStr = Convert.ToBase64String(key);
                 byte[] mkBytes = DESDB.encryptDES(mk, keyStr);
                 mk = Convert.ToBase64String(mkBytes);
-                bool check = khachHangController.InsertKhachHang(tenkh, sdt, cccd, sodu, mk);
+                bool check = khachHangController.InsertKhachHang(tenkh, sdt, email, cccd, sodu, mk);
                 if (check)
                 {
                     MessageBox.Show("Thêm thành công!");
