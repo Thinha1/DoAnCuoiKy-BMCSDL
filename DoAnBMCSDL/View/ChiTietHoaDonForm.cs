@@ -44,7 +44,7 @@ namespace DoAnBMCSDL.View
 
         private void btn_kyhd_Click(object sender, EventArgs e)
         {
-            DigitalSignatureForm digitalSignatureForm = new DigitalSignatureForm();
+            DigitalSignatureForm digitalSignatureForm = new DigitalSignatureForm(_maHD);
             digitalSignatureForm.ShowDialog();
         }
 

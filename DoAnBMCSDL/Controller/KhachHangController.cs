@@ -22,7 +22,7 @@ namespace DoAnBMCSDL.Controller
         internal List<KhachHang> getAllKhachHang()
         {
             List<KhachHang> list = new List<KhachHang>();
-            string query = "SELECT MaKH, HoTen, SoDienThoai, CCCD, SoDu, NGUOITAO, NGAYTAO, NGUOISUA, NGAYSUA FROM thinh.KhachHang";
+            string query = "SELECT MaKH, HoTen, SoDienThoai, Email, CCCD, SoDu, NGUOITAO, NGAYTAO, NGUOISUA, NGAYSUA FROM thinh.KhachHang";
 
             //Connection tinh
             Conn = DatabaseUtils.GetConnection();
@@ -41,6 +41,7 @@ namespace DoAnBMCSDL.Controller
                         TenKH = reader["HoTen"].ToString(),
                         SoDienThoai = reader["SoDienThoai"].ToString(),
                         CCCD = reader["CCCD"].ToString(),
+                        Email = reader["Email"].ToString(),
                         SoDu = float.Parse(reader["SoDu"].ToString()),
                         NguoiTao = reader["NguoiTao"].ToString(),
                         NgayTao = reader.GetDateTime(reader.GetOrdinal("NgayTao")),
@@ -99,6 +100,7 @@ namespace DoAnBMCSDL.Controller
                     omd.Parameters.Add("p_tenkh", kh.TenKH);
                     omd.Parameters.Add("p_sdt", kh.SoDienThoai);
                     omd.Parameters.Add("p_cccd", kh.CCCD);
+                    omd.Parameters.Add("p_email", kh.Email);
                     omd.Parameters.Add("p_sodu", OracleDbType.Decimal).Value = kh.SoDu;
                     if(!string.IsNullOrWhiteSpace(kh.MatKhau)){
                     omd.Parameters.Add("p_mk", kh.MatKhau);
@@ -117,7 +119,7 @@ namespace DoAnBMCSDL.Controller
             }
         }
 
-        internal bool InsertKhachHang(string ten, string sdt, string cccd, float sodu, string mk)
+        internal bool InsertKhachHang(string ten, string sdt, string email, string cccd, float sodu, string mk)
         {
             Conn = DatabaseUtils.GetConnection();
             if (Conn.State != ConnectionState.Open)
@@ -132,6 +134,7 @@ namespace DoAnBMCSDL.Controller
                     omd.Parameters.Add("p_tenkh", ten);
                     omd.Parameters.Add("p_sdt", sdt);
                     omd.Parameters.Add("p_cccd", cccd);
+                    omd.Parameters.Add("p_email", email);
                     omd.Parameters.Add("p_sodu", OracleDbType.Decimal).Value = sodu;
                     omd.Parameters.Add("p_mk", mk);
                     omd.ExecuteNonQuery();
