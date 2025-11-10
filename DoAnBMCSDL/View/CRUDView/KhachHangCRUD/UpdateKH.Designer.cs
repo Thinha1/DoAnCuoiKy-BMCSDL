@@ -42,12 +42,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txt_makh = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.txt_email = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txt_sodu
             // 
             this.txt_sodu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_sodu.Location = new System.Drawing.Point(362, 172);
+            this.txt_sodu.Location = new System.Drawing.Point(362, 194);
             this.txt_sodu.Name = "txt_sodu";
             this.txt_sodu.Size = new System.Drawing.Size(159, 27);
             this.txt_sodu.TabIndex = 25;
@@ -56,7 +58,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(133, 178);
+            this.label4.Location = new System.Drawing.Point(133, 197);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 20);
             this.label4.TabIndex = 24;
@@ -67,7 +69,7 @@
             this.btn_cncl.BackColor = System.Drawing.Color.Tomato;
             this.btn_cncl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cncl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_cncl.Location = new System.Drawing.Point(383, 270);
+            this.btn_cncl.Location = new System.Drawing.Point(380, 295);
             this.btn_cncl.Name = "btn_cncl";
             this.btn_cncl.Size = new System.Drawing.Size(126, 36);
             this.btn_cncl.TabIndex = 23;
@@ -79,7 +81,7 @@
             this.btn_save.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_save.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_save.Location = new System.Drawing.Point(213, 270);
+            this.btn_save.Location = new System.Drawing.Point(212, 295);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(126, 36);
             this.btn_save.TabIndex = 22;
@@ -90,7 +92,7 @@
             // txt_mk
             // 
             this.txt_mk.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_mk.Location = new System.Drawing.Point(362, 209);
+            this.txt_mk.Location = new System.Drawing.Point(362, 227);
             this.txt_mk.Name = "txt_mk";
             this.txt_mk.PasswordChar = '*';
             this.txt_mk.Size = new System.Drawing.Size(159, 27);
@@ -124,7 +126,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(133, 209);
+            this.label5.Location = new System.Drawing.Point(133, 234);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 20);
             this.label5.TabIndex = 17;
@@ -179,11 +181,31 @@
             this.label6.TabIndex = 26;
             this.label6.Text = "Mã khách hàng";
             // 
+            // txt_email
+            // 
+            this.txt_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_email.Location = new System.Drawing.Point(362, 161);
+            this.txt_email.Name = "txt_email";
+            this.txt_email.Size = new System.Drawing.Size(159, 27);
+            this.txt_email.TabIndex = 29;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(134, 168);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(51, 20);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "Email";
+            // 
             // UpdateKH
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(720, 376);
+            this.Controls.Add(this.txt_email);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.txt_makh);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txt_sodu);
@@ -222,5 +244,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_makh;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txt_email;
+        private System.Windows.Forms.Label label7;
     }
 }

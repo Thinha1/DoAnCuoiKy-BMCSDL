@@ -40,6 +40,8 @@
             this.btn_cncl = new System.Windows.Forms.Button();
             this.txt_sodu = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.txt_email = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -56,7 +58,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(167, 91);
+            this.label2.Location = new System.Drawing.Point(167, 94);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 20);
             this.label2.TabIndex = 1;
@@ -76,7 +78,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(167, 204);
+            this.label5.Location = new System.Drawing.Point(167, 249);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 20);
             this.label5.TabIndex = 4;
@@ -101,7 +103,7 @@
             // txt_sdt
             // 
             this.txt_sdt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_sdt.Location = new System.Drawing.Point(373, 88);
+            this.txt_sdt.Location = new System.Drawing.Point(373, 91);
             this.txt_sdt.Name = "txt_sdt";
             this.txt_sdt.Size = new System.Drawing.Size(250, 27);
             this.txt_sdt.TabIndex = 8;
@@ -109,7 +111,7 @@
             // txt_mk
             // 
             this.txt_mk.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_mk.Location = new System.Drawing.Point(373, 204);
+            this.txt_mk.Location = new System.Drawing.Point(373, 249);
             this.txt_mk.Name = "txt_mk";
             this.txt_mk.PasswordChar = '*';
             this.txt_mk.Size = new System.Drawing.Size(250, 27);
@@ -120,7 +122,7 @@
             this.btn_insert.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_insert.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_insert.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_insert.Location = new System.Drawing.Point(253, 282);
+            this.btn_insert.Location = new System.Drawing.Point(243, 331);
             this.btn_insert.Name = "btn_insert";
             this.btn_insert.Size = new System.Drawing.Size(126, 36);
             this.btn_insert.TabIndex = 10;
@@ -133,7 +135,7 @@
             this.btn_cncl.BackColor = System.Drawing.Color.Tomato;
             this.btn_cncl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cncl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_cncl.Location = new System.Drawing.Point(423, 282);
+            this.btn_cncl.Location = new System.Drawing.Point(423, 331);
             this.btn_cncl.Name = "btn_cncl";
             this.btn_cncl.Size = new System.Drawing.Size(126, 36);
             this.btn_cncl.TabIndex = 11;
@@ -144,7 +146,7 @@
             // txt_sodu
             // 
             this.txt_sodu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_sodu.Location = new System.Drawing.Point(373, 167);
+            this.txt_sodu.Location = new System.Drawing.Point(373, 207);
             this.txt_sodu.Name = "txt_sodu";
             this.txt_sodu.Size = new System.Drawing.Size(250, 27);
             this.txt_sodu.TabIndex = 13;
@@ -153,17 +155,37 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(167, 173);
+            this.label4.Location = new System.Drawing.Point(167, 214);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 20);
             this.label4.TabIndex = 12;
             this.label4.Text = "Số dư";
             // 
+            // txt_email
+            // 
+            this.txt_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_email.Location = new System.Drawing.Point(373, 166);
+            this.txt_email.Name = "txt_email";
+            this.txt_email.Size = new System.Drawing.Size(250, 27);
+            this.txt_email.TabIndex = 15;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(168, 173);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 20);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Email";
+            // 
             // InsertKH
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(720, 380);
+            this.ClientSize = new System.Drawing.Size(720, 436);
+            this.Controls.Add(this.txt_email);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txt_sodu);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btn_cncl);
@@ -197,5 +219,7 @@
         private System.Windows.Forms.Button btn_cncl;
         private System.Windows.Forms.TextBox txt_sodu;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txt_email;
+        private System.Windows.Forms.Label label6;
     }
 }

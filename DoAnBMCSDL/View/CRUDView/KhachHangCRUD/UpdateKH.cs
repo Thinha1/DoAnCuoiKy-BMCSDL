@@ -49,6 +49,7 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
                 TenKH = txt_tenkh.Text,
                 SoDienThoai = txt_sdt.Text,
                 CCCD = txt_cccd.Text,
+                Email = txt_email.Text,
                 SoDu = float.Parse(txt_sodu.Text),
                 MatKhau = txt_mk.Text
             };
