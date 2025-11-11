@@ -249,6 +249,12 @@
     <Compile Include="View\SignView\DigitalSignatureForm.Designer.cs">
       <DependentUpon>DigitalSignatureForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SignView\VerifySignature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SignView\VerifySignature.Designer.cs">
+      <DependentUpon>VerifySignature.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\ChangePassword.resx">
@@ -283,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\SignView\DigitalSignatureForm.resx">
       <DependentUpon>DigitalSignatureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SignView\VerifySignature.resx">
+      <DependentUpon>VerifySignature.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

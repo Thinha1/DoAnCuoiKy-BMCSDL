@@ -13,8 +13,13 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.draw;
 using iTextSharp.text.pdf.security;
+using Org.BouncyCastle.Asn1.X509;
+using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Math;
+using Org.BouncyCastle.OpenSsl;
+using Org.BouncyCastle.Security;
+using Org.BouncyCastle.X509;
 
 namespace DoAnBMCSDL.utils.pdfExport
 {
@@ -81,38 +86,45 @@ namespace DoAnBMCSDL.utils.pdfExport
         }
 
 
-        public void SignPdfWithVisibleSignature(string inputPdf, string outputPdf, RSACryptoServiceProvider rsa, string signerName)
+        public void SignPdf(string inputPdf, string outputPdf, string certPath, string keyPath, string signerName)
         {
-            RSAParameters rsaParams = rsa.ExportParameters(true);
-            RsaPrivateCrtKeyParameters privateKey = new RsaPrivateCrtKeyParameters(
-                new Org.BouncyCastle.Math.BigInteger(1, rsaParams.Modulus),
-                new Org.BouncyCastle.Math.BigInteger(1, rsaParams.Exponent),
-                new Org.BouncyCastle.Math.BigInteger(1, rsaParams.D),
-                new Org.BouncyCastle.Math.BigInteger(1, rsaParams.P),
-                new Org.BouncyCastle.Math.BigInteger(1, rsaParams.Q),
-                new Org.BouncyCastle.Math.BigInteger(1, rsaParams.DP),
-                new Org.BouncyCastle.Math.BigInteger(1, rsaParams.DQ),
-                new Org.BouncyCastle.Math.BigInteger(1, rsaParams.InverseQ)
-            );
-            PdfReader reader = new PdfReader(inputPdf);
+            // Đọc private key từ PEM
+            AsymmetricKeyParameter privateKey;
+            using (StreamReader reader = new StreamReader(keyPath))
+            {
+                PemReader pemReader = new PemReader(reader);
+                object obj = pemReader.ReadObject();
+                if (obj is AsymmetricCipherKeyPair keyPair)
+                    privateKey = keyPair.Private;
+                else
+                    privateKey = (AsymmetricKeyParameter)obj;
+            }
+
+            // Đọc certificate
+            X509Certificate cert;
+            using (StreamReader reader = new StreamReader(certPath))
+            {
+                PemReader pemReader = new PemReader(reader);
+                cert = (X509Certificate)pemReader.ReadObject();
+            }
+
+            X509Certificate[] chain = new X509Certificate[] { cert };
+
+            // Tạo chữ ký
+            PdfReader pdfReader = new PdfReader(inputPdf);
             using (FileStream os = new FileStream(outputPdf, FileMode.Create))
             {
-                PdfStamper stamper = PdfStamper.CreateSignature(reader, os, '\0');
+                PdfStamper stamper = PdfStamper.CreateSignature(pdfReader, os, '\0');
                 PdfSignatureAppearance appearance = stamper.SignatureAppearance;
 
-                // Thiết lập chữ ký hiển thị
                 appearance.Reason = "Ký hóa đơn điện tử";
                 appearance.Location = "Quán Net Mixuegaming";
+                appearance.SetVisibleSignature(new Rectangle(50, 50, 250, 100), 1, "Signature1");
+                appearance.Layer2Text = $"Signed by {signerName}\nDay: {DateTime.Now:dd/MM/yyyy HH:mm}";
                 appearance.SignDate = DateTime.Now;
-                appearance.SetVisibleSignature(new iTextSharp.text.Rectangle(50, 50, 250, 100), 1, "Signature1");
-                appearance.Layer2Text = $"Đã ký bởi {signerName}\nNgày: {DateTime.Now:dd/MM/yyyy HH:mm}";
-                //Base font cần chỉnh
 
-                // Ký số bằng SHA-256 + RSA
                 IExternalSignature externalSignature = new PrivateKeySignature(privateKey, "SHA-256");
-                MakeSignature.SignDetached(appearance, externalSignature, null, null, null, null, 0, CryptoStandard.CMS);
-
-                stamper.Close();
+                MakeSignature.SignDetached(appearance, externalSignature, chain, null, null, null, 0, CryptoStandard.CMS);
             }
         }
 
@@ -148,6 +160,40 @@ namespace DoAnBMCSDL.utils.pdfExport
             {
                 MessageBox.Show("Lỗi gửi email: " + ex.Message);
             }
+        }
+
+        public bool VerifyPdfSignature(string signedPdfPath, string certPemPath)
+        {
+            PdfReader reader = new PdfReader(signedPdfPath);
+            AcroFields af = reader.AcroFields;
+            var names = af.GetSignatureNames();
+
+            if (names.Count == 0)
+                return false; // PDF chưa ký
+
+            // Load public cert từ pem
+            X509Certificate cert;
+            using (var sr = new StreamReader(certPemPath))
+            {
+                PemReader pemReader = new PemReader(sr);
+                cert = (X509Certificate)pemReader.ReadObject();
+            }
+
+            foreach (string name in names)
+            {
+                if (!af.SignatureCoversWholeDocument(name))
+                    return false;
+
+                PdfPKCS7 pk = af.VerifySignature(name);
+                if (!pk.Verify())
+                    return false;
+
+                // Kiểm tra xem PDF được ký bởi cert.pem
+                if (!pk.SigningCertificate.Equals(cert))
+                    return false;
+            }
+
+            return true; // PDF hợp lệ
         }
     }
 }
