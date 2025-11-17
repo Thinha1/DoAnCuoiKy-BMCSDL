@@ -119,13 +119,6 @@ namespace DoAnBMCSDL
             registerForm.ShowDialog();
         }
 
-        private void btn_forgetpassword_Click(object sender, EventArgs e)
-        {
-            ChangePassword password = new ChangePassword();
-            password.ShowDialog();
-            this.Hide();
-        }
-
         private void btn_ktchuky_Click(object sender, EventArgs e)
         {
             VerifySignature verifySignature = new VerifySignature();
