@@ -10,6 +10,8 @@ using Oracle.ManagedDataAccess.Client;
 using DoAnBMCSDL;
 using DoAnBMCSDL.Model;
 using DoAnBMCSDL.utils.Encrytion;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Windows.Media;
 
 namespace DoAnBMCSDL.Controller
 {
@@ -97,12 +99,13 @@ namespace DoAnBMCSDL.Controller
                 {
                     omd.CommandType = CommandType.StoredProcedure;
                     omd.Parameters.Add("p_makh", kh.MaKH);
-                    omd.Parameters.Add("p_tenkh", kh.TenKH);
-                    omd.Parameters.Add("p_sdt", kh.SoDienThoai);
-                    omd.Parameters.Add("p_cccd", kh.CCCD);
-                    omd.Parameters.Add("p_email", kh.Email);
+                    omd.Parameters.Add("p_tenkh", OracleDbType.Varchar2).Value = kh.TenKH;
+                    omd.Parameters.Add("p_sdt", OracleDbType.Varchar2).Value = kh.SoDienThoai;
+                    omd.Parameters.Add("p_cccd", OracleDbType.Varchar2).Value = kh.CCCD;
+                    omd.Parameters.Add("p_email", OracleDbType.Varchar2).Value = kh.Email;
                     omd.Parameters.Add("p_sodu", OracleDbType.Decimal).Value = kh.SoDu;
-                    if(!string.IsNullOrWhiteSpace(kh.MatKhau)){
+                    //omd.Parameters.Add("p_mk", OracleDbType.Varchar2).Value = kh.MatKhau;
+                    if (!string.IsNullOrWhiteSpace(kh.MatKhau)){
                     omd.Parameters.Add("p_mk", kh.MatKhau);
                     }
                     else
@@ -131,12 +134,12 @@ namespace DoAnBMCSDL.Controller
                 using (OracleCommand omd = new OracleCommand("thinh.P_Them_KhachHang", Conn))
                 {
                     omd.CommandType = CommandType.StoredProcedure;
-                    omd.Parameters.Add("p_tenkh", ten);
-                    omd.Parameters.Add("p_sdt", sdt);
-                    omd.Parameters.Add("p_cccd", cccd);
-                    omd.Parameters.Add("p_email", email);
+                    omd.Parameters.Add("p_tenkh", OracleDbType.Varchar2).Value = ten;
+                    omd.Parameters.Add("p_sdt", OracleDbType.Varchar2).Value = sdt;
+                    omd.Parameters.Add("p_cccd", OracleDbType.Varchar2).Value = cccd;
+                    omd.Parameters.Add("p_email", OracleDbType.Varchar2).Value = email;
                     omd.Parameters.Add("p_sodu", OracleDbType.Decimal).Value = sodu;
-                    omd.Parameters.Add("p_mk", mk);
+                    omd.Parameters.Add("p_mk", OracleDbType.Varchar2).Value = mk;
                     omd.ExecuteNonQuery();
                 }
                 return true;

@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
       <HintPath>..\packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
     <Reference Include="FontAwesome.Sharp, Version=6.6.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
@@ -216,6 +217,12 @@
     <Compile Include="View\CRUDView\MayCRUD\UpdateMay.Designer.cs">
       <DependentUpon>UpdateMay.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\DichVuView\DecryptRSA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DichVuView\DecryptRSA.Designer.cs">
+      <DependentUpon>DecryptRSA.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -275,6 +282,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\CRUDView\MayCRUD\UpdateMay.resx">
       <DependentUpon>UpdateMay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DichVuView\DecryptRSA.resx">
+      <DependentUpon>DecryptRSA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RegisterForm.resx">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\SignView\DigitalSignatureForm.resx">
       <DependentUpon>DigitalSignatureForm.cs</DependentUpon>
