@@ -192,7 +192,7 @@
             this.btn_ktchuky.TabIndex = 13;
             this.btn_ktchuky.Text = "CHECK SIGNATURE\r\n";
             this.btn_ktchuky.UseVisualStyleBackColor = false;
-            this.btn_ktchuky.Click += new System.EventHandler(this.btn_forgetpassword_Click);
+            this.btn_ktchuky.Click += new System.EventHandler(this.btn_ktchuky_Click);
             // 
             // LoginForm
             // 

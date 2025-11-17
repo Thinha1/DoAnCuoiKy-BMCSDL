@@ -1,29 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
+using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DoAnBMCSDL.Controller;
 using DoAnBMCSDL.Model;
 using DoAnBMCSDL.utils.Encrytion;
 using DoAnBMCSDL.View.CRUDView.KhachHang;
-using Oracle.ManagedDataAccess.Client;
-using DoAnBMCSDL.Controller;
-using DoAnBMCSDL.Model;
-using System.IO;
-using DoAnBMCSDL.View.CRUDView.MayCRUD;
 using DoAnBMCSDL.View.CRUDView.KhachHangCRUD;
+using DoAnBMCSDL.View.CRUDView.MayCRUD;
+using Oracle.ManagedDataAccess.Client;
 //using DoAnBMCSDL.View.ListView;
+<<<<<<< HEAD
 using DoAnBMCSDL.View.CRUDView.KhachHangCRUD;
 using System.Linq.Expressions;
 //using DOanBMCSL.View.DichVuView
 using DoAnBMCSDL.View.DichVuView;
 
+=======
+>>>>>>> 07e77fe0747ba2d0bcf5926aa03df7289ed17eb9
 
 namespace DoAnBMCSDL.View
 {
@@ -86,7 +81,7 @@ namespace DoAnBMCSDL.View
             if (!DatabaseUtils.checkConnection())
             {
                 timer.Stop();
-                MessageBox.Show("Mất kết nối, form sẽ đóng!",
+                MessageBox.Show(this, "Mất kết nối, form sẽ đóng!",
                                 "Lỗi kết nối",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
@@ -199,7 +194,7 @@ namespace DoAnBMCSDL.View
             {
                 loadKhachHang();
             }
-            else if(e.TabPage == tab_dichvu)
+            else if (e.TabPage == tab_dichvu)
             {
                 loadDichVu();
             }
@@ -230,7 +225,7 @@ namespace DoAnBMCSDL.View
                 dgrv_dv.DataSource = listDV;
                 tab_dichvu.Refresh();
             }
-            else if(tabName == "tab_hoadon")
+            else if (tabName == "tab_hoadon")
             {
                 List<HoaDon> listHD = hoaDonController.getAllHoaDon();
                 dgrv_hd.DataSource = null;
