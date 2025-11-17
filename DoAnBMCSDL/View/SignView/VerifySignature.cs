@@ -63,7 +63,7 @@ namespace DoAnBMCSDL.View.SignView
             }
             else
             {
-                MessageBox.Show("Lỗi chữ ký không hợp lệ!");
+                MessageBox.Show("Lỗi file đã bị chỉnh sửa hoặc chữ ký không hợp lệ!");
             }
         }
     }

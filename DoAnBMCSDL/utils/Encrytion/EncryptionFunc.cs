@@ -106,7 +106,7 @@ namespace DoAnBMCSDL.utils.Encrytion
         public string encryptMultiply_Func(string msg, int key)
         {
             try
-            {
+            { 
                 string function = "thinh.F_ENCRYPTMULTIPLYCIPHER";
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
