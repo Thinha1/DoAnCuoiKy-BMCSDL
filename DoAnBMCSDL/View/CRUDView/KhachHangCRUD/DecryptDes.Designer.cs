@@ -30,13 +30,13 @@
         {
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tb_Decrypt = new System.Windows.Forms.TabPage();
-            this.key = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txt_filedec = new System.Windows.Forms.TextBox();
-            this.txt_key = new System.Windows.Forms.TextBox();
-            this.btn_decbrow = new System.Windows.Forms.Button();
-            this.btn_keybrow = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btn_keybrow = new System.Windows.Forms.Button();
+            this.btn_decbrow = new System.Windows.Forms.Button();
+            this.txt_key = new System.Windows.Forms.TextBox();
+            this.txt_filedec = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.key = new System.Windows.Forms.Label();
             this.tabControl2.SuspendLayout();
             this.tb_Decrypt.SuspendLayout();
             this.SuspendLayout();
@@ -67,50 +67,16 @@
             this.tb_Decrypt.TabIndex = 0;
             this.tb_Decrypt.Text = "Decrypt";
             // 
-            // key
+            // button1
             // 
-            this.key.AutoSize = true;
-            this.key.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.key.Location = new System.Drawing.Point(64, 150);
-            this.key.Name = "key";
-            this.key.Size = new System.Drawing.Size(52, 25);
-            this.key.TabIndex = 0;
-            this.key.Text = "KEY";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(64, 89);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 25);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "FILE";
-            // 
-            // txt_filedec
-            // 
-            this.txt_filedec.Location = new System.Drawing.Point(123, 91);
-            this.txt_filedec.Name = "txt_filedec";
-            this.txt_filedec.Size = new System.Drawing.Size(508, 22);
-            this.txt_filedec.TabIndex = 2;
-            // 
-            // txt_key
-            // 
-            this.txt_key.Location = new System.Drawing.Point(123, 154);
-            this.txt_key.Name = "txt_key";
-            this.txt_key.Size = new System.Drawing.Size(508, 22);
-            this.txt_key.TabIndex = 3;
-            // 
-            // btn_decbrow
-            // 
-            this.btn_decbrow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_decbrow.Location = new System.Drawing.Point(656, 84);
-            this.btn_decbrow.Name = "btn_decbrow";
-            this.btn_decbrow.Size = new System.Drawing.Size(64, 34);
-            this.btn_decbrow.TabIndex = 4;
-            this.btn_decbrow.Text = "...";
-            this.btn_decbrow.UseVisualStyleBackColor = true;
-            this.btn_decbrow.Click += new System.EventHandler(this.btn_decbrow_Click);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(357, 251);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(116, 54);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Decrypt";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btn_keybrow
             // 
@@ -123,16 +89,52 @@
             this.btn_keybrow.UseVisualStyleBackColor = true;
             this.btn_keybrow.Click += new System.EventHandler(this.btn_keybrow_Click);
             // 
-            // button1
+            // btn_decbrow
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(357, 251);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(116, 54);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Decrypt";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_decbrow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_decbrow.Location = new System.Drawing.Point(656, 84);
+            this.btn_decbrow.Name = "btn_decbrow";
+            this.btn_decbrow.Size = new System.Drawing.Size(64, 34);
+            this.btn_decbrow.TabIndex = 4;
+            this.btn_decbrow.Text = "...";
+            this.btn_decbrow.UseVisualStyleBackColor = true;
+            this.btn_decbrow.Click += new System.EventHandler(this.btn_decbrow_Click);
+            // 
+            // txt_key
+            // 
+            this.txt_key.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_key.Location = new System.Drawing.Point(194, 154);
+            this.txt_key.Name = "txt_key";
+            this.txt_key.Size = new System.Drawing.Size(437, 30);
+            this.txt_key.TabIndex = 3;
+            // 
+            // txt_filedec
+            // 
+            this.txt_filedec.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_filedec.Location = new System.Drawing.Point(194, 91);
+            this.txt_filedec.Name = "txt_filedec";
+            this.txt_filedec.Size = new System.Drawing.Size(437, 30);
+            this.txt_filedec.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(109, 89);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 29);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "FILE";
+            // 
+            // key
+            // 
+            this.key.AutoSize = true;
+            this.key.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.key.Location = new System.Drawing.Point(109, 152);
+            this.key.Name = "key";
+            this.key.Size = new System.Drawing.Size(64, 29);
+            this.key.TabIndex = 0;
+            this.key.Text = "KEY";
             // 
             // DecryptDes
             // 

@@ -60,7 +60,7 @@ namespace DoAnBMCSDL.View.CRUDView.KhachHang
             string mk = txt_mk.Text;
             if (validateData(tenkh, sdt, cccd, email, sodu, mk))
             {
-                MessageBox.Show($"CCCD = '{cccd}', Length = {cccd.Length}");
+                //MessageBox.Show($"CCCD = '{cccd}', Length = {cccd.Length}");
                 sdt = encryptionAlgorithm.encryptMessagePlus(sdt, 10);
                 cccd = encryptionAlgorithm.encryptMessageMultiply(cccd, 11);
 

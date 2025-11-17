@@ -21,6 +21,9 @@ using DoAnBMCSDL.View.CRUDView.KhachHangCRUD;
 //using DoAnBMCSDL.View.ListView;
 using DoAnBMCSDL.View.CRUDView.KhachHangCRUD;
 using System.Linq.Expressions;
+//using DOanBMCSL.View.DichVuView
+using DoAnBMCSDL.View.DichVuView;
+
 
 namespace DoAnBMCSDL.View
 {
@@ -35,14 +38,18 @@ namespace DoAnBMCSDL.View
         private Timer timer;
         private EncryptionFunc encryptionFunc;
 
+        //kết nối ORCL
+        private string yourConnectionString = "User Id=thinh;Password=123;Data Source=//localhost:1521/orcl";
 
         //===============THÊM CÁC BIẾN MỚI CHO MÃ HÓA FILE KHÁCH HÀNG
         private DESApp desApp;
-
         private string dataFilePath = Path.Combine(Application.StartupPath, "danhsach_kh_mahoa.txt");
         private string keyFilePath = Path.Combine(Application.StartupPath, "des_key.key");
-
-
+        
+        private RSAApp rsaApp;
+        private string rsa_dv_publicKeyPath = Path.Combine(Application.StartupPath, "rsa_dv_public.xml");
+        private string rsa_dv_privateKeyPath = Path.Combine(Application.StartupPath, "rsa_dv_private.xml");
+        private string rsa_dv_dataFilePath = Path.Combine(Application.StartupPath, "danhsach_dv_mahoa_rsa.txt");
 
 
 
@@ -61,6 +68,8 @@ namespace DoAnBMCSDL.View
 
             //KHỞI TẠO ĐỐI TƯỢNG 
             desApp = new DESApp();
+            rsaApp = new RSAApp();
+
 
         }
 
@@ -374,7 +383,7 @@ namespace DoAnBMCSDL.View
         //gọi hàm mã hóa RSA và DES
 
 
-        //xuất file txt
+        //xuất file txt///////////////////////////////////////////////////////////////////////////////////////////////////////
         private void btnExportFile_Click(object sender, EventArgs e)
         {
             try
@@ -411,20 +420,207 @@ namespace DoAnBMCSDL.View
                                 $"Dữ liệu: {dataFilePath}\n" +
                                 $"Khóa: {keyFilePath}", "Hoàn tất");
             }
-            
+
             catch (Exception ex)
             {
                 Console.WriteLine($"Lỗi khi mã hóa và xuất file: {ex.Message}");
                 MessageBox.Show($"Lỗi khi mã hóa và xuất file: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
 
-
+        }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //show form decrypt DES cho khách hàng
-        private void btnDecyptDes_Click(object sender, EventArgs e)
+
+        private void btnDecryptDes_Click(object sender, EventArgs e)
         {
             DecryptDes decryptDes = new DecryptDes();
             decryptDes.ShowDialog();
+        }
+
+
+
+
+        private void btnExportFile_Click_1(object sender, EventArgs e)
+        {
+           try
+    {
+        // 1. Lấy dữ liệu từ DataGridView (Giữ nguyên)
+        List<KhachHang> list = dgrv_kh.DataSource as List<KhachHang>;
+        if (list == null || list.Count == 0)
+        {
+            MessageBox.Show("Không có dữ liệu khách hàng để mã hóa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
+        // 2. Tạo key DES (Giữ nguyên)
+        // (Chúng ta sẽ lưu nó sau khi người dùng chọn vị trí)
+        byte[] desKey = desApp.GenerateKey();
+
+        // 3. Gom dữ liệu (Giữ nguyên)
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine("MaKH,TenKH,SoDienThoai,CCCD,SoDu,MatKhau,NguoiTao,NgayTao,NguoiSua,NgaySua");
+        foreach (KhachHang kh in list)
+        {
+            sb.AppendLine($"{kh.MaKH}, {kh.TenKH},{kh.SoDienThoai}, {kh.CCCD}, {kh.SoDu},{kh.MatKhau},{kh.NgayTao},{kh.NgayTao},{kh.NguoiSua},{kh.NgaySua}");
+        }
+
+        // 4. Mã hóa (Giữ nguyên)
+        byte[] encrytedData = desApp.Encrypt(sb.ToString(), desKey);
+        string base64EncryptedData = Convert.ToBase64String(encrytedData);
+
+        // --- BẮT ĐẦU THAY ĐỔI ---
+
+        // 5. Mở hộp thoại cho người dùng chọn nơi lưu FILE DỮ LIỆU
+        SaveFileDialog saveFileDialog = new SaveFileDialog();
+        saveFileDialog.Title = "Chọn nơi lưu file Khách Hàng đã mã hóa";
+        
+        // (Dùng .txt cho nhất quán với các yêu cầu trước của bạn)
+        saveFileDialog.Filter = "Text File (*.txt)|*.txt|Encrypted Data File (*.dat)|*.dat|All Files (*.*)|*.*";
+        saveFileDialog.DefaultExt = "txt";
+        saveFileDialog.FileName = "khachhang_encrypted.txt";
+
+        // 6. Hiển thị hộp thoại và xử lý
+        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            // Lấy đường dẫn file DỮ LIỆU người dùng chọn
+            string userSelectedDataPath = saveFileDialog.FileName;
+
+            // Tự động tạo đường dẫn cho file KEY
+            // (Lưu file key cùng chỗ, cùng tên, nhưng đổi đuôi file thành .key)
+            string keyFilePath = Path.ChangeExtension(userSelectedDataPath, ".key");
+
+            // 7. Lưu cả 2 file
+            // Lưu file dữ liệu đã mã hóa (Base64)
+            File.WriteAllText(userSelectedDataPath, base64EncryptedData, Encoding.UTF8);
+            // Lưu file key DES
+            File.WriteAllBytes(keyFilePath, desKey);
+
+            // 8. Cập nhật thông báo
+            MessageBox.Show($"Đã mã hóa DES và xuất file thành công!\n\n" +
+                            $"Dữ liệu: {userSelectedDataPath}\n" +
+                            $"Khóa: {keyFilePath}", "Hoàn tất");
+        }
+        else
+        {
+            // Người dùng đã nhấn "Cancel"
+            MessageBox.Show("Thao tác xuất file đã bị hủy.", "Đã hủy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        // --- KẾT THÚC THAY ĐỔI ---
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Lỗi khi mã hóa và xuất file: {ex.Message}");
+        MessageBox.Show($"Lỗi khi mã hóa và xuất file: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+        }
+
+
+
+
+        private void btnExportFileDV_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // === PHẦN 1: THAY ĐỔI - LẤY DỮ LIỆU TỪ ORACLE ===
+
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("MaDV,TenDV,DonGia,NguoiTao,NgayTao,NguoiSua,NgaySua"); // Thêm header
+                int count = 0;
+
+                try
+                {
+                    // (Bạn cần thay 'yourConnectionString' bằng chuỗi kết nối thật)
+                    using (OracleConnection conn = new OracleConnection(yourConnectionString))
+                    {
+                        conn.Open();
+                        // (Thay 'DichVu' bằng tên bảng Dịch Vụ của bạn nếu khác)
+                        string sql = "SELECT MaDV, TenDV, DonGia, NguoiTao, NgayTao, NguoiSua, NgaySua FROM DichVu ORDER BY MaDV";
+
+                        using (OracleCommand cmd = new OracleCommand(sql, conn))
+                        {
+                            using (OracleDataReader reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    // Lấy dữ liệu từ các cột
+                                    string maDV = reader["MaDV"].ToString();
+                                    string tenDV = reader["TenDV"].ToString();
+                                    string donGia = reader["DonGia"].ToString();
+                                    string nguoiTao = reader["NguoiTao"].ToString();
+                                    string ngayTao = reader["NgayTao"].ToString();
+                                    string nguoiSua = reader["NguoiSua"].ToString();
+                                    string ngaySua = reader["NgaySua"].ToString();
+                                    sb.AppendLine($"{maDV},{tenDV},{donGia},{nguoiTao},{ngayTao},{nguoiSua},{ngaySua}");
+                                    count++;
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception dbEx)
+                {
+                    MessageBox.Show($"Lỗi khi đọc dữ liệu từ Oracle: {dbEx.Message}", "Lỗi DB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // Dừng lại nếu không đọc được DB
+                }
+
+                // Kiểm tra nếu không có dữ liệu
+                if (count == 0)
+                {
+                    MessageBox.Show("Không có dữ liệu dịch vụ từ Oracle để mã hóa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                // 2. Kiểm tra (hoặc tạo) cặp khóa RSA (Giữ nguyên)
+                if (!File.Exists(rsa_dv_publicKeyPath) || !File.Exists(rsa_dv_privateKeyPath))
+                {
+                    Console.WriteLine($"Đang tạo cặp khóa RSA cho Dịch vụ tại: {rsa_dv_publicKeyPath}");
+                    rsaApp.GenerateAndSaveKeys(rsa_dv_publicKeyPath, rsa_dv_privateKeyPath);
+                }
+
+             
+                byte[] encryptedData = rsaApp.EncryptFromFile(sb.ToString(), rsa_dv_publicKeyPath);
+                string base64EncryptedData = Convert.ToBase64String(encryptedData);
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Title = "Chọn nơi lưu file dịch vụ đã mã hóa";
+
+                // Đưa .txt lên làm lựa chọn đầu tiên và mặc định
+                saveFileDialog.Filter = "Text File (*.txt)|*.txt|Encrypted Data File (*.dat)|*.dat|All Files (*.*)|*.*";
+                saveFileDialog.DefaultExt = "txt";
+                saveFileDialog.FileName = "dichvu_encrypted.txt";
+
+
+
+
+                // 7. Hiển thị hộp thoại và lưu file (Giữ nguyên)
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string userSelectedPath = saveFileDialog.FileName;
+                    File.WriteAllText(userSelectedPath, base64EncryptedData, Encoding.UTF8);
+
+                    MessageBox.Show($"Đã mã hóa RSA và xuất file Dịch Vụ thành công!\n\n" +
+                                    $"Dữ liệu: {userSelectedPath}\n" +
+                                    $"Khóa (Public): {rsa_dv_publicKeyPath}", "Hoàn tất");
+                }
+                else
+                {
+                    MessageBox.Show("Thao tác xuất file đã bị hủy.", "Đã hủy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi mã hóa RSA và xuất file: {ex.Message}");
+                MessageBox.Show($"Lỗi khi mã hóa RSA và xuất file: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        //NÚT GIẢI MÃ 
+        private void btnDecryptDV_Click(object sender, EventArgs e)
+        {
+            DecryptRSA decryptRSA = new DecryptRSA();
+            decryptRSA.ShowDialog();
         }
     }
 }

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_logout = new System.Windows.Forms.Button();
             this.lbl_user = new System.Windows.Forms.Label();
             this.dgrv_may = new System.Windows.Forms.DataGridView();
@@ -54,10 +54,22 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.tab_khach = new System.Windows.Forms.TabPage();
+            this.btnDecryptDes = new System.Windows.Forms.Button();
+            this.btnExportFile = new System.Windows.Forms.Button();
             this.icon_refresh_kh = new FontAwesome.Sharp.IconButton();
             this.btn_update_kh = new System.Windows.Forms.Button();
             this.btn_delete_kh = new System.Windows.Forms.Button();
             this.dgrv_kh = new System.Windows.Forms.DataGridView();
+            this.col_makh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_tenkh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_sdt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_cccd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_sodu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_ngaytao_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_nguoitao_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_ngaysua_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_nguoisua_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_insert_kh = new System.Windows.Forms.Button();
             this.tab_may = new System.Windows.Forms.TabPage();
             this.btn_update_may = new System.Windows.Forms.Button();
@@ -78,16 +90,8 @@
             this.col_nguoitaohd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_ngaysuahd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_nguoisuahd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_makh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_tenkh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_sdt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_cccd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_sodu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_ngaytao_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_nguoitao_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_ngaysua_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_nguoisua_kh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnExportFileDV = new System.Windows.Forms.Button();
+            this.btnDecryptDV = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgrv_may)).BeginInit();
             this.tabControlMain.SuspendLayout();
             this.tab_dichvu.SuspendLayout();
@@ -197,6 +201,8 @@
             // tab_dichvu
             // 
             this.tab_dichvu.BackColor = System.Drawing.Color.Transparent;
+            this.tab_dichvu.Controls.Add(this.btnDecryptDV);
+            this.tab_dichvu.Controls.Add(this.btnExportFileDV);
             this.tab_dichvu.Controls.Add(this.dgrv_dv);
             this.tab_dichvu.Controls.Add(this.btn_rf_dv);
             this.tab_dichvu.Controls.Add(this.button1);
@@ -307,6 +313,7 @@
             this.button1.TabIndex = 12;
             this.button1.Text = "UPDATE";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -333,6 +340,8 @@
             // tab_khach
             // 
             this.tab_khach.BackColor = System.Drawing.Color.White;
+            this.tab_khach.Controls.Add(this.btnExportFile);
+            this.tab_khach.Controls.Add(this.btnDecryptDes);
             this.tab_khach.Controls.Add(this.icon_refresh_kh);
             this.tab_khach.Controls.Add(this.btn_update_kh);
             this.tab_khach.Controls.Add(this.btn_delete_kh);
@@ -346,6 +355,30 @@
             this.tab_khach.Size = new System.Drawing.Size(1170, 423);
             this.tab_khach.TabIndex = 1;
             this.tab_khach.Text = "Khách hàng";
+            // 
+            // btnDecryptDes
+            // 
+            this.btnDecryptDes.ForeColor = System.Drawing.Color.Black;
+            this.btnDecryptDes.Location = new System.Drawing.Point(1029, 344);
+            this.btnDecryptDes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDecryptDes.Name = "btnDecryptDes";
+            this.btnDecryptDes.Size = new System.Drawing.Size(101, 59);
+            this.btnDecryptDes.TabIndex = 11;
+            this.btnDecryptDes.Text = "Giải mã File";
+            this.btnDecryptDes.UseVisualStyleBackColor = true;
+            this.btnDecryptDes.Click += new System.EventHandler(this.btnDecryptDes_Click);
+            // 
+            // btnExportFile
+            // 
+            this.btnExportFile.ForeColor = System.Drawing.Color.Black;
+            this.btnExportFile.Location = new System.Drawing.Point(1029, 277);
+            this.btnExportFile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExportFile.Name = "btnExportFile";
+            this.btnExportFile.Size = new System.Drawing.Size(101, 41);
+            this.btnExportFile.TabIndex = 10;
+            this.btnExportFile.Text = "Xuất File";
+            this.btnExportFile.UseVisualStyleBackColor = true;
+            this.btnExportFile.Click += new System.EventHandler(this.btnExportFile_Click_1);
             // 
             // icon_refresh_kh
             // 
@@ -404,6 +437,93 @@
             this.dgrv_kh.RowTemplate.Height = 24;
             this.dgrv_kh.Size = new System.Drawing.Size(988, 422);
             this.dgrv_kh.TabIndex = 0;
+            // 
+            // col_makh
+            // 
+            this.col_makh.DataPropertyName = "MaKH";
+            this.col_makh.HeaderText = "Mã khách hàng";
+            this.col_makh.MinimumWidth = 6;
+            this.col_makh.Name = "col_makh";
+            this.col_makh.Width = 130;
+            // 
+            // col_tenkh
+            // 
+            this.col_tenkh.DataPropertyName = "TenKH";
+            this.col_tenkh.HeaderText = "Họ và tên";
+            this.col_tenkh.MinimumWidth = 6;
+            this.col_tenkh.Name = "col_tenkh";
+            this.col_tenkh.Width = 125;
+            // 
+            // col_sdt
+            // 
+            this.col_sdt.DataPropertyName = "SoDienThoai";
+            this.col_sdt.HeaderText = "Số điện thoại";
+            this.col_sdt.MinimumWidth = 6;
+            this.col_sdt.Name = "col_sdt";
+            this.col_sdt.Width = 125;
+            // 
+            // col_email
+            // 
+            this.col_email.DataPropertyName = "Email";
+            this.col_email.HeaderText = "Email";
+            this.col_email.MinimumWidth = 6;
+            this.col_email.Name = "col_email";
+            this.col_email.Width = 125;
+            // 
+            // col_cccd
+            // 
+            this.col_cccd.DataPropertyName = "CCCD";
+            this.col_cccd.HeaderText = "CCCD";
+            this.col_cccd.MinimumWidth = 6;
+            this.col_cccd.Name = "col_cccd";
+            this.col_cccd.Width = 125;
+            // 
+            // col_sodu
+            // 
+            this.col_sodu.DataPropertyName = "SoDu";
+            dataGridViewCellStyle7.Format = "#,##0 đ";
+            this.col_sodu.DefaultCellStyle = dataGridViewCellStyle7;
+            this.col_sodu.HeaderText = "Số dư";
+            this.col_sodu.MinimumWidth = 6;
+            this.col_sodu.Name = "col_sodu";
+            this.col_sodu.Width = 125;
+            // 
+            // col_ngaytao_kh
+            // 
+            this.col_ngaytao_kh.DataPropertyName = "NgayTao";
+            dataGridViewCellStyle8.Format = "dd/MM/yy";
+            this.col_ngaytao_kh.DefaultCellStyle = dataGridViewCellStyle8;
+            this.col_ngaytao_kh.HeaderText = "Ngày tạo";
+            this.col_ngaytao_kh.MinimumWidth = 6;
+            this.col_ngaytao_kh.Name = "col_ngaytao_kh";
+            this.col_ngaytao_kh.Width = 125;
+            // 
+            // col_nguoitao_kh
+            // 
+            this.col_nguoitao_kh.DataPropertyName = "NguoiTao";
+            this.col_nguoitao_kh.HeaderText = "Người tạo";
+            this.col_nguoitao_kh.MinimumWidth = 6;
+            this.col_nguoitao_kh.Name = "col_nguoitao_kh";
+            this.col_nguoitao_kh.Width = 125;
+            // 
+            // col_ngaysua_kh
+            // 
+            this.col_ngaysua_kh.DataPropertyName = "NgaySua";
+            dataGridViewCellStyle9.Format = "dd/MM/yy";
+            dataGridViewCellStyle9.NullValue = null;
+            this.col_ngaysua_kh.DefaultCellStyle = dataGridViewCellStyle9;
+            this.col_ngaysua_kh.HeaderText = "Ngày sửa";
+            this.col_ngaysua_kh.MinimumWidth = 6;
+            this.col_ngaysua_kh.Name = "col_ngaysua_kh";
+            this.col_ngaysua_kh.Width = 125;
+            // 
+            // col_nguoisua_kh
+            // 
+            this.col_nguoisua_kh.DataPropertyName = "NguoiSua";
+            this.col_nguoisua_kh.HeaderText = "Người sửa";
+            this.col_nguoisua_kh.MinimumWidth = 6;
+            this.col_nguoisua_kh.Name = "col_nguoisua_kh";
+            this.col_nguoisua_kh.Width = 125;
             // 
             // btn_insert_kh
             // 
@@ -621,92 +741,29 @@
             this.col_nguoisuahd.Name = "col_nguoisuahd";
             this.col_nguoisuahd.Width = 125;
             // 
-            // col_makh
+            // btnExportFileDV
             // 
-            this.col_makh.DataPropertyName = "MaKH";
-            this.col_makh.HeaderText = "Mã khách hàng";
-            this.col_makh.MinimumWidth = 6;
-            this.col_makh.Name = "col_makh";
-            this.col_makh.Width = 130;
+            this.btnExportFileDV.ForeColor = System.Drawing.Color.Black;
+            this.btnExportFileDV.Location = new System.Drawing.Point(1045, 297);
+            this.btnExportFileDV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExportFileDV.Name = "btnExportFileDV";
+            this.btnExportFileDV.Size = new System.Drawing.Size(101, 49);
+            this.btnExportFileDV.TabIndex = 15;
+            this.btnExportFileDV.Text = "XUẤT FILE";
+            this.btnExportFileDV.UseVisualStyleBackColor = true;
+            this.btnExportFileDV.Click += new System.EventHandler(this.btnExportFileDV_Click);
             // 
-            // col_tenkh
+            // btnDecryptDV
             // 
-            this.col_tenkh.DataPropertyName = "TenKH";
-            this.col_tenkh.HeaderText = "Họ và tên";
-            this.col_tenkh.MinimumWidth = 6;
-            this.col_tenkh.Name = "col_tenkh";
-            this.col_tenkh.Width = 125;
-            // 
-            // col_sdt
-            // 
-            this.col_sdt.DataPropertyName = "SoDienThoai";
-            this.col_sdt.HeaderText = "Số điện thoại";
-            this.col_sdt.MinimumWidth = 6;
-            this.col_sdt.Name = "col_sdt";
-            this.col_sdt.Width = 125;
-            // 
-            // col_email
-            // 
-            this.col_email.DataPropertyName = "Email";
-            this.col_email.HeaderText = "Email";
-            this.col_email.MinimumWidth = 6;
-            this.col_email.Name = "col_email";
-            this.col_email.Width = 125;
-            // 
-            // col_cccd
-            // 
-            this.col_cccd.DataPropertyName = "CCCD";
-            this.col_cccd.HeaderText = "CCCD";
-            this.col_cccd.MinimumWidth = 6;
-            this.col_cccd.Name = "col_cccd";
-            this.col_cccd.Width = 125;
-            // 
-            // col_sodu
-            // 
-            this.col_sodu.DataPropertyName = "SoDu";
-            dataGridViewCellStyle1.Format = "#,##0 đ";
-            this.col_sodu.DefaultCellStyle = dataGridViewCellStyle1;
-            this.col_sodu.HeaderText = "Số dư";
-            this.col_sodu.MinimumWidth = 6;
-            this.col_sodu.Name = "col_sodu";
-            this.col_sodu.Width = 125;
-            // 
-            // col_ngaytao_kh
-            // 
-            this.col_ngaytao_kh.DataPropertyName = "NgayTao";
-            dataGridViewCellStyle2.Format = "dd/MM/yy";
-            this.col_ngaytao_kh.DefaultCellStyle = dataGridViewCellStyle2;
-            this.col_ngaytao_kh.HeaderText = "Ngày tạo";
-            this.col_ngaytao_kh.MinimumWidth = 6;
-            this.col_ngaytao_kh.Name = "col_ngaytao_kh";
-            this.col_ngaytao_kh.Width = 125;
-            // 
-            // col_nguoitao_kh
-            // 
-            this.col_nguoitao_kh.DataPropertyName = "NguoiTao";
-            this.col_nguoitao_kh.HeaderText = "Người tạo";
-            this.col_nguoitao_kh.MinimumWidth = 6;
-            this.col_nguoitao_kh.Name = "col_nguoitao_kh";
-            this.col_nguoitao_kh.Width = 125;
-            // 
-            // col_ngaysua_kh
-            // 
-            this.col_ngaysua_kh.DataPropertyName = "NgaySua";
-            dataGridViewCellStyle3.Format = "dd/MM/yy";
-            dataGridViewCellStyle3.NullValue = null;
-            this.col_ngaysua_kh.DefaultCellStyle = dataGridViewCellStyle3;
-            this.col_ngaysua_kh.HeaderText = "Ngày sửa";
-            this.col_ngaysua_kh.MinimumWidth = 6;
-            this.col_ngaysua_kh.Name = "col_ngaysua_kh";
-            this.col_ngaysua_kh.Width = 125;
-            // 
-            // col_nguoisua_kh
-            // 
-            this.col_nguoisua_kh.DataPropertyName = "NguoiSua";
-            this.col_nguoisua_kh.HeaderText = "Người sửa";
-            this.col_nguoisua_kh.MinimumWidth = 6;
-            this.col_nguoisua_kh.Name = "col_nguoisua_kh";
-            this.col_nguoisua_kh.Width = 125;
+            this.btnDecryptDV.ForeColor = System.Drawing.Color.Black;
+            this.btnDecryptDV.Location = new System.Drawing.Point(1045, 362);
+            this.btnDecryptDV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDecryptDV.Name = "btnDecryptDV";
+            this.btnDecryptDV.Size = new System.Drawing.Size(101, 57);
+            this.btnDecryptDV.TabIndex = 16;
+            this.btnDecryptDV.Text = "GIẢI MÃ FILE";
+            this.btnDecryptDV.UseVisualStyleBackColor = true;
+            this.btnDecryptDV.Click += new System.EventHandler(this.btnDecryptDV_Click);
             // 
             // MainForm
             // 
@@ -795,5 +852,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoitao_kh;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ngaysua_kh;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_nguoisua_kh;
+        private System.Windows.Forms.Button btnDecryptDes;
+        private System.Windows.Forms.Button btnExportFile;
+        private System.Windows.Forms.Button btnDecryptDV;
+        private System.Windows.Forms.Button btnExportFileDV;
     }
 }
